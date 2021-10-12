@@ -1,7 +1,8 @@
 const express = require('express');
 const app = express()
+const cors = require('cors')
 const accessRouter = require('./src/routes/access.routes')
-const accountRouter = require('./src/routes/account.routes')
+// const accountRouter = require('./src/routes/account.routes')
 
 
 // Static Files
@@ -20,7 +21,7 @@ app.use(express.urlencoded({ extended: true }))
 
 //Routes
 app.use('/', accessRouter);
-app.use('/account', accountRouter);
+// app.use('/account', accountRouter);
 
 const PORT = process.env.APP_PORT || 5051
 app.listen(PORT, () => {
