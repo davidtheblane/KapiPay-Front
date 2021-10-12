@@ -1,6 +1,6 @@
 import { create } from 'axios';
 
-const API_URL = process.env.API_USER_URL;
+const API_URL = process.env.API_URL;
 
 const axiosInstance = create({
   baseURL: API_URL,
