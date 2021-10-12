@@ -9,8 +9,6 @@ app.use(express.static('public'));
 app.use('/css', express.static(__dirname + 'public/css'));
 app.use('/imgs', express.static(__dirname + 'public/imgs'));
 app.use('/js', express.static(__dirname + 'public/js'));
-app.use('controllers', express.static(__dirname + 'src/controllers'));
-
 // app.set('views', __dirname + 'src/views')
 
 
