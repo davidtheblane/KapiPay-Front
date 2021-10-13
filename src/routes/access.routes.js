@@ -30,4 +30,8 @@ router.delete('/logout', (req, res) => {
   res.redirect("pages/login");
 })
 
+router.get('/main', (req, res) => {
+  res.render("pages/main");
+})
+
 module.exports = router;
