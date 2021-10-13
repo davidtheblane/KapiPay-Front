@@ -1,13 +1,19 @@
 const axios = require('axios').default
+require('dotenv').config()
 
-const API_SERVER = process.env.API_SERVER;
+
+const APIUrl = process.env.API_SERVER || "http://localhost:5050/";
+const BearerToken = process.env.BEARER_TOKEN;
+const resourcetoken = process.env.RESOURCE_TOKEN;
+
 
 const api = axios.create({
-  baseURL: API_SERVER,
+  baseURL: APIUrl,
   headers: {
     "Content-Type": "Application/json",
-    "Authorization": `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxNTY1MzJmNDJhZTk0YmEwMzM2MmJmNSIsImlhdCI6MTYzNDA0ODIxNSwiZXhwIjoxNjM0MTM0NjE1fQ.owmLPfstlqw5OG4ojNocvEScAl4obdkSQACgspRVles`,
-    "resourcetoken": "BFBE2F8263AAD912E3159026ECAC481BEA90165A2C77EA2E35E111AC09B2F32A"
+    "Accept": "Application/json",
+    "Authorization": `Bearer ${BearerToken}`,
+    "resourcetoken": `${resourcetoken}`,
   }
 })
 

@@ -1,3 +1,5 @@
+const AccountController = require('../controllers/account.controller')
+
 const { Router } = require('express');
 
 const router = new Router();
@@ -30,8 +32,10 @@ router.delete('/logout', (req, res) => {
   res.redirect("pages/login");
 })
 
-router.get('/main', (req, res) => {
-  res.render("pages/main");
-})
+// router.get('/account/balance', (req, res) => {
+//   const rota = JSON.stringify(res.data)
+//   console.log("chegou na rota", rota)
+// });
+
 
 module.exports = router;

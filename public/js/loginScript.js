@@ -46,8 +46,6 @@ const login = {
     } else {
       alert('Login efetuado')
     }
-
-
     console.log(response)
   }
 }
