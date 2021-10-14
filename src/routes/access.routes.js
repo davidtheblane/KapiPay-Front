@@ -1,41 +1,20 @@
-const AccountController = require('../controllers/account.controller')
-
 const { Router } = require('express');
+const AccessController = require('../controllers/access.controller')
+const api = require("../services/api.service")
+const router = new Router(api);
 
-const router = new Router();
-
-router.get('/', (req, res) => {
+router.get('/main', (req, res) => {
   res.render("index");
 })
 
-router.get('/login', (req, res) => {
-  res.render("pages/login");
-})
+router.get('/login', AccessController.login)
+router.get('/register', AccessController.register)
 
-router.post('/login', (req, res) => {
-  console.log(req.body)
-  res.json(req.body)
-})
+router.post('/login', AccessController.doLogin)
+router.post('/register', AccessController.doRegister)
 
-router.get('/register', (req, res) => {
-  res.render("pages/register")
-})
+router.delete('/logout', AccessController.logout)
 
-router.post('/register', (req, res) => {
-  console.log(req.body)
-  res.json(req.body)
-})
-
-
-router.delete('/logout', (req, res) => {
-  req.logOut();
-  res.redirect("pages/login");
-})
-
-// router.get('/account/balance', (req, res) => {
-//   const rota = JSON.stringify(res.data)
-//   console.log("chegou na rota", rota)
-// });
 
 
 module.exports = router;

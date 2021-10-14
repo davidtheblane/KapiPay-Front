@@ -15,38 +15,32 @@ const api = axios.create({
     "Authorization": `Bearer ${BearerToken}`,
     "resourcetoken": `${resourcetoken}`,
   }
-})
+});
 
 module.exports = api;
 
-// api.interceptors.request.use((config) => {
-//   const token = document.cookie.split('=')[1]
-
-//   if (token) {
-//     config.headers = {
-//       'Content-Type': 'application/json',
-//       'Authorization': `Bearer ${token}`,
-//     }
-//   }
-//   return config;
-// })
-
 //////////////////////////////
 
-// const API_URL = process.env.API_URL;
-
-// const axiosInstance = create({
-//   baseURL: `${API_URL}/login`,
+// const api = axios.create({
+//   baseURL: APIUrl,
 // });
 
-// axiosInstance.interceptors.request.use((config) => {
+// api.interceptors.request.use((config) => {
 //   const token = document.cookie.split('=')[1]
-
+//   console.log(token)
 //   if (token) {
+
+//     console.log('token existe')
 //     config.headers = {
-//       'Content-Type': 'application/json',
-//       'Authorization': `Bearer ${token}`,
+//       "Content-Type": "Application/json",
+//       "Accept": "Application/json",
+//       "Authorization": `Bearer ${BearerToken}`,
+//       "resourcetoken": `${resourcetoken}`,
 //     }
+//   } else {
+//     console.log('token não existe')
 //   }
 //   return config;
 // })
+
+// module.exports = api;
