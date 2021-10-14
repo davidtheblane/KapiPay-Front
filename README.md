@@ -1,4 +1,5 @@
 last update 11/10/2021
+
 # KapiPay-Front
 
 #### Automatic bill payment system
@@ -10,6 +11,9 @@ last update 11/10/2021
 **TO-DO**
 
 ```
+Email sender
+Call all the endpoints from the app
+Deploy CI/CD
 Dividir o model de users, em user e userAccount
 
 TRANSFER - PAYMENT
