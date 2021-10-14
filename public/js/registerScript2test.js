@@ -53,9 +53,6 @@ const register = {
       alert(data.message)
     } else {
       alert('Conta criada com sucesso')
-      fetch("/login", {
-        method: 'GET'
-      })
     }
 
     console.log(response)

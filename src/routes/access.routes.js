@@ -3,7 +3,7 @@ const AccessController = require('../controllers/access.controller')
 const api = require("../services/api.service")
 const router = new Router(api);
 
-router.get('/main', (req, res) => {
+router.get('/', (req, res) => {
   res.render("index");
 })
 
