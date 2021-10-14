@@ -3,5 +3,5 @@
 cd app/KapiPay-Front
 git pull
 
-sudo npm install
-sudo pm2 restart app.js
+npm install
+pm2 restart app.js
