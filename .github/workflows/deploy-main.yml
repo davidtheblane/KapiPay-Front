@@ -9,12 +9,15 @@ on:
       - main
 
 jobs:
-  deployment:
+  CI:
     runs-on: self-hosted
     steps:
       - name: Checkout main branch
         uses: actions/checkout@v2
-
+  CD:
+    needs: [CI]
+    runs-on: self-hosted
+    steps:
       - name: Setup Node.js
         uses: actions/setup-node@v1
         with:
@@ -26,5 +29,5 @@ jobs:
       - name: Test application
         run: npm test
 
-      - name: Build application
-        run: npm start
+      - name: Restart application
+        run: pm2 restart app-kapipay-prod
