@@ -12,8 +12,8 @@ jobs:
   Deployment:
     runs-on: self-hosted
     steps:
-      - name: Checkout main branch
-        uses: actions/checkout@v2
+      - name: Update main branch
+        run: git pull
 
       - name: Setup Node.js
         uses: actions/setup-node@v1
@@ -21,10 +21,7 @@ jobs:
           node-version: "14.x"
 
       - name: Install dependencies
-        run: npm install
-
-      - name: Update Application
-        run: git pull
+        run: npm ci
 
       - name: Restart application
         run: pm2 restart app-kapipay-prod
