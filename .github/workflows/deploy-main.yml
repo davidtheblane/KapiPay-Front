@@ -8,6 +8,10 @@ on:
     branches:
       - main
 
+  pull_request:
+    branches:
+      - main
+
 jobs:
   Deployment:
     runs-on: self-hosted

@@ -3,6 +3,21 @@ const api = require('../services/api.service')
 
 module.exports = {
 
+  createAccountPage: async (req, res) => {
+    res.render("pages/account");
+  },
+
+  createAccount: async (req, res) => {
+    console.log("chegou no controller")
+    try {
+      const account = await api.get("/account/create")
+      console.log(account.data)
+      return res.json(account.data)
+    } catch (error) {
+      res.sendStatus(400, { message: error.message })
+    }
+  },
+
   balance: async (req, res) => {
     try {
       const balance = await api.get("/account/balance")
@@ -34,16 +49,7 @@ module.exports = {
     }
   },
 
-  createAccount: async (req, res) => {
-    console.log("chegou no controller")
-    try {
-      const account = await api.get("/account/create")
-      console.log(account.data)
-      return res.json(account.data)
-    } catch (error) {
-      res.sendStatus(400, { message: error.message })
-    }
-  },
+
 
 
 }

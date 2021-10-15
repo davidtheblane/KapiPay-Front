@@ -1,6 +1,6 @@
-const register = {
+const createAccount = {
   init: async () => {
-    document.getElementById('btn_digital_account').addEventListener('click', register.validate)
+    document.getElementById('btn_digital_account').addEventListener('click', createAccount.validate)
   },
 
   validate: async () => {
@@ -27,7 +27,7 @@ const register = {
     if (!validate) {
       alert(message)
     } else {
-      register.send()
+      createAccount.send()
     }
   },
 
@@ -39,7 +39,7 @@ const register = {
       password: document.getElementsByName('password')[0].value
     }
 
-    const response = await fetch("register", {
+    const response = await fetch("account/create", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

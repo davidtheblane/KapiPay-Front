@@ -1,4 +1,3 @@
-const { response } = require('express');
 const api = require('../services/api.service');
 
 module.exports = {
@@ -11,10 +10,6 @@ module.exports = {
     try {
       const response = await api.post('/login', req.body)
       res.send(response.data)
-
-      // if (res.ok) {
-      //   res.redirect('/')
-      // }
 
     } catch (error) {
       res.send({ message: error.response.data.error })
