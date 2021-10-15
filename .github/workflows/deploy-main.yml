@@ -14,7 +14,6 @@ jobs:
     steps:
       - name: Checkout main branch
         uses: actions/checkout@v2
-        run: git pull
   CD:
     needs: [CI]
     runs-on: self-hosted
@@ -31,4 +30,5 @@ jobs:
         run: npm test
 
       - name: Restart application
+        run: git pull
         run: pm2 restart app-kapipay-prod
