@@ -6,7 +6,12 @@ const router = new Router(api);
 router.get('/balance', AccountController.balance);
 router.get('/status', AccountController.accountStatus);
 router.get('/documents', AccountController.verifyDocuments);
-router.get('/account', AccountController.createAccount)
+router.get('/create', AccountController.createAccountPage)
+
+router.post('/create', AccountController.createAccount)
+
+
+
 
 
 module.exports = router

@@ -67,13 +67,13 @@ const accountActions = {
         p.innerHTML = `<hr>
           <a href="${docLink}"><p>CPF/RG: ${dockStatus}</p></a>
           <a href="${selfieLink}"><p>Selfie: ${selfieStatus}</p></a>
-          <hr>
-          `
+          <hr>`
         fatherElement.appendChild(p)
       }
     })
   },
 
+  // CREATE ACCOUNT
   createAccount: () => {
     document.getElementById('btn_digital_account').addEventListener('click', async () => {
 
