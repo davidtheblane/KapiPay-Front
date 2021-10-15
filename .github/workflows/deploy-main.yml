@@ -9,22 +9,19 @@ on:
       - main
 
 jobs:
-  CI:
+  Deployment:
     runs-on: self-hosted
     steps:
       - name: Checkout main branch
         uses: actions/checkout@v2
-  CD:
-    needs: [CI]
-    runs-on: self-hosted
-    steps:
+
       - name: Setup Node.js
         uses: actions/setup-node@v1
         with:
           node-version: "14.x"
 
       - name: Install dependencies
-        run: npm ci
+        run: npm install
 
       - name: Update Application
         run: git pull
