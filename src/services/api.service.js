@@ -3,7 +3,7 @@ require('dotenv').config()
 
 
 const APIUrl = process.env.API_SERVER || "http://localhost:5050/";
-const BearerToken = process.env.BEARER_TOKEN;
+const BearerToken = process.env.BEARER_TOKEN || "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxNTY1MzJmNDJhZTk0YmEwMzM2MmJmNSIsImlhdCI6MTYzNDMxOTIzMCwiZXhwIjoxNjM0NDA1NjMwfQ.9FTulw784w511kJwR9pq_qH-G7jEQAKvQq-AJJAsM30"
 const resourcetoken = process.env.RESOURCE_TOKEN;
 
 
