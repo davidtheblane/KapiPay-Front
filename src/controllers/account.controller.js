@@ -33,4 +33,17 @@ module.exports = {
       res.sendStatus(400, { message: error.message })
     }
   },
+
+  createAccount: async (req, res) => {
+    console.log("chegou no controller")
+    try {
+      const account = await api.get("/account/create")
+      console.log(account.data)
+      return res.json(account.data)
+    } catch (error) {
+      res.sendStatus(400, { message: error.message })
+    }
+  },
+
+
 }
