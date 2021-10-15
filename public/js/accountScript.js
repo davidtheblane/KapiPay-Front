@@ -1,108 +1,77 @@
-const dotenv = ('dotenv')
-const BearerToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxNTY1MzJmNDJhZTk0YmEwMzM2MmJmNSIsImlhdCI6MTYzNDEzODAwMiwiZXhwIjoxNjM0MjI0NDAyfQ.wFHR50AaTmnNJBkff_Q68IRscZM0nVFyxfWDQ4bKxxU"
-const ResourceToken = "BFBE2F8263AAD912E3159026ECAC481BEA90165A2C77EA2E35E111AC09B2F32A"
-
 const accountActions = {
 
   // GET BALANCE
-  balance: async () => {
-
+  balance: () => {
     document.getElementById('balance').addEventListener('click', async () => {
 
-      try {
-        const response = await fetch("http://localhost:5050/account/balance", {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-            "Accept": "Application/json",
-            "Authorization": `Bearer ${BearerToken}`,
-            "resourcetoken": `${ResourceToken}`
-          },
-        });
-        if (response.ok) {
-          const data = await response.json()
-          //pega referencia do elemento pai onde o resultado sera inserido
-          const fatherElement = document.getElementById('balance')
-          let p = document.createElement('p')
-          p.setAttribute('class', 'output')
-          p.textContent = `Seu Saldo é de: ${data.balance}`
-          fatherElement.appendChild(p)
-        }
+      const response = await fetch("/account/balance")
 
-      } catch (error) {
-        res.status(400).send({ message: error.message })
+      if (!(response.ok)) {
+        console.log("a resposta não veio")
+      } else {
+        const balance = await response.json()
+        //pega referencia do elemento pai onde o resultado sera inserido
+        const fatherElement = document.getElementById('balance')
+        let p = document.createElement('p')
+        p.setAttribute('class', 'output')
+        p.innerHTML = `<hr>
+        Seu Saldo é de: ${balance}
+        <hr>`
+        fatherElement.appendChild(p)
       }
-    });
+    })
   },
 
-  // ACCOUNT STATUS
-  accountStatus: async () => {
-
+  accountStatus: () => {
     document.getElementById('account_status').addEventListener('click', async () => {
-      try {
 
-        const response = await fetch("http://localhost:5050/account/status", {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-            "Accept": "Application/json",
-            "Authorization": `Bearer ${BearerToken}`,
-            "resourcetoken": `${ResourceToken}`
-          },
-        });
-        if (response.ok) {
-          const data = await response.json()
-          //pega referencia do elemento pai onde o resultado sera inserido
-          const fatherElement = document.getElementById('account_status')
-          let p = document.createElement('p')
-          p.setAttribute('class', 'output')
-          p.textContent = `O status da sua conta é: ${data.status}`
-          fatherElement.appendChild(p)
-        }
+      const response = await fetch("/account/status")
 
-      } catch (error) {
-        res.status(400).send({ message: error.message })
+      if (!response.ok) {
+        console.log("a resposta não veio, talvez o token esteja invalido")
+      } else {
+        const status = await response.json()
+        //pega referencia do elemento pai onde o resultado sera inserido
+        const fatherElement = document.getElementById('account_status')
+        let p = document.createElement('p')
+        p.setAttribute('class', 'output')
+        p.innerHTML = `<hr>
+        O status da conta é: ${status}
+        <hr>`
+        fatherElement.appendChild(p)
       }
-    });
+    })
   },
 
-  // VERIFY DOCUMENTS
-  verifyDocuments: async () => {
-
+  verifyDocuments: () => {
     document.getElementById('verify_documents').addEventListener('click', async () => {
-      try {
 
-        const response = await fetch("http://localhost:5050/account/documents", {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-            "Accept": "Application/json",
-            "Authorization": `Bearer ${BearerToken}`,
-            "resourcetoken": `${ResourceToken}`
-          },
-        });
-        if (response.ok) {
-          const data = await response.json()
-          const selfieStatus = data._embedded.documents[0].approvalStatus
-          const docLink = data._embedded.documents[0]._links.self.href
-          const dockStatus = data._embedded.documents[1].approvalStatus
-          const selfieLink = data._embedded.documents[1]._links.self.href
+      const response = await fetch("/account/documents")
 
-          //pega referencia do elemento pai onde o resultado sera inserido
-          const fatherElement = document.getElementById('verify_documents')
-          let p = document.createElement('p')
-          p.setAttribute('class', 'output')
-          p.innerHTML = `
+      if (!(response.ok)) {
+        console.log("a resposta não veio")
+      } else {
+        console.log('requisição feita')
+
+        const documents = await response.json()
+        const selfieStatus = documents._embedded.documents[0].approvalStatus
+        const docLink = documents._embedded.documents[0]._links.self.href
+        const dockStatus = documents._embedded.documents[1].approvalStatus
+        const selfieLink = documents._embedded.documents[1]._links.self.href
+
+
+        //pega referencia do elemento pai onde o resultado sera inserido
+        const fatherElement = document.getElementById('verify_documents')
+        let p = document.createElement('p')
+        p.setAttribute('class', 'output')
+        p.innerHTML = `<hr>
           <a href="${docLink}"><p>CPF/RG: ${dockStatus}</p></a>
           <a href="${selfieLink}"><p>Selfie: ${selfieStatus}</p></a>
+          <hr>
           `
-          fatherElement.appendChild(p)
-        }
-
-      } catch (error) {
-        res.status(400).send({ message: error.message })
+        fatherElement.appendChild(p)
       }
-    });
+    })
   },
 
 }
@@ -110,4 +79,3 @@ const accountActions = {
 document.addEventListener('DOMContentLoaded', accountActions.accountStatus)
 document.addEventListener('DOMContentLoaded', accountActions.balance)
 document.addEventListener('DOMContentLoaded', accountActions.verifyDocuments)
-

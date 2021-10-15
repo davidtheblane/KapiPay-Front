@@ -45,9 +45,6 @@ const login = {
 
     } else {
       alert('Login efetuado')
-      fetch("/main", {
-        method: 'GET'
-      })
     }
   }
 }
