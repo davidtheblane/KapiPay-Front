@@ -100,7 +100,7 @@ const accountActions = {
 document.addEventListener('DOMContentLoaded', accountActions.accountStatus)
 document.addEventListener('DOMContentLoaded', accountActions.balance)
 document.addEventListener('DOMContentLoaded', accountActions.verifyDocuments)
-document.addEventListener('DOMContentLoaded', accountActions.createAccount)
+// document.addEventListener('DOMContentLoaded', accountActions.createAccount)
 
 
 
