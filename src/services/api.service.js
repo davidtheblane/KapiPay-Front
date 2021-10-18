@@ -20,17 +20,18 @@ const api = axios.create({
 module.exports = api;
 
 //////////////////////////////
+// const resourcetoken = process.env.RESOURCE_TOKEN;
 
 // const api = axios.create({
 //   baseURL: APIUrl,
 // });
 
 // api.interceptors.request.use((config) => {
-//   const token = cookie.split('=')[1]
-//   console.log(token)
+//   const token = document.cookie.split("=")[1]
+
 
 //   if (token) {
-
+//     console.log(token)
 //     console.log('token existe')
 
 //     config.headers = {
@@ -41,8 +42,10 @@ module.exports = api;
 //     }
 //   } else {
 //     console.log('token não existe')
+//     console.log(token)
 //   }
 
+//   console.log(token)
 //   return config;
 // })
 

@@ -45,15 +45,10 @@ const login = {
       alert(data.message)
 
     } else {
-      console.log(data.token)
-      // alert('Login efetuado')
-      const token = `token = ${data.token}`
+      const token = `token=${data.token}`
       document.cookie = token
-      // window.location.assign("/")
-
-      // console.log("response.token")
-      // console.log(token)
-      // window.location.pathname = "/"
+      console.log(token)
+      window.location.assign("/")
     }
   }
 }
