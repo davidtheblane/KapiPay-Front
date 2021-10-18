@@ -67,8 +67,29 @@ const accountActions = {
         p.innerHTML = `<hr>
           <a href="${docLink}"><p>CPF/RG: ${dockStatus}</p></a>
           <a href="${selfieLink}"><p>Selfie: ${selfieStatus}</p></a>
-          <hr>
-          `
+          <hr>`
+        fatherElement.appendChild(p)
+      }
+    })
+  },
+
+  // CREATE ACCOUNT
+  createAccount: () => {
+    document.getElementById('btn_digital_account').addEventListener('click', async () => {
+
+      const response = await fetch("/account/create")
+
+      if (!(response.ok)) {
+        console.log("a resposta não veio")
+      } else {
+        const balance = await response.json()
+        //pega referencia do elemento pai onde o resultado sera inserido
+        const fatherElement = document.getElementById('btn_digital_account')
+        let p = document.createElement('p')
+        p.setAttribute('class', 'output')
+        p.innerHTML = `<hr>
+        Seu Saldo é de: ${balance}
+        <hr>`
         fatherElement.appendChild(p)
       }
     })
@@ -79,3 +100,19 @@ const accountActions = {
 document.addEventListener('DOMContentLoaded', accountActions.accountStatus)
 document.addEventListener('DOMContentLoaded', accountActions.balance)
 document.addEventListener('DOMContentLoaded', accountActions.verifyDocuments)
+// document.addEventListener('DOMContentLoaded', accountActions.createAccount)
+
+
+
+
+// // Buscar elemento pai
+// var elemento_pai = document.body;
+
+// // Criar elemento
+// var titulo = document.createElement('h1');
+
+// // Criando o nó de texto de outra forma
+// titulo.textContent = "Um título qualquer"
+
+// // Inserir (anexar) o elemento filho (titulo) ao elemento pai (body)
+// elemento_pai.appendChild(titulo);

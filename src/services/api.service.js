@@ -3,9 +3,9 @@ require('dotenv').config()
 
 
 const APIUrl = process.env.API_SERVER || "http://localhost:5050/";
-const BearerToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxNTY1MzJmNDJhZTk0YmEwMzM2MmJmNSIsImlhdCI6MTYzNDMxOTIzMCwiZXhwIjoxNjM0NDA1NjMwfQ.9FTulw784w511kJwR9pq_qH-G7jEQAKvQq-AJJAsM30"
+//Bearer esta por enquanto para facilitar testes
 const resourcetoken = process.env.RESOURCE_TOKEN;
-
+const BearerToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxNTY1MzJmNDJhZTk0YmEwMzM2MmJmNSIsImlhdCI6MTYzNDU2MjY0NSwiZXhwIjoxNjM0NjQ5MDQ1fQ.UcVC5rYaogdGiysuljTaR-_NUmhEjXFw5uR4RGJgCZY"
 
 const api = axios.create({
   baseURL: APIUrl,
@@ -26,20 +26,23 @@ module.exports = api;
 // });
 
 // api.interceptors.request.use((config) => {
-//   const token = document.cookie.split('=')[1]
+//   const token = cookie.split('=')[1]
 //   console.log(token)
+
 //   if (token) {
 
 //     console.log('token existe')
+
 //     config.headers = {
 //       "Content-Type": "Application/json",
 //       "Accept": "Application/json",
-//       "Authorization": `Bearer ${BearerToken}`,
+//       "Authorization": `Bearer ${token}`,
 //       "resourcetoken": `${resourcetoken}`,
 //     }
 //   } else {
 //     console.log('token não existe')
 //   }
+
 //   return config;
 // })
 

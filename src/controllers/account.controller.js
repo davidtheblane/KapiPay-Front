@@ -2,11 +2,12 @@ const api = require('../services/api.service')
 
 
 module.exports = {
-
+  //chama o form
   createAccountPage: async (req, res) => {
-    res.render("pages/account");
+    res.render("forms/account");
   },
 
+  //cria conta
   createAccount: async (req, res) => {
     console.log("chegou no controller")
     try {
@@ -23,8 +24,8 @@ module.exports = {
       const balance = await api.get("/account/balance")
       console.log(balance.data.balance)
       return res.json(balance.data.balance)
-    } catch (error) {
-      res.sendStatus(400, { message: error.message })
+    } catch (err) {
+      res.send(console.error(err.stack || err.message))
     }
   },
 
@@ -48,8 +49,4 @@ module.exports = {
       res.sendStatus(400, { message: error.message })
     }
   },
-
-
-
-
 }

@@ -39,20 +39,25 @@ const login = {
       })
     })
     const data = await response.json()
-    if (!response.ok) {
+
+    if (!(response.ok)) {
       console.log(data)
       alert(data.message)
 
     } else {
-      alert('Login efetuado')
-      fetch("/main", {
-        method: 'GET'
-      })
+      console.log(data.token)
+      // alert('Login efetuado')
+      const token = `token = ${data.token}`
+      document.cookie = token
+      // window.location.assign("/")
+
+      // console.log("response.token")
+      // console.log(token)
+      // window.location.pathname = "/"
     }
   }
 }
 
 // document.addEventListener('DOMContentLoaded', login.init)
 window.onload = login.init()
-
 

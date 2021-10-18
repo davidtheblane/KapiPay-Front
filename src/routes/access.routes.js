@@ -1,20 +1,34 @@
 const { Router } = require('express');
 const AccessController = require('../controllers/access.controller')
-const api = require("../services/api.service")
-const router = new Router(api);
+// const AccountController = require('../controllers/account.controller');
 
-router.get('/', (req, res) => {
+// const api = require("../services/api.service")
+const apiLogin = require("../services/login.service")
+// const router = new Router(api);
+const loginRouter = new Router(apiLogin);
+
+
+loginRouter.get('/', (req, res) => {
   res.render("index");
 })
 
-router.get('/login', AccessController.login)
-router.get('/register', AccessController.register)
+// ACCESS ROUTES
+loginRouter.get('/login', AccessController.login)
+loginRouter.get('/register', AccessController.register)
 
-router.post('/login', AccessController.doLogin)
-router.post('/register', AccessController.doRegister)
+loginRouter.post('/login', AccessController.doLogin)
+loginRouter.post('/register', AccessController.doRegister)
 
-router.delete('/logout', AccessController.logout)
+loginRouter.delete('/logout', AccessController.logout)
 
 
+// // ACCOUNT ROUTES
+// router.get('/account/balance', AccountController.balance);
+// router.get('/account/status', AccountController.accountStatus);
+// router.get('/account/documents', AccountController.verifyDocuments);
+// router.get('/account/create', AccountController.createAccountPage)
 
-module.exports = router;
+// router.post('/account/create', AccountController.createAccount)
+
+
+module.exports = loginRouter;

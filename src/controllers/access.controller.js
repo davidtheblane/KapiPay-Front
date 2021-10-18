@@ -1,4 +1,4 @@
-const api = require('../services/api.service');
+const apiLogin = require('../services/login.service');
 
 module.exports = {
 
@@ -8,12 +8,13 @@ module.exports = {
 
   doLogin: async (req, res) => {
     try {
-      const response = await api.post('/login', req.body)
+      const response = await apiLogin.post('/login', req.body)
       res.send(response.data)
 
-    } catch (error) {
-      res.send({ message: error.response.data.error })
+    } catch (err) {
+      res.send(console.error(err.stack || err.message))
     }
+
   },
 
   register: async (req, res) => {
@@ -22,7 +23,7 @@ module.exports = {
 
   doRegister: async (req, res) => {
     try {
-      const response = await api.post('/register', req.body)
+      const response = await apiLogin.post('/register', req.body)
       res.send(response.data)
 
     } catch (error) {
@@ -33,7 +34,8 @@ module.exports = {
   logout: async (req, res) => {
     req.logOut();
     req.session = null;
-    res.redirect("pages/login");
+    windows.assign('/login')
+    // res.redirect("pages/login");
   }
 
 

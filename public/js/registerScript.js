@@ -9,11 +9,12 @@ const register = {
     const password = document.getElementsByName('password')[0].value
 
     const regexEmail = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+    const regexName = /^([a-zA-Z]{2,}\s[a-zA-Z]{1,}'?-?[a-zA-Z]{2,}\s?([a-zA-Z]{1,})?)/s
     let validate = true;
     let message = ''
 
-    if (name.length < 3) {
-      message = 'Escreva seu nome corretamente'
+    if (!regexName.test(name)) {
+      message = 'Escreva seu nome e sobrenome corretamente'
       validate = false
     }
     if (!regexEmail.test(email)) {
@@ -33,25 +34,27 @@ const register = {
 
 
   send: async () => {
-    const data = {
-      name: document.getElementsByName('name')[0].value,
-      email: document.getElementsByName('email')[0].value,
-      password: document.getElementsByName('password')[0].value
-    }
-
-    const response = await fetch("register", {
+    const response = await fetch("/register", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
         "Accept": "application/json"
       },
-      body: JSON.stringify(data)
+      body: JSON.stringify({
+        name: document.getElementsByName('name')[0].value,
+        email: document.getElementsByName('email')[0].value,
+        password: document.getElementsByName('password')[0].value
+      })
     })
 
+    const data = await response.json();
+
     if (!response.ok) {
-      alert("Não foi possível criar sua conta")
+      console.log(data)
+      alert(data.message)
     } else {
       alert('Conta criada com sucesso')
+      window.location.assign("/login")
     }
 
     console.log(response)
