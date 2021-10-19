@@ -1,6 +1,5 @@
 const api = require('../services/api.service')
 
-
 module.exports = {
   //chama o form
   createAccountPage: async (req, res) => {
@@ -21,7 +20,12 @@ module.exports = {
 
   balance: async (req, res) => {
     try {
-      const balance = await api.get("/account/balance")
+      const token = req.headers.authorization
+      const balance = await api.get("/account/balance", {
+        headers: {
+          "Authorization": token
+        }
+      })
       console.log(balance.data.balance)
       return res.json(balance.data.balance)
     } catch (err) {
@@ -31,7 +35,13 @@ module.exports = {
 
   accountStatus: async (req, res) => {
     try {
-      const status = await api.get("/account/status")
+      const token = req.headers.authorization
+
+      const status = await api.get("/account/status", {
+        headers: {
+          "Authorization": token
+        }
+      })
       console.log(status.data.status)
       return res.json(status.data.status)
     } catch (error) {

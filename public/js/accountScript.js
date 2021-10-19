@@ -1,64 +1,45 @@
 const token = document.cookie.split("=")[1]
-// const header = {
-//   headers: {
-//     "Authorization": `Bearer ${token}`
-//   }
-// }
-
-// const myInit = {
-//   // method: 'GET',
-//   headers: myHeaders,
-//   mode: 'cors',
-//   cache: 'default'
-// };
+const header = {
+  headers: {
+    "Authorization": `Bearer ${token}`
+  }
+}
 
 const accountActions = {
 
   // GET BALANCE
   balance: () => {
-    document.getElementById('balance').addEventListener('click', async () => {
+    document.getElementById('balance').addEventListener('click', () => {
 
-
-      const response = await fetch("/account/balance", {
-        headers: {
-          "Authorization": `Bearer ${token}`
-        }
-      })
-
-      if (!(response.ok)) {
-        console.log("a resposta não veio")
-      } else {
-        const balance = await response.json()
-        //pega referencia do elemento pai onde o resultado sera inserido
-        const fatherElement = document.getElementById('balance')
-        let p = document.createElement('p')
-        p.setAttribute('class', 'output')
-        p.innerHTML = `<hr>
-        Seu Saldo é de: ${balance}
-        <hr>`
-        fatherElement.appendChild(p)
-      }
+      fetch("/account/balance", header)
+        .then(response => response.json())
+        .then((balance) => {
+          let p = document.createElement('p')
+          document.getElementById('balance').appendChild(p)
+          p.setAttribute('class', 'output')
+          p.innerHTML = `<hr>
+              Seu Saldo é de: ${balance}
+              <hr>`
+        })
+        .catch(error => {
+          console.log(error.message)
+        })
     })
   },
 
   accountStatus: () => {
-    document.getElementById('account_status').addEventListener('click', async () => {
+    document.getElementById('account_status').addEventListener('click', () => {
 
-      const response = await fetch("/account/status")
-
-      if (!response.ok) {
-        console.log("a resposta não veio, talvez o token esteja invalido")
-      } else {
-        const status = await response.json()
-        //pega referencia do elemento pai onde o resultado sera inserido
-        const fatherElement = document.getElementById('account_status')
-        let p = document.createElement('p')
-        p.setAttribute('class', 'output')
-        p.innerHTML = `<hr>
-        O status da conta é: ${status}
-        <hr>`
-        fatherElement.appendChild(p)
-      }
+      fetch("/account/status", header)
+        .then(response => response.json())
+        .then((status) => {
+          let p = document.createElement('p')
+          document.getElementById('account_status').appendChild(p)
+          p.setAttribute('class', 'output')
+          p.innerHTML = `<hr>
+          O status da conta é: ${status}
+          <hr>`
+        })
     })
   },
 
