@@ -21,6 +21,10 @@ const createAccount = {
     const neighborhood = document.getElementsByName('neighborhood')[0].value
     const city = document.getElementsByName('city')[0].value
     const state = document.getElementsByName('state')[0].value
+    //Renda Mensal
+    const monthlyIncome = document.getElementsByName('monthlyIncome')[0].value
+
+
     //Dados Bancários
     // const bankNumber = document.getElementsByName('bankNumber')[0].value
     // const agencyNumber = document.getElementsByName('agencyNumber')[0].value
@@ -84,6 +88,8 @@ const createAccount = {
       neighborhood: document.getElementsByName('neighborhood')[0].value,
       city: document.getElementsByName('city')[0].value,
       state: document.getElementsByName('state')[0].value,
+      //Renda Mensal
+      monthlyIncome: document.getElementsByName('monthlyIncome')[0].value
       //Dados Bancários
       // bankNumber: document.getElementsByName('bankNumber')[0].value,
       // agencyNumber: document.getElementsByName('agencyNumber')[0].value,
