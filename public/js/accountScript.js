@@ -40,58 +40,65 @@ const accountActions = {
           O status da conta é: ${status}
           <hr>`
         })
+        .catch(error => {
+          console.log(error.message)
+        })
     })
   },
 
   verifyDocuments: () => {
-    document.getElementById('verify_documents').addEventListener('click', async () => {
+    document.getElementById('verify_documents').addEventListener('click', () => {
 
-      const response = await fetch("/account/documents")
-
-      if (!(response.ok)) {
-        console.log("a resposta não veio")
-      } else {
-        console.log('requisição feita')
-
-        const documents = await response.json()
-        const selfieStatus = documents._embedded.documents[0].approvalStatus
-        const docLink = documents._embedded.documents[0]._links.self.href
-        const dockStatus = documents._embedded.documents[1].approvalStatus
-        const selfieLink = documents._embedded.documents[1]._links.self.href
-
-
-        //pega referencia do elemento pai onde o resultado sera inserido
-        const fatherElement = document.getElementById('verify_documents')
-        let p = document.createElement('p')
-        p.setAttribute('class', 'output')
-        p.innerHTML = `<hr>
+      fetch("/account/documents", header)
+        .then(response => response.json())
+        .then((documents) => {
+          const selfieStatus = documents._embedded.documents[0].approvalStatus
+          const docLink = documents._embedded.documents[0]._links.self.href
+          const dockStatus = documents._embedded.documents[1].approvalStatus
+          const selfieLink = documents._embedded.documents[1]._links.self.href
+          //pega referencia do elemento pai onde o resultado sera inserido
+          let p = document.createElement('p')
+          document.getElementById('verify_documents').appendChild(p)
+          p.setAttribute('class', 'output')
+          p.innerHTML = `<hr>
           <a href="${docLink}"><p>CPF/RG: ${dockStatus}</p></a>
           <a href="${selfieLink}"><p>Selfie: ${selfieStatus}</p></a>
           <hr>`
-        fatherElement.appendChild(p)
-      }
+        })
+        .catch(error => {
+          console.log(error.message)
+        })
     })
   },
 
   // CREATE ACCOUNT
   createAccount: () => {
-    document.getElementById('btn_digital_account').addEventListener('click', async () => {
+    document.getElementById('btn_digital_account').addEventListener('click', () => {
 
-      const response = await fetch("/account/create")
-
-      if (!(response.ok)) {
-        console.log("a resposta não veio")
-      } else {
-        const balance = await response.json()
-        //pega referencia do elemento pai onde o resultado sera inserido
-        const fatherElement = document.getElementById('btn_digital_account')
-        let p = document.createElement('p')
-        p.setAttribute('class', 'output')
-        p.innerHTML = `<hr>
-        Seu Saldo é de: ${balance}
+      fetch("/account/create", header)
+        .then(response => response.json)
+        .then((createResponse) => {
+          let p = document.createElement('p')
+          document.getElementById('btn_digital_account').appendChild(p)
+          p.setAttribute('class', 'output')
+          p.innerHTML = `<hr>
+        Conta Criada: ${createResponse.name}
         <hr>`
-        fatherElement.appendChild(p)
-      }
+        })
+
+      // if (!(response.ok)) {
+      //   console.log("a resposta não veio")
+      // } else {
+      //   const balance = await response.json()
+      //   //pega referencia do elemento pai onde o resultado sera inserido
+      //   const fatherElement = document.getElementById('btn_digital_account')
+      //   let p = document.createElement('p')
+      //   p.setAttribute('class', 'output')
+      //   p.innerHTML = `<hr>
+      //   Seu Saldo é de: ${balance}
+      //   <hr>`
+      //   fatherElement.appendChild(p)
+      // }
     })
   },
 

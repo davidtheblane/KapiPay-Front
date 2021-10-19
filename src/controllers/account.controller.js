@@ -10,7 +10,12 @@ module.exports = {
   createAccount: async (req, res) => {
     console.log("chegou no controller")
     try {
-      const account = await api.get("/account/create")
+      const token = req.headers.authorization
+      const account = await api.get("/account/create", {
+        headers: {
+          "Authorization": token
+        }
+      })
       console.log(account.data)
       return res.json(account.data)
     } catch (error) {
@@ -36,7 +41,6 @@ module.exports = {
   accountStatus: async (req, res) => {
     try {
       const token = req.headers.authorization
-
       const status = await api.get("/account/status", {
         headers: {
           "Authorization": token
@@ -50,9 +54,14 @@ module.exports = {
   },
 
   verifyDocuments: async (req, res) => {
-    console.log("chegou no controller")
+
     try {
-      const documents = await api.get("/account/documents")
+      const token = req.headers.authorization
+      const documents = await api.get("/account/documents", {
+        headers: {
+          "Authorization": token
+        }
+      })
       console.log(documents.data)
       return res.json(documents.data)
     } catch (error) {
