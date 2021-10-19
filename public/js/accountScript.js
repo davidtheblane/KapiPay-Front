@@ -1,13 +1,29 @@
+const token = document.cookie.split("=")[1]
+// const header = {
+//   headers: {
+//     "Authorization": `Bearer ${token}`
+//   }
+// }
+
+// const myInit = {
+//   // method: 'GET',
+//   headers: myHeaders,
+//   mode: 'cors',
+//   cache: 'default'
+// };
 
 const accountActions = {
-
-
 
   // GET BALANCE
   balance: () => {
     document.getElementById('balance').addEventListener('click', async () => {
 
-      const response = await fetch("/account/balance")
+
+      const response = await fetch("/account/balance", {
+        headers: {
+          "Authorization": `Bearer ${token}`
+        }
+      })
 
       if (!(response.ok)) {
         console.log("a resposta não veio")
