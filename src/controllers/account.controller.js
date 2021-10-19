@@ -17,9 +17,10 @@ module.exports = {
         }
       })
       console.log(account.data)
+      console.log("conta criada")
       return res.json(account.data)
     } catch (error) {
-      res.sendStatus(400, { message: error.message })
+      res.send(error || error.message)
     }
   },
 
