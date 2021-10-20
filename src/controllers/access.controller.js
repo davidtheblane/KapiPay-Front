@@ -31,9 +31,6 @@ module.exports = {
     req.session = null;
     window.location.assign("/login")
   }
-
-
-
 }
 
 // balance: async (req, res) => {

@@ -20,7 +20,8 @@
     "method-override": "^3.0.0",
     "passport": "^0.4.1",
     "passport-local": "^1.0.0",
-    "requirejs": "^2.3.6"
+    "requirejs": "^2.3.6",
+    "soap": "^0.42.0"
   },
   "devDependencies": {
     "dotenv": "^10.0.0",

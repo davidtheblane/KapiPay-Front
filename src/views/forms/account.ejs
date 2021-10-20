@@ -77,9 +77,12 @@
       <!-- ENDEREÇO -->
       <div class="mb-3">
         <h3>Endereço</h3>
-        <label for="postCode" class="form-label">CEP</label>
-        <input type="text" id="postCode" name="postCode" class="form-control" required />
-
+        <div>
+          <label for="postCode" class="form-label">CEP</label>
+          <input type="text" id="postCode" name="postCode" class="form-control col-md-6" required />
+          <button id="btn_cep" type="button" class="btn btn-primary">Pesquisar</button>
+        </div>
+        <br>
         <label for="street" class="form-label">Rua</label>
         <input type="text" id="street" name="street" class="form-control" required />
 

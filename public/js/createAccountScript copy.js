@@ -1,3 +1,4 @@
+
 const preencherFormulario = (endereco) => {
   document.getElementById('street').value = endereco.logradouro
   // document.getElementById('complement').value = endereco.complemento
@@ -9,10 +10,8 @@ const preencherFormulario = (endereco) => {
 }
 
 const pesquisarCep = async () => {
-  // const postCode = document.getElementById('postCode').value
-  const postCode = '11050300'
-
-  const url = `/account/cep/${postCode}`;
+  const postCode = document.getElementById('postCode').value
+  const url = `http://viacep.com.br/ws/${postCode}/json/`;
   const dados = await fetch(url);
   const endereco = await dados.json();
 
@@ -23,10 +22,9 @@ const pesquisarCep = async () => {
   }
 }
 
-////
-
 const createAccount = {
   init: () => {
+
     document.getElementById('btn_cep').addEventListener('click', pesquisarCep);
     document.getElementById('btn_digital_account').addEventListener('click', createAccount.validate)
   },
