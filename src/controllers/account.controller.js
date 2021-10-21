@@ -11,7 +11,7 @@ module.exports = {
     console.log("chegou no controller")
     try {
       const token = req.headers.authorization
-      const account = await api.get("/account/create", {
+      const account = await api.post("/account/create", {
         headers: {
           "Authorization": token
         }

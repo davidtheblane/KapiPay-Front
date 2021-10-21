@@ -1,6 +1,14 @@
+// const body = {
+//   body: '11050300'
+// }
+
+// const postCode = document.getElementById('postCode').value
+// const postCode = '11050300'
+// const url = `/account/cep`;
+// const dados = await fetch(url)
+
 const preencherFormulario = (endereco) => {
   document.getElementById('street').value = endereco.logradouro
-  // document.getElementById('complement').value = endereco.complemento
   document.getElementById('neighborhood').value = endereco.bairro
   document.getElementById('city').value = endereco.localidade
   document.getElementById('state').value = endereco.uf
@@ -9,17 +17,24 @@ const preencherFormulario = (endereco) => {
 }
 
 const pesquisarCep = async () => {
-  // const postCode = document.getElementById('postCode').value
   const postCode = '11050300'
 
-  const url = `/account/cep/${postCode}`;
-  const dados = await fetch(url);
+  const dados = await fetch("/account/cep", {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      "Accept": "application/json",
+    },
+    body: JSON.stringify({ cep: postCode })
+  });
+
   const endereco = await dados.json();
 
   if (endereco.hasOwnProperty('erro')) {
     document.getElementById('street').value = `CEP não encontrado, tente novamente...`
   } else {
     preencherFormulario(endereco)
+    console.log(endereco)
   }
 }
 
@@ -35,7 +50,7 @@ const createAccount = {
     //Dados pessoais and Account Holder
     const name = document.getElementsByName('name')[0].value
     const email = document.getElementsByName('email')[0].value
-    const cpf = document.getElementsByName('cpf')[0].value
+    const document = document.getElementsByName('document')[0].value
     const birthDate = document.getElementsByName('birthDate')[0].value
     const phone = document.getElementsByName('phone')[0].value
     //Area de negócio
@@ -73,8 +88,8 @@ const createAccount = {
       message = 'Email inválido'
       validate = false
     }
-    if (!cpf.length === 11) {
-      message = `CPF Inválido, deve ter 11 caracteres, o seu tem ${cpf.length} caracteres`
+    if (!document.length === 11) {
+      message = `CPF Inválido, deve ter 11 caracteres, o seu tem ${document.length} caracteres`
       validate = false
     }
 
@@ -84,7 +99,7 @@ const createAccount = {
     }
 
     if (!phone.length === 13) {
-      message = `Telefone Inválido, deve ter 13 caracteres, o seu tem ${cpf.length} caracteres`
+      message = `Telefone Inválido, deve ter 13 caracteres, o seu tem ${phone.length} caracteres`
       validate = false
     }
 
@@ -100,7 +115,7 @@ const createAccount = {
     const data = {
       name: document.getElementsByName('name')[0].value,
       email: document.getElementsByName('email')[0].value,
-      cpf: document.getElementsByName('cpf')[0].value,
+      document: document.getElementsByName('document')[0].value,
       birthDate: document.getElementsByName('birthDate')[0].value,
       phone: document.getElementsByName('phone')[0].value,
       //Area de negócio
@@ -122,7 +137,7 @@ const createAccount = {
       // accountNumber: document.getElementsByName('accountNumber')[0].value,
       // //Account Holder
       // accountHolderName: document.getElementsByName('name')[0].value,
-      // holderDocument: document.getElementsByName('cpf')[0].value,
+      // holderDocument: document.getElementsByName('document')[0].value,
     }
     fetch("/account/create", {
       method: "POST",

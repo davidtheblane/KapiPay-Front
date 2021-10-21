@@ -4,6 +4,7 @@ const CepController = require('../controllers/cep.controller');
 
 const api = require("../services/api.service")
 const serviceCep = require("../services/cep.service")
+
 const router = new Router(api);
 const cepRouter = new Router(serviceCep)
 
@@ -17,9 +18,5 @@ router.get('/create', AccountController.createAccountPage)
 router.post('/create', AccountController.createAccount)
 
 cepRouter.get('/cep', CepController.getCep)
-
-
-
-
 
 module.exports = router
