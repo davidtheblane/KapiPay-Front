@@ -19,8 +19,8 @@ module.exports = {
       console.log(account.data)
       console.log("conta criada")
       return res.json(account.data)
-    } catch (error) {
-      res.send(error || error.message)
+    } catch (err) {
+      res.status(400).send({ message: err.message || err.stack })
     }
   },
 

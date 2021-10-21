@@ -17,26 +17,53 @@ const preencherFormulario = (endereco) => {
 }
 
 const pesquisarCep = async () => {
-  const postCode = '11050300'
+  const postCode = ""
 
-  const dados = await fetch("/account/cep", {
+  const dados = await fetch(`http://localhost:5050/cep/${postCode}`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
       "Accept": "application/json",
     },
-    body: JSON.stringify({ cep: postCode })
   });
 
   const endereco = await dados.json();
-
-  if (endereco.hasOwnProperty('erro')) {
-    document.getElementById('street').value = `CEP não encontrado, tente novamente...`
-  } else {
-    preencherFormulario(endereco)
-    console.log(endereco)
+  if (endereco) {
+    preencherFormulario(JSON.stringify(endereco))
   }
+
+  // if (endereco.hasOwnProperty('erro')) {
+  //   document.getElementById('street').value = `CEP não encontrado, tente novamente...`
+  // } else {
+  //   preencherFormulario(endereco)
+  //   console.log(endereco)
+  // }
 }
+
+// const pesquisarCep = () => {
+//   const postCode = "11050300"
+
+//   fetch(`http://localhost:5050/cep/${postCode}`, {
+//     method: "GET",
+//     headers: {
+//       "Content-Type": "application/json",
+//       "Accept": "application/json",
+//     },
+//   })
+//     .then((response => response.json()))
+//     .then((endereco) => {
+//       console.log('chegou na resposta', endereco)
+//       preencherFormulario(endereco)
+//     }).catch(err => {
+//       console.log({ err: err.message })
+//     })
+// }
+// if (endereco.hasOwnProperty('erro')) {
+//   document.getElementById('street').value = `CEP não encontrado, tente novamente...`
+// } else {
+//   preencherFormulario(endereco)
+//   console.log(endereco)
+// }
 
 ////
 
@@ -50,7 +77,7 @@ const createAccount = {
     //Dados pessoais and Account Holder
     const name = document.getElementsByName('name')[0].value
     const email = document.getElementsByName('email')[0].value
-    const document = document.getElementsByName('document')[0].value
+    const cpf = document.getElementsByName('cpf')[0].value
     const birthDate = document.getElementsByName('birthDate')[0].value
     const phone = document.getElementsByName('phone')[0].value
     //Area de negócio
@@ -77,10 +104,11 @@ const createAccount = {
     //REGEX TESTS
     const regexEmail = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
     const regexBirthDate = /^(19|20)\d\d[-](0[1-9]|1[012])[-](0[1-9]|[12][0-9]|3[01])$/g
+
     let validate = true;
     let message = ''
 
-    if (name.length < 3) {
+    if (name.length < 2) {
       message = 'Escreva seu nome corretamente'
       validate = false
     }
@@ -88,8 +116,8 @@ const createAccount = {
       message = 'Email inválido'
       validate = false
     }
-    if (!document.length === 11) {
-      message = `CPF Inválido, deve ter 11 caracteres, o seu tem ${document.length} caracteres`
+    if (!cpf.length === 11) {
+      message = `CPF Inválido, deve ter 11 caracteres, o seu tem ${cpf.length} caracteres`
       validate = false
     }
 
@@ -115,7 +143,7 @@ const createAccount = {
     const data = {
       name: document.getElementsByName('name')[0].value,
       email: document.getElementsByName('email')[0].value,
-      document: document.getElementsByName('document')[0].value,
+      document: document.getElementsByName('cpf')[0].value,
       birthDate: document.getElementsByName('birthDate')[0].value,
       phone: document.getElementsByName('phone')[0].value,
       //Area de negócio
@@ -150,12 +178,9 @@ const createAccount = {
     })
       .then(response => response.json())
       .then((response) => {
-        console.log('chegou na resposta')
-        console.log(`Resposta ${response.data}`)
-
-        console.log('conta criada')
-      }).catch(error => {
-        console.log({ error: error.message })
+        console.log(`Chegou na resposta ${JSON.stringify(response)}`)
+      }).catch(err => {
+        console.log({ err: err.message })
       })
   }
 }

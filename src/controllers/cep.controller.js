@@ -1,32 +1,15 @@
-const cepService = require("../services/cep.service")
-const url = `https://apphom.correios.com.br/SigepMasterJPA/AtendeClienteService/AtendeCliente?wsdl`;
-
-const service = new cepService(url)
-
-
+const apiLogin = require('../services/login.service');
 module.exports = {
 
   getCep: async (req, res) => {
-    const connection = await service.connection();
-    // console.log(connection);
-
-    const response = await service.request(connection, "consultaCEPAsync", { cep: req.body })
-    return console.log(response[0]);
-    res.send(response[0])
+    const id = req.params
+    try {
+      console.log('chegou na rota cep', req.params)
+      const response = await apiLogin.get('/cep', req.params)
+      res.send(response)
+    } catch (err) {
+      console.log('não passou da rota cep', req.params)
+      res.status(400).send({ message: err.message || err.stack })
+    }
   }
 }
-
-
-
-
-// async function getCep(req, res) {
-//   const connection = await service.connection();
-//   // console.log(connection);
-
-//   const response = await service.request(connection, "consultaCEPAsync", { cep: req.body })
-//   return console.log(response[0]);
-//   res.send(response[0])
-// }
-
-// module.exports = getCep
-
