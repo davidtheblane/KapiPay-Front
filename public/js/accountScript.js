@@ -14,6 +14,7 @@ const accountActions = {
       fetch("/account/balance", header)
         .then(response => response.json())
         .then((balance) => {
+          //Apresenta no front
           let p = document.createElement('p')
           document.getElementById('balance').appendChild(p)
           p.setAttribute('class', 'output')
@@ -21,8 +22,8 @@ const accountActions = {
               Seu Saldo é de: ${balance}
               <hr>`
         })
-        .catch(error => {
-          console.log(error.message)
+        .catch(err => {
+          err.message || console.log(err.stack)
         })
     })
   },
@@ -33,6 +34,7 @@ const accountActions = {
       fetch("/account/status", header)
         .then(response => response.json())
         .then((status) => {
+          //Apresenta no front
           let p = document.createElement('p')
           document.getElementById('account_status').appendChild(p)
           p.setAttribute('class', 'output')
@@ -40,8 +42,8 @@ const accountActions = {
           O status da conta é: ${status}
           <hr>`
         })
-        .catch(error => {
-          console.log(error.message)
+        .catch(err => {
+          err.message || console.log(err.stack)
         })
     })
   },
@@ -65,8 +67,8 @@ const accountActions = {
           <a href="${selfieLink}"><p>Selfie: ${selfieStatus}</p></a>
           <hr>`
         })
-        .catch(error => {
-          console.log(error.message)
+        .catch(err => {
+          err.message || console.log(err.stack)
         })
     })
   },
@@ -108,18 +110,3 @@ document.addEventListener('DOMContentLoaded', accountActions.accountStatus)
 document.addEventListener('DOMContentLoaded', accountActions.balance)
 document.addEventListener('DOMContentLoaded', accountActions.verifyDocuments)
 // document.addEventListener('DOMContentLoaded', accountActions.createAccount)
-
-
-
-
-// // Buscar elemento pai
-// var elemento_pai = document.body;
-
-// // Criar elemento
-// var titulo = document.createElement('h1');
-
-// // Criando o nó de texto de outra forma
-// titulo.textContent = "Um título qualquer"
-
-// // Inserir (anexar) o elemento filho (titulo) ao elemento pai (body)
-// elemento_pai.appendChild(titulo);

@@ -20,7 +20,7 @@ loginRouter.get('/register', AccessController.register)
 loginRouter.post('/login', AccessController.doLogin)
 loginRouter.post('/register', AccessController.doRegister)
 
-loginRouter.delete('/logout', AccessController.logout)
+loginRouter.post('/logout', AccessController.logout)
 
 
 module.exports = loginRouter;

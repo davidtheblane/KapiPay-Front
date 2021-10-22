@@ -4,8 +4,6 @@ const preencherFormulario = (endereco) => {
   document.getElementById('neighborhood').value = endereco.bairro
   document.getElementById('city').value = endereco.cidade
   document.getElementById('state').value = endereco.uf
-
-  console.log(endereco)
 }
 
 const pesquisarCep = async () => {
@@ -19,29 +17,29 @@ const pesquisarCep = async () => {
   }
 
   if (validate) {
-    const dados = await fetch(`http://localhost:5050/cep/${postCode}`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        "Accept": "application/json",
-      },
-    });
+    try {
+      const dados = await fetch(`http://localhost:5050/cep/${postCode}`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json",
+        },
+      });
+      const endereco = await dados.json();
+      preencherFormulario(endereco.return)
 
-    const endereco = await dados.json();
-    preencherFormulario(endereco.return)
-    console.log(endereco)
+    } catch (err) {
+      alert(message)
+      err.message || console.log(err.message)
+    }
 
-  } else {
-    alert(message)
   }
 }
-
 
 ////
 
 const createAccount = {
   init: () => {
-
     document.getElementById('btn_cep').addEventListener('click', pesquisarCep);
     document.getElementById('btn_digital_account').addEventListener('click', createAccount.validate)
   },
@@ -53,48 +51,25 @@ const createAccount = {
     const cpf = document.getElementsByName('cpf')[0].value
     const birthDate = document.getElementsByName('birthDate')[0].value
     const phone = document.getElementsByName('phone')[0].value
-    //Area de negócio
-    // const businessArea = document.getElementsByName('businessArea')[0].value
-    // const linesOfBusiness = document.getElementsByName('linesOfBusiness')[0].value
-    //Endereço
-    // const postCode = document.getElementsByName('postCode')[0].value
-    // const street = document.getElementsByName('street')[0].value
-    // const number = document.getElementsByName('number')[0].value
-    // const complement = document.getElementsByName('complement')[0].value
-    // const neighborhood = document.getElementsByName('neighborhood')[0].value
-    // const city = document.getElementsByName('city')[0].value
-    // const state = document.getElementsByName('state')[0].value
-    //Renda Mensal
-    // const monthlyIncome = document.getElementsByName('monthlyIncome')[0].value
-    //Dados Bancários
-    // const bankNumber = document.getElementsByName('bankNumber')[0].value
-    // const agencyNumber = document.getElementsByName('agencyNumber')[0].value
-    // const accountNumber = document.getElementsByName('accountNumber')[0].value
-    //Account Holder
-    // const holderName = document.getElementsByName('holderName')[0].value
-    // const holderDocument = document.getElementsByName('holderDocument')[0].value
 
     //REGEX TESTS
     const regexEmail = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
     const regexBirthDate = /^(19|20)\d\d[-](0[1-9]|1[012])[-](0[1-9]|[12][0-9]|3[01])$/g
-    // const regexCep = /^\d{5}\d{3}$/gm
+
 
     let validate = true;
     let message = ''
-
-    if (!regexCep.test(postCode)) {
-      message = 'Cep Inválido, tente novamente, não coloque traços nem pontos'
-      validate = false
-    }
 
     if (name.length < 2) {
       message = 'Escreva seu nome corretamente'
       validate = false
     }
-    // if (!regexEmail.test(email)) {
-    //   message = 'Email inválido'
-    //   validate = false
-    // }
+
+    if (!regexEmail.test(email)) {
+      message = 'Email inválido'
+      validate = false
+    }
+
     if (!cpf.length === 11) {
       message = `CPF Inválido, deve ter 11 caracteres, o seu tem ${cpf.length} caracteres`
       validate = false
@@ -138,13 +113,6 @@ const createAccount = {
       state: document.getElementsByName('state')[0].value,
       //Renda Mensal
       monthlyIncome: document.getElementsByName('monthlyIncome')[0].value
-      //Dados Bancários
-      // bankNumber: document.getElementsByName('bankNumber')[0].value,
-      // agencyNumber: document.getElementsByName('agencyNumber')[0].value,
-      // accountNumber: document.getElementsByName('accountNumber')[0].value,
-      // //Account Holder
-      // accountHolderName: document.getElementsByName('name')[0].value,
-      // holderDocument: document.getElementsByName('document')[0].value,
     }
     fetch("/account/create", {
       method: "POST",
@@ -159,7 +127,7 @@ const createAccount = {
       .then((response) => {
         console.log(`Chegou na resposta ${JSON.stringify(response)}`)
       }).catch(err => {
-        console.log({ err: err.message })
+        err.message || console.log(err.stack)
       })
   }
 }

@@ -26,10 +26,11 @@ module.exports = {
     }
   },
 
-  logout: async (req, res) => {
-    req.logOut();
+  logout: async (req, res, next) => {
+    // req.logOut();
     req.session = null;
-    window.location.assign("/login")
+    res.redirect('/login')
+    // window.location.assign("/login")
   },
 
   // getCep: async (req, res) => {
