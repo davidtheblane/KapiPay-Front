@@ -1,74 +1,47 @@
-// const body = {
-//   body: '11050300'
-// }
-
-// const postCode = document.getElementById('postCode').value
-// const postCode = '11050300'
-// const url = `/account/cep`;
-// const dados = await fetch(url)
 
 const preencherFormulario = (endereco) => {
-  document.getElementById('street').value = endereco.logradouro
+  document.getElementById('street').value = endereco.end
   document.getElementById('neighborhood').value = endereco.bairro
-  document.getElementById('city').value = endereco.localidade
+  document.getElementById('city').value = endereco.cidade
   document.getElementById('state').value = endereco.uf
 
   console.log(endereco)
 }
 
 const pesquisarCep = async () => {
-  const postCode = ""
+  const postCode = document.getElementById('postCode').value;
 
-  const dados = await fetch(`http://localhost:5050/cep/${postCode}`, {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-      "Accept": "application/json",
-    },
-  });
-
-  const endereco = await dados.json();
-  if (endereco) {
-    preencherFormulario(JSON.stringify(endereco))
+  let validate = true;
+  const regexCep = /^\d{5}\d{3}$/gm;
+  if (!regexCep.test(postCode)) {
+    message = 'Cep Inválido, tente novamente'
+    validate = false
   }
 
-  // if (endereco.hasOwnProperty('erro')) {
-  //   document.getElementById('street').value = `CEP não encontrado, tente novamente...`
-  // } else {
-  //   preencherFormulario(endereco)
-  //   console.log(endereco)
-  // }
+  if (validate) {
+    const dados = await fetch(`http://localhost:5050/cep/${postCode}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json",
+      },
+    });
+
+    const endereco = await dados.json();
+    preencherFormulario(endereco.return)
+    console.log(endereco)
+
+  } else {
+    alert(message)
+  }
 }
 
-// const pesquisarCep = () => {
-//   const postCode = "11050300"
-
-//   fetch(`http://localhost:5050/cep/${postCode}`, {
-//     method: "GET",
-//     headers: {
-//       "Content-Type": "application/json",
-//       "Accept": "application/json",
-//     },
-//   })
-//     .then((response => response.json()))
-//     .then((endereco) => {
-//       console.log('chegou na resposta', endereco)
-//       preencherFormulario(endereco)
-//     }).catch(err => {
-//       console.log({ err: err.message })
-//     })
-// }
-// if (endereco.hasOwnProperty('erro')) {
-//   document.getElementById('street').value = `CEP não encontrado, tente novamente...`
-// } else {
-//   preencherFormulario(endereco)
-//   console.log(endereco)
-// }
 
 ////
 
 const createAccount = {
   init: () => {
+
     document.getElementById('btn_cep').addEventListener('click', pesquisarCep);
     document.getElementById('btn_digital_account').addEventListener('click', createAccount.validate)
   },
@@ -104,18 +77,24 @@ const createAccount = {
     //REGEX TESTS
     const regexEmail = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
     const regexBirthDate = /^(19|20)\d\d[-](0[1-9]|1[012])[-](0[1-9]|[12][0-9]|3[01])$/g
+    // const regexCep = /^\d{5}\d{3}$/gm
 
     let validate = true;
     let message = ''
+
+    if (!regexCep.test(postCode)) {
+      message = 'Cep Inválido, tente novamente, não coloque traços nem pontos'
+      validate = false
+    }
 
     if (name.length < 2) {
       message = 'Escreva seu nome corretamente'
       validate = false
     }
-    if (!regexEmail.test(email)) {
-      message = 'Email inválido'
-      validate = false
-    }
+    // if (!regexEmail.test(email)) {
+    //   message = 'Email inválido'
+    //   validate = false
+    // }
     if (!cpf.length === 11) {
       message = `CPF Inválido, deve ter 11 caracteres, o seu tem ${cpf.length} caracteres`
       validate = false
