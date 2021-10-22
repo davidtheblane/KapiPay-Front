@@ -1,4 +1,4 @@
-last update 11/10/2021
+![develop deploy status](https://github.com/davidtheblane/KapiPay-Front/actions/workflows/develop_deploy.yml/badge.svg)
 
 # KapiPay-Front
 
