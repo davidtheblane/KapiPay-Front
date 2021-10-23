@@ -1,29 +1,3 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="/">Kapi Pay 💸</a>
-
-  <ul class="navbar-nav mr-auto">
-
-    <li class="nav-item">
-      <a class="nav-link" href="/about">Minha Conta</a>
-    </li>
-
-    <li class="nav-item">
-      <a class="nav-link" href="/">Sobre</a>
-    </li>
-
-  </ul>
-
-  <p class="logout">
-  <form id="logout" action="/logout" method="POST">
-    <input type="submit" value="Logout">
-    <!-- <button class="btn" type="submit"> -->
-    User | Logout
-    <!-- </button> -->
-  </form>
-  </p>
-
-</nav>
-
 <style>
   * {
     text-decoration: none;
@@ -38,4 +12,46 @@
 
     /* border: 1px solid black; */
   }
+
+  .navbar {
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+  }
+
+  /* .nav-logout {
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+  } */
 </style>
+
+<!-- ///// -->
+
+<body>
+
+
+  <nav class="navbar navbar-expand-sm navbar-light bg-light">
+
+
+    <a class="navbar-brand" href="/">Kapi Pay 💸</a>
+
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="/about">Minha Conta</a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="/">Sobre</a>
+      </li>
+    </ul>
+
+    <button id="btn_logout" type="button" class="btn btn-primary">
+      User | Logout
+    </button>
+
+
+  </nav>
+
+  <script src="/js/logout.js"></script>
+</body>

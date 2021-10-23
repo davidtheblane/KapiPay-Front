@@ -20,7 +20,10 @@ loginRouter.get('/register', AccessController.register)
 loginRouter.post('/login', AccessController.doLogin)
 loginRouter.post('/register', AccessController.doRegister)
 
-loginRouter.post('/logout', AccessController.logout)
+loginRouter.post('/logout', function (req, res) {
+  req.logout()
+  res.redirect('/login')
+})
 
 
 module.exports = loginRouter;
