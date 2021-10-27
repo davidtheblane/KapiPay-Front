@@ -7,10 +7,11 @@ const loginRouter = new Router(apiLogin);
 
 
 loginRouter.get('/', (req, res) => {
-  res.render("index");
+  const logged = true //implementar depois
+  if (logged) {
+    res.render("index");
+  }
 })
-// chama cep
-// loginRouter.get('/cep', CepController.getCep)
 
 // ACCESS ROUTES
 loginRouter.get('/login', AccessController.login)

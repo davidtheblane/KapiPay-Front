@@ -46,8 +46,11 @@ const login = {
 
     } else {
       const token = `token=${data.token}`
-      document.cookie = token
+      const resourcetoken = `resourcetoken=${data.resourcetoken}`
+      document.cookie = token;
+      document.cookie = resourcetoken;
       console.log(token)
+      console.log(resourcetoken)
       window.location.assign("/")
     }
   }

@@ -10,9 +10,9 @@ const pesquisarCep = async () => {
   const postCode = document.getElementById('postCode').value;
 
   let validate = true;
-  const regexCep = /^\d{5}\d{3}$/gm;
+  const regexCep = /^\d{5}\d{3}$/;
   if (!regexCep.test(postCode)) {
-    message = 'Cep Inválido, tente novamente'
+    alert('Cep Inválido, tente novamente')
     validate = false
   }
 
@@ -26,11 +26,10 @@ const pesquisarCep = async () => {
         },
       });
       const endereco = await dados.json();
-      preencherFormulario(endereco.return)
+      preencherFormulario(endereco)
 
     } catch (err) {
-      alert(message)
-      err.message || console.log(err.message)
+      console.log(err.stack || err.message)
     }
 
   }

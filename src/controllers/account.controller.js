@@ -11,9 +11,11 @@ module.exports = {
     console.log("chegou no controller")
     try {
       const token = req.headers.authorization
+      const resourcetoken = req.headers.resourcetoken
       const account = await api.post("/account/create", {
         headers: {
-          "Authorization": token
+          "Authorization": token,
+          "resourcetoken": resourcetoken
         }
       })
       console.log(account.data)
@@ -24,33 +26,40 @@ module.exports = {
     }
   },
 
+
   balance: async (req, res) => {
     try {
       const token = req.headers.authorization
+      const resourcetoken = req.headers.resourcetoken
+
       const balance = await api.get("/account/balance", {
         headers: {
-          "Authorization": token
+          "Authorization": token,
+          "resourcetoken": resourcetoken
         }
       })
       console.log(balance.data.balance)
       return res.json(balance.data.balance)
     } catch (err) {
-      res.send(console.error(err.stack || err.message))
+      res.status(400).send({ message: err.message || err.stack })
     }
   },
+
 
   accountStatus: async (req, res) => {
     try {
       const token = req.headers.authorization
+      const resourcetoken = req.headers.resourcetoken
       const status = await api.get("/account/status", {
         headers: {
-          "Authorization": token
+          "Authorization": token,
+          "resourcetoken": resourcetoken
         }
       })
       console.log(status.data.status)
       return res.json(status.data.status)
-    } catch (error) {
-      res.sendStatus(400, { message: error.message })
+    } catch (err) {
+      res.status(400).send({ message: err.message || err.stack })
     }
   },
 
@@ -58,15 +67,17 @@ module.exports = {
 
     try {
       const token = req.headers.authorization
+      const resourcetoken = req.headers.resourcetoken
       const documents = await api.get("/account/documents", {
         headers: {
-          "Authorization": token
+          "Authorization": token,
+          "resourcetoken": resourcetoken
         }
       })
       console.log(documents.data)
       return res.json(documents.data)
-    } catch (error) {
-      res.sendStatus(400, { message: error.message })
+    } catch (err) {
+      res.status(400).send({ message: err.message || err.stack })
     }
   },
 }
