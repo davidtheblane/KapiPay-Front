@@ -8,7 +8,7 @@ const apiLogin = axios.create({
   baseURL: APIUrl,
   headers: {
     "Content-Type": "Application/json",
-    "Accept": "Application/json",
+    "Accept": "Application/json"
   }
 });
 

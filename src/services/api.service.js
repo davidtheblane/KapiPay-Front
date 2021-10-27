@@ -1,23 +1,21 @@
 const axios = require('axios').default
 require('dotenv').config()
 
-
 const APIUrl = process.env.API_SERVER || "http://localhost:5050/";
-//Bearer esta por enquanto para facilitar testes
-const resourcetoken = process.env.RESOURCE_TOKEN;
-const BearerToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxNTY1MzJmNDJhZTk0YmEwMzM2MmJmNSIsImlhdCI6MTYzNDU2MjY0NSwiZXhwIjoxNjM0NjQ5MDQ1fQ.UcVC5rYaogdGiysuljTaR-_NUmhEjXFw5uR4RGJgCZY"
+// const resourcetoken = process.env.RESOURCE_TOKEN;
 
 const api = axios.create({
   baseURL: APIUrl,
   headers: {
     "Content-Type": "Application/json",
     "Accept": "Application/json",
-    "Authorization": `Bearer ${BearerToken}`,
-    "resourcetoken": `${resourcetoken}`,
   }
 });
 
 module.exports = api;
+
+
+
 
 //////////////////////////////
 
@@ -26,11 +24,16 @@ module.exports = api;
 // });
 
 // api.interceptors.request.use((config) => {
-//   const token = cookie.split('=')[1]
+//   // const token = document.cookie.split("=")[1]
+//   // console.log(token)
+//   const cookieArray = document.cookie.split(";")
+//   // console.log(cookies)
+//   const token = cookieArray[0].split("=")[1]
+//   const resourcetoken = cookieArray[1].split("=")[1]
 //   console.log(token)
+//   console.log(resourcetoken)
 
-//   if (token) {
-
+//   if (cookieArray) {
 //     console.log('token existe')
 
 //     config.headers = {
@@ -43,7 +46,12 @@ module.exports = api;
 //     console.log('token não existe')
 //   }
 
+//   // console.log(token)
 //   return config;
 // })
 
 // module.exports = api;
+
+
+//////////
+

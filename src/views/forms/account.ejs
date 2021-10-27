@@ -77,9 +77,12 @@
       <!-- ENDEREÇO -->
       <div class="mb-3">
         <h3>Endereço</h3>
-        <label for="postCode" class="form-label">CEP</label>
-        <input type="text" id="postCode" name="postCode" class="form-control" required />
-
+        <div>
+          <label for="postCode" class="form-label">CEP</label>
+          <input type="text" id="postCode" name="postCode" class="form-control col-md-6" required />
+          <button id="btn_cep" type="button" class="btn btn-primary">Pesquisar</button>
+        </div>
+        <br>
         <label for="street" class="form-label">Rua</label>
         <input type="text" id="street" name="street" class="form-control" required />
 
@@ -87,7 +90,7 @@
         <input type="text" id="number" name="number" class="form-control" required />
 
         <label for="complement" class="form-label">Complemento</label>
-        <input type="text" id="complement" name="complement" class="form-control" required />
+        <input type="text" id="complement" name="complement" class="form-control" placeholder="Opcional" />
 
         <label for="neighborhood" class="form-label">Bairro</label>
         <input type="text" id="neighborhood" name="neighborhood" class="form-control" required />
@@ -99,13 +102,16 @@
         <input type="text" id="state" name="state" class="form-control" required />
       </div>
 
+
+
+
       <hr>
 
       <!-- RENDA MENSAL -->
       <div class="mb-3">
         <h3>Renda Mensal</h3>
-        <label for="monthlyIncomeOrRevenue" class="form-label">Valor sem virgula ou ponto</label>
-        <input type="number" id="monthlyIncomeOrRevenue" name="monthlyIncomeOrRevenue" class="form-control" required />
+        <label for="monthlyIncome" class="form-label">Valor sem virgula ou ponto</label>
+        <input type="number" id="monthlyIncome" name="monthlyIncome" class="form-control" required />
         <div>
 
           <br>
@@ -130,7 +136,7 @@
         <label for="holderName" class="form-label">Nome do titular da conta</label>
         <input type="text" id="holderName" name="holderName" class="form-control" required />
 
-        <label for="holderDocument" class="form-label">Documento: RG/CPF</label>
+        <label for="holderDocument" class="form-label">CPF</label>
         <input type="text" id="holderDocument" name="holderDocument" class="form-control" required />
       </div> -->
 
