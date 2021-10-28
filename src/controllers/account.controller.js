@@ -3,7 +3,7 @@ const api = require('../services/api.service')
 module.exports = {
   //chama o form
   createAccountPage: async (req, res) => {
-    res.render("forms/account");
+    res.render("forms/createAccount");
   },
 
   //cria conta

@@ -78,11 +78,12 @@
       <div class="mb-3">
         <h3>Endereço</h3>
         <div>
-          <label for="postCode" class="form-label">CEP</label>
-          <input type="text" id="postCode" name="postCode" class="form-control col-md-6" required />
-          <button id="btn_cep" type="button" class="btn btn-primary">Pesquisar</button>
+          <input type="text" id="postCode" name="postCode" class="form-control col-md-6" required
+            placeholder="Digite seu CEP" />
+          <label for="postCode" class="form-label">
+            <button id="btn_cep" type="button" class="btn btn-success">Pesquisar</button>
+          </label>
         </div>
-        <br>
         <label for="street" class="form-label">Rua</label>
         <input type="text" id="street" name="street" class="form-control" required />
 
@@ -140,9 +141,9 @@
         <input type="text" id="holderDocument" name="holderDocument" class="form-control" required />
       </div> -->
 
-          <button id="btn_digital_account" type="button" class="btn btn-primary">Criar</button>
+          <button id="btn_digital_account" type="button" class="btn btn-success">Criar</button>
 
-          <a href="/" class="btn btn-primary">Voltar</a>
+          <a href="/" class="btn btn-success">Voltar</a>
         </div>
     </form>
   </div>
@@ -154,5 +155,5 @@
 
 
   <!-- SCRIPT -->
-  <script defer src="/js/createAccountScript.js"></script>
+  <script defer src="/js/createAccount.js"></script>
 </body>

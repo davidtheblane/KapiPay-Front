@@ -14,12 +14,18 @@ loginRouter.get('/', (req, res) => {
 })
 
 // ACCESS ROUTES
-loginRouter.get('/login', AccessController.login)
-loginRouter.get('/register', AccessController.register)
+loginRouter.get('/login', AccessController.loginPage)
+loginRouter.get('/register', AccessController.registerPage)
+loginRouter.get('/forgot_password', AccessController.forgotPasswordPage)
+loginRouter.get('/reset_password', AccessController.resetPasswordPage)
 
 
-loginRouter.post('/login', AccessController.doLogin)
-loginRouter.post('/register', AccessController.doRegister)
+
+loginRouter.post('/login', AccessController.login)
+loginRouter.post('/register', AccessController.register)
+loginRouter.post('/forgot_password', AccessController.forgotPassword)
+loginRouter.post('/reset_password', AccessController.resetPassword)
+
 
 loginRouter.post('/logout', function (req, res) {
   req.logout()
