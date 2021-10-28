@@ -21,6 +21,7 @@ jobs:
      - name: Development Deploy to Digital Ocean
        uses: garygrossgarten/github-action-ssh@release
        with:
+         run:  cd /home/develop/KapiPay-Front && git checkout develop
          command: cd /home/develop/KapiPay-Front && bash ./deploy.sh         
          host: ${{ secrets.SSH_DEVELOP_HOST_SERVER }}
          username: root
