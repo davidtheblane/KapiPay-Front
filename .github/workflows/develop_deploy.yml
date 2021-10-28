@@ -7,21 +7,20 @@ on:
     branches: [ develop ]
       
 jobs:
-  #CI:
-   #runs-on: ubuntu-latest
-    #steps:
-     # - name: Deploy
-      #  uses: actions/setup-node@v2
+  CI:
+   runs-on: ubuntu-latest
+   steps:
+    - name: Development Deploy
+      uses: actions/setup-node@v2
   CD:
-    #needs: [CI]
+    needs: [CI]
     runs-on: ubuntu-latest
     steps:
      #  //// GARYGROSSGARTEN
      - uses: actions/checkout@v2
-     - name: Deploy to Digital Ocean
+     - name: Development Deploy to Digital Ocean
        uses: garygrossgarten/github-action-ssh@release
        with:
-         # command: ls -la
          command: cd /home/develop/KapiPay-Front && bash ./deploy.sh
          host: ${{ secrets.SSH_DEVELOP_HOST_SERVER }}
          username: root
