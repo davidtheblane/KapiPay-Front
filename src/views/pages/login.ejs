@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <!-- CSS -->
 <style>
+  body {
+    margin: 0 auto;
+  }
+
   .container {
     width: 500px;
     margin: 0 auto;
@@ -44,17 +48,18 @@
         <label for="password" class="form-label">Senha</label>
         <input type="password" class="form-control" id="password" name="password" required />
       </div>
-      <div class="mb-3 form-check">
+      <!-- <div class="mb-3 form-check">
         <input type="checkbox" class="form-check-input" id="exampleCheck1" />
         <label class="form-check-label" for="exampleCheck1">Lembrar senha</label>
-      </div>
-      <button id="btn_login" type="button" class="btn btn-primary">Entrar</button>
+      </div> -->
+      <button id="btn_login" type="button" class="btn btn-success">Entrar</button>
+      <a href="/register" class="btn btn-success">Criar conta</a>
 
       <div>
-        <a href="/register">Criar conta</a>
         <br>
         <a href="/forgot_password">Esqueci a senha</a>
       </div>
+
     </form>
   </div>
 
@@ -62,7 +67,7 @@
     <%- include('../partials/footer') %>
   </footer>
 
-  <script src="js/loginScript.js"></script>
+  <script src="js/login.js"></script>
   <!-- <script src="js/loginScript2test.js"></script> -->
 
 
