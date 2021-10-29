@@ -41,7 +41,8 @@ const login = {
     const data = await response.json()
 
     if (!(response.ok)) {
-      console.log(data)
+      console.log('resposta nao veio')
+      // console.log(data.message)
       alert(data.message)
 
     } else {
@@ -49,9 +50,14 @@ const login = {
       const resourcetoken = `resourcetoken=${data.resourcetoken}`
       document.cookie = token;
       document.cookie = resourcetoken;
-      console.log(token)
-      console.log(resourcetoken)
-      window.location.assign("/")
+      // console.log(token)
+      // console.log(resourcetoken)
+
+      if (!(data.token == undefined)) {
+        window.location.assign("/")
+      } else {
+        alert('Senha ou email incorretos!')
+      }
     }
   }
 }
