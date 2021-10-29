@@ -12,46 +12,64 @@ module.exports = {
 
   //execute actions
   login: async (req, res) => {
+    const data = {
+      email: req.body.email,
+      password: req.body.password
+    }
     try {
-      const response = await apiLogin.post('/login', req.body)
+      const response = await apiLogin.post('/login', data)
       res.send(response.data)
 
     } catch (err) {
-      res.send(console.error(err.stack || err.message))
+      console.log(err.response.data.message)
+      res.status(err.status || 400).send({ message: err.response.data.message })
     }
   },
 
   register: async (req, res) => {
+    const data = {
+      name: req.body.name,
+      email: req.body.email,
+      password: req.body.password
+    }
     try {
-      const response = await apiLogin.post('/register', req.body)
+      const response = await apiLogin.post('/register', data)
       res.send(response.data)
 
-    } catch (error) {
-      res.send(console.error(err.stack || err.message))
+    } catch (err) {
+      res.status(err.status || 400).send(err)
     }
   },
 
   forgotPassword: async (req, res) => {
-    const email = req.body
+    const data = {
+      email: req.body.email,
+    }
     try {
-      const response = await apiLogin.post('/forgot_password', email)
-      res.send(response.data)
+      const response = await apiLogin.post('/forgot_password', data)
+      res.status(200).send(response.data)
 
     } catch (err) {
-      res.send(console.error(err.stack || err.message))
+      console.log(err.response.data.message)
+      res.status(err.status || 400).send({ message: err.response.data.message })
     }
   },
 
   resetPassword: async (req, res) => {
-    const email = req.body.email
-    const token = req.body.token
-    const password = req.body.password
+    const data = {
+      email: req.body.email,
+      token: req.body.token,
+      password: req.body.password
+    }
+    // console.log(email, token, password)
     try {
-      const response = await apiLogin.post('/reset_password', email, token, password)
-      res.send(response.data)
+      const response = await apiLogin.post('/reset_password', data)
+      // console.log(response.data)
+      res.status(200).send(response.data)
 
     } catch (err) {
-      res.send(console.error(err.stack || err.message))
+      // console.log(err.response.data)
+      res.status(err.status || 400).send({ message: err.response.data })
     }
   },
 

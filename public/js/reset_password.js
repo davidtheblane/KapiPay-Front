@@ -32,31 +32,26 @@ const resetPassword = {
   },
 
   send: async () => {
-    const data = {
-      token: document.getElementsByName('token')[0].value,
-      email: document.getElementsByName('email')[0].value,
-      password: document.getElementsByName('password')[0].value,
-    }
-    try {
-      const response = await fetch("/reset_password", {
-        method: 'POST',
-        headers: {
-          "Content-Type": "application/json",
-          "Accept": "application/json"
-        },
-        body: (data.token, data.email, data.password)
+
+    const response = await fetch("/reset_password", {
+      method: 'POST',
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+      },
+      body: JSON.stringify({
+        token: document.getElementsByName('token')[0].value,
+        email: document.getElementsByName('email')[0].value,
+        password: document.getElementsByName('password')[0].value,
       })
-      console.log(response.json())
+    })
+    const data = await response.json()
 
-
-      alert('Senha alterada com sucesso, faça login novamente!')
-      // window.location.assign("/login")
-
-
-
-    } catch (err) {
-      console.log(err.message)
-      alert('Não foi alterar sua senha.')
+    if (!(response.ok)) {
+      alert('Algo deu errado, revise os campos e tente novamente.')
+    } else {
+      alert(data.message)
+      window.location.assign("/login")
     }
 
   }
