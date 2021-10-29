@@ -56,6 +56,46 @@ const login = {
   }
 }
 
-// document.addEventListener('DOMContentLoaded', login.init)
+// Pré carrega banner LGPD
+window.addEventListener('load', () => {
+  const swalWithBootstrapButtons = Swal.mixin({
+    customClass: {
+      confirmButton: 'btn btn-sm btn-outline-success',
+      cancelButton: 'btn btn-sm btn-outline-success'
+    },
+    buttonsStyling: false
+  })
+
+  swalWithBootstrapButtons.fire({
+    title: 'Cookies?',
+    titleText: 'Cookies?',
+    text: "Usamos cookies para total funcionalidade do sistema. Para saber mais acesse nossa política de privacidade.",
+    icon: 'info',
+    showCancelButton: true,
+    confirmButtonText: 'Eu Aceito',
+    cancelButtonText: 'Não aceito.',
+    backdrop: false,
+    reverseButtons: true,
+  }).then((result) => {
+    if (result.isConfirmed) {
+      swalWithBootstrapButtons.fire(
+        'Obrigado!',
+        '',
+        'success'
+      )
+    } else if (
+      /* Read more about handling dismissals below */
+      result.dismiss === Swal.DismissReason.cancel
+    ) {
+      swalWithBootstrapButtons.fire(
+        'Atenção!',
+        'A funcionalidade do sistema estará restrita e você não poderá executar todas as ações. Se mudar de idéia recarregue a página e clique em "Eu Aceito".',
+        'info'
+      )
+    }
+  })
+});
+
 window.onload = login.init()
+// document.addEventListener('DOMContentLoaded', login.init)
 
