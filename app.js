@@ -13,10 +13,11 @@ app.use('/imgs', express.static(__dirname + 'public/imgs'));
 app.use('/js', express.static(__dirname + 'public/js'));
 // app.set('views', __dirname + 'src/views')
 
-
-//Template Engine
+//Set Views
 app.set('views', './src/views');
 app.set('view engine', 'ejs');
+
+//Template Engine
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 

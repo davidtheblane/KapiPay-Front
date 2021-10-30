@@ -1,4 +1,6 @@
 const api = require('../services/api.service')
+const apiLogin = require('../services/login.service')
+
 
 module.exports = {
   //chama o form
@@ -6,23 +8,22 @@ module.exports = {
     res.render("forms/createAccount");
   },
 
-  //cria conta
+  //CRIA CONTA DIGITAL
   createAccount: async (req, res) => {
     console.log("chegou no controller")
     try {
       const token = req.headers.authorization
-      const resourcetoken = req.headers.resourcetoken
-      const account = await api.post("/account/create", {
+      const account = await apiLogin.post("/account/create", {
         headers: {
           "Authorization": token,
-          "resourcetoken": resourcetoken
         }
       })
-      console.log(account.data)
-      console.log("conta criada")
-      return res.json(account.data)
+
+      console.log(account)
+      return res.json(account)
     } catch (err) {
-      res.status(400).send({ message: err.message || err.stack })
+      console.log(err.response.config)
+      res.status(err.status || 400).send({ err: err.stack })
     }
   },
 

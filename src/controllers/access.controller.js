@@ -3,6 +3,7 @@ const apiLogin = require('../services/login.service');
 module.exports = {
 
   //show pages
+  indexPage: async (req, res) => res.render("index"),
   loginPage: async (req, res) => res.render("pages/login"),
   registerPage: async (req, res) => res.render("pages/register"),
   forgotPasswordPage: async (req, res) => res.render("pages/forgot_password"),
