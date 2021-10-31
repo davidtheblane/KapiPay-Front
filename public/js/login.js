@@ -54,7 +54,7 @@ const login = {
       // console.log(resourcetoken)
 
       if (!(data.token == undefined)) {
-        window.location.assign("/")
+        window.location.assign("/index")
       } else {
         alert('Senha ou email incorretos!')
       }

@@ -9,6 +9,7 @@ const api = axios.create({
   headers: {
     "Content-Type": "Application/json",
     "Accept": "Application/json",
+    "X-Api-Version": 2
   }
 });
 

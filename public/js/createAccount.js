@@ -1,3 +1,8 @@
+const cookieArray = document.cookie.split(";")
+const token = cookieArray[0].split("=")[1]
+console.log(cookieArray)
+console.log(token)
+
 
 const preencherFormulario = (endereco) => {
   document.getElementById('street').value = endereco.end
@@ -92,8 +97,8 @@ const createAccount = {
   },
 
   send: () => {
-    const token = document.cookie.split("=")[1]
     const data = {
+      type: "PAYMENT",
       name: document.getElementsByName('name')[0].value,
       email: document.getElementsByName('email')[0].value,
       document: document.getElementsByName('cpf')[0].value,
@@ -113,20 +118,21 @@ const createAccount = {
       //Renda Mensal
       monthlyIncome: document.getElementsByName('monthlyIncome')[0].value
     }
+
     fetch("/account/create", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
         "Accept": "application/json",
-        "Authorization": `Bearer ${token}`
+        "Authorization": `${token}`
       },
       body: JSON.stringify(data)
     })
       .then(response => response.json())
-      .then((response) => {
-        console.log(`Chegou na resposta ${JSON.stringify(response)}`)
+      .then((accountCreated) => {
+        console.log(`Chegou na resposta ${accountCreated}`)
       }).catch(err => {
-        err.message || console.log(err.stack)
+        err
       })
   }
 }

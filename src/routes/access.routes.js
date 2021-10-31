@@ -6,14 +6,11 @@ const apiLogin = require("../services/login.service")
 const loginRouter = new Router(apiLogin);
 
 
-loginRouter.get('/', (req, res) => {
-  const logged = true //implementar depois
-  if (logged) {
-    res.render("index");
-  }
-})
+// Authenticated
+loginRouter.get('/index', AccessController.indexPage)
 
 // ACCESS ROUTES
+loginRouter.get('/', AccessController.loginPage)
 loginRouter.get('/login', AccessController.loginPage)
 loginRouter.get('/register', AccessController.registerPage)
 loginRouter.get('/forgot_password', AccessController.forgotPasswordPage)
@@ -29,7 +26,6 @@ loginRouter.post('/reset_password', AccessController.resetPassword)
 
 loginRouter.post('/logout', function (req, res) {
   req.logout()
-  res.redirect('/login')
 })
 
 
