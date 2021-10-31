@@ -1,3 +1,9 @@
+const cookieArray = document.cookie.split(";")
+const token = cookieArray[0].split("=")[1]
+console.log(cookieArray)
+console.log(token)
+
+
 const preencherFormulario = (endereco) => {
   document.getElementById('street').value = endereco.end
   document.getElementById('neighborhood').value = endereco.bairro
@@ -91,7 +97,6 @@ const createAccount = {
   },
 
   send: () => {
-    const token = document.cookie.split("=")[1]
     const data = {
       type: "PAYMENT",
       name: document.getElementsByName('name')[0].value,
@@ -113,6 +118,7 @@ const createAccount = {
       //Renda Mensal
       monthlyIncome: document.getElementsByName('monthlyIncome')[0].value
     }
+
     fetch("/account/create", {
       method: "POST",
       headers: {

@@ -1,12 +1,12 @@
-const cookieArray = document.cookie.split(";")
-// console.log(cookies)
-const token = cookieArray[0].split("=")[1]
-const resourcetoken = cookieArray[1].split("=")[1]
+const cookieArray = document.cookie.split(";") //encontra ; separa e cria um array com o conteúdo dos cookies.
+const token = cookieArray[0].split("=")[1] // pega o primeiro elemento dos cookies
+const resourcetoken = cookieArray[1].split("=")[1] // pega o segundo elemento dos cookies
+// console.log(cookieArray)
 // console.log(token)
 // console.log(resourcetoken)
 const header = {
   headers: {
-    "Authorization": `Bearer ${token}`,
+    "Authorization": `${token}`,
     "resourcetoken": `${resourcetoken}`
   }
 }
