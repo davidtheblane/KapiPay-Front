@@ -10,12 +10,13 @@ module.exports = {
   createAccount: async (req, res) => {
     try {
       const data = {
-        token: req.headers.authorization,
+        token: `Bearer ${req.headers.authorization}`,
         // resourcetoken: req.headers.resourcetoken
       }
+      // console.log(`Bearer ${req.headers.authorization}`)
       const account = await api.post("/account/create", {
         headers: {
-          "Authorization": `Bearer ${data.token}`
+          "Authorization": data.token
         }
       })
 
@@ -23,7 +24,7 @@ module.exports = {
       return res.json(account)
     } catch (err) {
       console.log(err.response)
-      res.status(err.status || 400).send({ err: err.stack })
+      res.status(err.status || 400).send(err.stack)
     }
   },
 
