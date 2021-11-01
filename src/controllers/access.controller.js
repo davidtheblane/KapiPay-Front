@@ -3,26 +3,41 @@ const apiLogin = require('../services/login.service');
 module.exports = {
 
   //show pages
+  loginPage: async (req, res) => {
+    session = req.session
+    if (session.userEmail) {
+      res.render("index")
+    } else {
+      res.render("pages/login")
+    }
+  },
   indexPage: async (req, res) => res.render("index"),
-  loginPage: async (req, res) => res.render("pages/login"),
   registerPage: async (req, res) => res.render("pages/register"),
   forgotPasswordPage: async (req, res) => res.render("pages/forgot_password"),
   resetPasswordPage: async (req, res) => res.render("pages/reset_password"),
 
 
-
   //execute actions
   login: async (req, res) => {
-    const data = {
-      email: req.body.email,
-      password: req.body.password
-    }
     try {
+      const data = {
+        email: req.body.email,
+        password: req.body.password
+      }
+
       const response = await apiLogin.post('/login', data)
-      res.send(response.data)
+      if (response.data) {
+        session = req.session
+        session.userEmail = data.email;
+        // console.log(session)
+        // console.log(response.data)
+        res.send(response.data)
+      } else {
+        res.send('Email ou password invalido')
+      }
 
     } catch (err) {
-      console.log(err.response.data.message)
+      console.log(err)
       res.status(err.status || 400).send({ message: err.response.data.message })
     }
   },
@@ -72,6 +87,11 @@ module.exports = {
       // console.log(err.response.data)
       res.status(err.status || 400).send({ message: err.response.data })
     }
+  },
+
+  logout: async (req, res) => {
+    req.session.destroy();
+    res.redirect('/');
   },
 
 }

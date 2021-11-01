@@ -5,15 +5,12 @@ const logout = {
 
   send: async () => {
     await fetch("/logout", {
-      method: 'POST',
+      method: 'GET',
       headers: {
-        "Content-Type": "application/json",
+        // "Content-Type": "application/json",
       }
     })
-    const token = null
-    // document.cookie = token
-    console.log(token)
-    // window.location.assign("/")
+    window.location.assign("/")
   }
 }
 

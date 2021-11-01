@@ -15,6 +15,7 @@ loginRouter.get('/login', AccessController.loginPage)
 loginRouter.get('/register', AccessController.registerPage)
 loginRouter.get('/forgot_password', AccessController.forgotPasswordPage)
 loginRouter.get('/reset_password', AccessController.resetPasswordPage)
+loginRouter.get('/logout', AccessController.logout)
 
 
 
@@ -24,9 +25,6 @@ loginRouter.post('/forgot_password', AccessController.forgotPassword)
 loginRouter.post('/reset_password', AccessController.resetPassword)
 
 
-loginRouter.post('/logout', function (req, res) {
-  req.logout()
-})
 
 
 module.exports = loginRouter;

@@ -46,19 +46,25 @@ const login = {
       alert(data.message)
 
     } else {
-      const token = `token=${data.token}`
-      const resourcetoken = `resourcetoken=${data.resourcetoken}`
-      document.cookie = token;
-      document.cookie = resourcetoken;
+
+      // console.log(data)
+      console.log(data)
+      // const token = `token=${data.token}`
+      // const resourcetoken = `resourcetoken=${data.resourcetoken}`
+      // document.cookie = token;
+      // document.cookie = resourcetoken;
       // console.log(token)
       // console.log(resourcetoken)
 
-      if (!(data.token == undefined)) {
-        window.location.assign("/index")
-      } else {
-        alert('Senha ou email incorretos!')
-      }
+      // if (!(data.token == undefined)) {
+      alert('Ok, logou')
+      window.location.assign("/index")
+
     }
+    //   else {
+    //   alert('Senha ou email incorretos!')
+    // }
+    // }
   }
 }
 
