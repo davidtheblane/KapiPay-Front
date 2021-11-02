@@ -6,12 +6,14 @@ const CompanyController = require('..//controllers/company.controller');
 const api = require("../services/api.service")
 const router = new Router(api);
 
+const isAuth = require("../middleware/is-auth");
+
 // const apiLogin = require("../services/login.service")
 // const loginRouter = new Router(apiLogin);
 
 
-// Authenticated
-router.get('/index', AccessController.indexPage)
+// MAIN PAGE
+router.get('/index', isAuth, AccessController.indexPage)
 
 // ACCESS ROUTES
 router.get('/', AccessController.loginPage)
@@ -19,25 +21,25 @@ router.get('/login', AccessController.loginPage)
 router.get('/register', AccessController.registerPage)
 router.get('/forgot_password', AccessController.forgotPasswordPage)
 router.get('/reset_password', AccessController.resetPasswordPage)
-router.get('/logout', AccessController.logout)
 
 router.post('/login', AccessController.login)
 router.post('/register', AccessController.register)
 router.post('/forgot_password', AccessController.forgotPassword)
 router.post('/reset_password', AccessController.resetPassword)
+router.get('/logout', AccessController.logout)
 
 //ACCOUNT ROUTES
-router.get('/account/balance', AccountController.balance);
-router.get('/account/status', AccountController.accountStatus);
-router.get('/account/documents', AccountController.verifyDocuments);
-router.get('/create', AccountController.createAccountPage)
+router.get('/account/balance', isAuth, AccountController.balance);
+router.get('/account/status', isAuth, AccountController.accountStatus);
+router.get('/account/documents', isAuth, AccountController.verifyDocuments);
+router.get('/create', isAuth, AccountController.createAccountPage)
 
-router.get('/account/company', CompanyController.newCompanyPage)
-router.get('/account/company', CompanyController.getCompany)
+router.get('/account/company', isAuth, CompanyController.newCompanyPage)
+router.get('/account/company', isAuth, CompanyController.getCompany)
 
 
-router.post('/account/create', AccountController.createAccount)
-router.post('/account/company', CompanyController.newCompany)
+router.post('/account/create', isAuth, AccountController.createAccount)
+router.post('/account/company', isAuth, CompanyController.newCompany)
 
 
 module.exports = router;

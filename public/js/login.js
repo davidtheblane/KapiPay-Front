@@ -41,33 +41,20 @@ const login = {
     const data = await response.json()
 
     if (!(response.ok)) {
-      console.log('resposta nao veio')
-      // console.log(data.message)
+      // console.log('resposta nao veio')
+      console.log(data.message)
       alert(data.message)
 
     } else {
-
       // console.log(data)
-      console.log(data)
-      // const token = `token=${data.token}`
-      // const resourcetoken = `resourcetoken=${data.resourcetoken}`
-      // document.cookie = token;
-      // document.cookie = resourcetoken;
-      // console.log(token)
-      // console.log(resourcetoken)
-
-      // if (!(data.token == undefined)) {
-      alert('Ok, logou')
+      alert('Bem-vindo!')
       window.location.assign("/index")
-
     }
-    //   else {
-    //   alert('Senha ou email incorretos!')
-    // }
-    // }
   }
 }
 
+
+// SWEET ALERT
 // Pré carrega banner LGPD
 window.addEventListener('load', () => {
   const swalWithBootstrapButtons = Swal.mixin({

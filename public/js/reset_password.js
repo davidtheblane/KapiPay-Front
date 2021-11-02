@@ -47,14 +47,38 @@ const resetPassword = {
     })
     const data = await response.json()
 
-    if (!(response.ok)) {
-      alert('Algo deu errado, revise os campos e tente novamente.')
-    } else {
+    if (!response.ok) {
+      console.log(data.message)
       alert(data.message)
-      window.location.assign("/login")
+      // alert('Algo deu errado, revise os campos e tente novamente.')
+
+    } else {
+      // alert(data.message)
+      resetPassword.success()
+      setTimeout(function () {
+        window.location.assign("/login")
+      }, 3000)
     }
 
-  }
+  },
+  //SWEET ALERT BUTTON
+  success: async function () {
+    const Toast = Swal.mixin({
+      toast: true,
+      position: 'top-right',
+      iconColor: 'white',
+      customClass: {
+        popup: 'colored-toast'
+      },
+      showConfirmButton: false,
+      timer: 2500,
+      timerProgressBar: true
+    })
+    await Toast.fire({
+      icon: 'success',
+      title: 'Senha Alterada, agora é só logar!'
+    })
+  },
 }
 
 // document.addEventListener('DOMContentLoaded', login.init)

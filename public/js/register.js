@@ -1,4 +1,6 @@
 const register = {
+
+
   init: async () => {
     document.getElementById('btn_register').addEventListener('click', register.validate)
   },
@@ -9,7 +11,7 @@ const register = {
     const password = document.getElementsByName('password')[0].value
 
     const regexEmail = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-    const regexName = /^([a-zA-Z]{2,}\s[a-zA-Z]{1,}'?-?[a-zA-Z]{2,}\s?([a-zA-Z]{1,})?)/s
+    const regexName = /^([a-zA-Z]{2,}\s[a-zA-Z]{1,}'?-?[a-zA-Z]{1,}\s?([a-zA-Z]{1,})?)/s
     let validate = true;
     let message = ''
 
@@ -50,15 +52,41 @@ const register = {
     const data = await response.json();
 
     if (!response.ok) {
-      console.log(data)
+      console.log(data.message)
       alert(data.message)
-    } else {
-      alert('Conta criada com sucesso')
-      window.location.assign("/login")
-    }
 
-    console.log(response)
-  }
+    } else {
+      // console.log(data)
+      // alert('Conta criada com sucesso')
+      register.success()
+
+      setTimeout(function () {
+        window.location.assign("/login")
+      }, 2000)
+    }
+  },
+
+  //SWEET ALERT BUTTON
+  success: async function () {
+    const Toast = Swal.mixin({
+      toast: true,
+      position: 'top-right',
+      iconColor: 'white',
+      customClass: {
+        popup: 'colored-toast'
+      },
+      showConfirmButton: false,
+      timer: 1500,
+      timerProgressBar: true
+    })
+    await Toast.fire({
+      icon: 'success',
+      title: 'Conta Criada com Sucesso'
+    })
+  },
 }
 
 window.onload = register.init()
+
+
+
