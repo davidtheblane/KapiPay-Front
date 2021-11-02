@@ -6,7 +6,7 @@ const sessions = require('express-session');
 // const mongoose = require('mongoose')
 const cors = require('cors');
 const accessRouter = require('./src/routes/access.routes');
-const accountRouter = require('./src/routes/account.routes')
+// const accountRouter = require('./src/routes/account.routes')
 require('dotenv').config()
 
 
@@ -40,7 +40,7 @@ app.set('view engine', 'ejs');
 
 //Routes
 app.use('/', accessRouter);
-app.use('/account', accountRouter);
+// app.use('/account', accountRouter);
 
 
 

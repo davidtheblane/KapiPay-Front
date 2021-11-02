@@ -1,30 +1,43 @@
 const { Router } = require('express');
 const AccessController = require('../controllers/access.controller')
-// const CepController = require('../controllers/cep.controller')
+const AccountController = require('../controllers/account.controller');
+const CompanyController = require('..//controllers/company.controller');
 
-const apiLogin = require("../services/login.service")
-const loginRouter = new Router(apiLogin);
+const api = require("../services/api.service")
+const router = new Router(api);
+
+// const apiLogin = require("../services/login.service")
+// const loginRouter = new Router(apiLogin);
 
 
 // Authenticated
-loginRouter.get('/index', AccessController.indexPage)
+router.get('/index', AccessController.indexPage)
 
 // ACCESS ROUTES
-loginRouter.get('/', AccessController.loginPage)
-loginRouter.get('/login', AccessController.loginPage)
-loginRouter.get('/register', AccessController.registerPage)
-loginRouter.get('/forgot_password', AccessController.forgotPasswordPage)
-loginRouter.get('/reset_password', AccessController.resetPasswordPage)
-loginRouter.get('/logout', AccessController.logout)
+router.get('/', AccessController.loginPage)
+router.get('/login', AccessController.loginPage)
+router.get('/register', AccessController.registerPage)
+router.get('/forgot_password', AccessController.forgotPasswordPage)
+router.get('/reset_password', AccessController.resetPasswordPage)
+router.get('/logout', AccessController.logout)
+
+router.post('/login', AccessController.login)
+router.post('/register', AccessController.register)
+router.post('/forgot_password', AccessController.forgotPassword)
+router.post('/reset_password', AccessController.resetPassword)
+
+//ACCOUNT ROUTES
+router.get('/account/balance', AccountController.balance);
+router.get('/account/status', AccountController.accountStatus);
+router.get('/account/documents', AccountController.verifyDocuments);
+router.get('/create', AccountController.createAccountPage)
+
+router.get('/account/company', CompanyController.newCompanyPage)
+router.get('/account/company', CompanyController.getCompany)
 
 
-
-loginRouter.post('/login', AccessController.login)
-loginRouter.post('/register', AccessController.register)
-loginRouter.post('/forgot_password', AccessController.forgotPassword)
-loginRouter.post('/reset_password', AccessController.resetPassword)
+router.post('/account/create', AccountController.createAccount)
+router.post('/account/company', CompanyController.newCompany)
 
 
-
-
-module.exports = loginRouter;
+module.exports = router;
