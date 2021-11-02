@@ -16,7 +16,7 @@ const cors = require('cors');
 
 const store = new MongoDBStore({
   uri: mongoURI,
-  collection: "mySessions",
+  collection: "mysessions",
 })
 
 

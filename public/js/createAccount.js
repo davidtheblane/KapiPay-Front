@@ -1,9 +1,3 @@
-const cookieArray = document.cookie.split(";")
-const token = cookieArray[0].split("=")[1]
-console.log(cookieArray)
-console.log(token)
-
-
 const preencherFormulario = (endereco) => {
   document.getElementById('street').value = endereco.end
   document.getElementById('neighborhood').value = endereco.bairro
@@ -119,12 +113,27 @@ const createAccount = {
       monthlyIncome: document.getElementsByName('monthlyIncome')[0].value
     }
 
+
+    // fetch("/account/create", {
+    //   method: "POST",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //     "Accept": "application/json",
+    //     "X-Api-Version": 2,
+    //   },
+    //   body: JSON.stringify(data)
+    // })
+    //   .then(response => response.json())
+    //   .then((accountCreated) => {
+    //     console.log(`Chegou na resposta ${accountCreated}`)
+    //   }).catch(err => {
+    //     err
+    //   })
     fetch("/account/create", {
-      method: "POST",
+      method: "post",
       headers: {
-        "Content-Type": "application/json",
         "Accept": "application/json",
-        "Authorization": `${token}`
+        "Content-Type": "application/json",
       },
       body: JSON.stringify(data)
     })

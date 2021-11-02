@@ -32,7 +32,7 @@ router.get('/logout', AccessController.logout)
 router.get('/account/balance', isAuth, AccountController.balance);
 router.get('/account/status', isAuth, AccountController.accountStatus);
 router.get('/account/documents', isAuth, AccountController.verifyDocuments);
-router.get('/create', isAuth, AccountController.createAccountPage)
+router.get('/account/create', isAuth, AccountController.createAccountPage)
 
 router.get('/account/company', isAuth, CompanyController.newCompanyPage)
 router.get('/account/company', isAuth, CompanyController.getCompany)
