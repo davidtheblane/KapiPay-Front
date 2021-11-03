@@ -1,0 +1,20 @@
+{
+  "type": "PAYMENT",
+  "name": "Davi Bernardo",
+  "document": "58196743084",
+  "email": "davidtheblane@gmail.com",
+  "birthDate": "1987-02-19",
+  "phone": "5513988128965",
+  "businessArea": 2010,
+  "linesOfBusiness": "Personal Business",
+  "address": {
+    "street": "Rua Irmã Noronha",
+    "number": "81",
+    "complement": "",
+    "neighborhood": "Jardim Rodeio",
+    "city": "Mogi das Cruzes",
+    "state": "SP",
+    "postCode": "08775180"
+  },
+  "monthlyIncome": "3500"
+}

@@ -9,18 +9,20 @@ module.exports = {
   //CRIA CONTA DIGITAL
   createAccount: async (req, res) => {
     try {
+      const data = req.body
+      console.log(data)
       const token = req.session.token
-      const account = await api.post("/account/create", {
+      const account = await api.post("/account/create", data, {
         headers: {
           "Authorization": `Bearer ${token}`
         }
       })
 
-      console.log(account.data)
-      return res.json(account.data)
+      console.log(account.data.message)
+      return res.json(account.data.message)
     } catch (err) {
-      console.log(err.response)
-      res.status(err.status || 400).send(err.stack)
+      console.log(err)
+      res.status(err.status || 400).send(err)
     }
   },
 

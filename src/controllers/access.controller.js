@@ -27,7 +27,7 @@ module.exports = {
 
   //INDEX GET
   indexPage: async (req, res) => {
-    const email = req.session.email;
+    const email = req.session.userEmail;
     res.render("index", { email: email })
   },
 

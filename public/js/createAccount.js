@@ -94,43 +94,29 @@ const createAccount = {
     const data = {
       type: "PAYMENT",
       name: document.getElementsByName('name')[0].value,
-      email: document.getElementsByName('email')[0].value,
       document: document.getElementsByName('cpf')[0].value,
+      email: document.getElementsByName('email')[0].value,
       birthDate: document.getElementsByName('birthDate')[0].value,
       phone: document.getElementsByName('phone')[0].value,
       //Area de negócio
       businessArea: 2010, //Serviços(Cobranças e Dívidas)
       linesOfBusiness: "Personal Business",
       //Endereço
-      postCode: document.getElementsByName('postCode')[0].value,
-      street: document.getElementsByName('street')[0].value,
-      number: document.getElementsByName('number')[0].value,
-      complement: document.getElementsByName('complement')[0].value,
-      neighborhood: document.getElementsByName('neighborhood')[0].value,
-      city: document.getElementsByName('city')[0].value,
-      state: document.getElementsByName('state')[0].value,
+      address: {
+        street: document.getElementsByName('street')[0].value,
+        number: document.getElementsByName('number')[0].value,
+        complement: document.getElementsByName('complement')[0].value,
+        neighborhood: document.getElementsByName('neighborhood')[0].value,
+        city: document.getElementsByName('city')[0].value,
+        state: document.getElementsByName('state')[0].value,
+        postCode: document.getElementsByName('postCode')[0].value,
+      },
       //Renda Mensal
-      monthlyIncome: document.getElementsByName('monthlyIncome')[0].value
+      monthlyIncomeOrRevenue: document.getElementsByName('monthlyIncome')[0].value
     }
 
-
-    // fetch("/account/create", {
-    //   method: "POST",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //     "Accept": "application/json",
-    //     "X-Api-Version": 2,
-    //   },
-    //   body: JSON.stringify(data)
-    // })
-    //   .then(response => response.json())
-    //   .then((accountCreated) => {
-    //     console.log(`Chegou na resposta ${accountCreated}`)
-    //   }).catch(err => {
-    //     err
-    //   })
     fetch("/account/create", {
-      method: "post",
+      method: "POST",
       headers: {
         "Accept": "application/json",
         "Content-Type": "application/json",
@@ -138,12 +124,35 @@ const createAccount = {
       body: JSON.stringify(data)
     })
       .then(response => response.json())
-      .then((accountCreated) => {
-        console.log(`Chegou na resposta ${accountCreated}`)
+      .then(accountCreated => {
+        createAccount.success()
+        setTimeout(function () {
+          window.location.assign("/index")
+        }, 3000)
+
       }).catch(err => {
         err
       })
-  }
+  },
+
+  //SWEET ALERT BUTTON
+  success: async function () {
+    const Toast = Swal.mixin({
+      toast: true,
+      position: 'top-right',
+      iconColor: 'white',
+      customClass: {
+        popup: 'colored-toast'
+      },
+      showConfirmButton: false,
+      timer: 2500,
+      timerProgressBar: true
+    })
+    await Toast.fire({
+      icon: 'success',
+      title: 'Conta criada com sucesso!'
+    })
+  },
 }
 
 // window.onload = createAccount.init()
