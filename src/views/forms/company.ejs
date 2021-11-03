@@ -1,16 +1,5 @@
-<!DOCTYPE html>
 <!-- STYLE -->
-
 <style>
-  .container {
-    width: 500px;
-    margin: 0 auto;
-    /* border: 1px dotted gray; */
-    padding: 1rem;
-    margin-top: 3rem;
-    margin-bottom: 3rem;
-  }
-
   form {
     width: 400px;
     margin: 0 auto;
@@ -19,12 +8,9 @@
   input:valid {
     border: 1px solid lightgreen;
   }
-
-  /* input:invalid {
-    border: 1px dashed rosybrown;
-  } */
 </style>
 
+<!DOCTYPE html>
 <!-- HTML -->
 
 <head>
@@ -34,57 +20,54 @@
 <header>
   <%- include('../partials/header') %>
 </header>
+
 <!-- FORM -->
-
-<body>
-  <div class="container">
-    <form id="form-new-company">
-      <h2>Incluir Fornecedor</h2>
-      <br>
-      <div class="form-group">
-        <label for="companyService">Serviço</label>
-        <select class="form-control form-control-sm" id="companyService" name="companyService" required>
-          <option selected>Escolha o tipo de serviço...</option>
-          <option>ENERGIA</option>
-          <option>AGUA</option>
-          <option>TELEFONE</option>
-          <option>INTERNET</option>
-          <option>CARTAO</option>
-          <option>GAS</option>
-        </select>
-      </div>
-      <hr>
-      <div class="mb-3">
-        <label for="name" class="form-label">Nome</label>
-        <input type="text" id="name" name="name" class="form-control" placeholder="Nome da Empresa" required />
-      </div>
+<div class="container">
+  <form id="form-new-company">
+    <h2>Incluir Fornecedor</h2>
+    <br>
+    <div class="form-group">
+      <label for="companyService">Serviço</label>
+      <select class="form-control form-control-sm" id="companyService" name="companyService" required>
+        <option selected>Escolha o tipo de serviço...</option>
+        <option>ENERGIA</option>
+        <option>AGUA</option>
+        <option>TELEFONE</option>
+        <option>INTERNET</option>
+        <option>CARTAO</option>
+        <option>GAS</option>
+      </select>
+    </div>
+    <hr>
+    <div class="mb-3">
+      <label for="name" class="form-label">Nome</label>
+      <input type="text" id="name" name="name" class="form-control" placeholder="Nome da Empresa" required />
+    </div>
 
 
-      <div class="mb-3">
-        <label for="cnpj" class="form-label">CNPJ</label>
-        <input type="cnpj" id="cnpj" name="cnpj" class="form-control" required />
-      </div>
+    <div class="mb-3">
+      <label for="cnpj" class="form-label">CNPJ</label>
+      <input type="cnpj" id="cnpj" name="cnpj" class="form-control" required />
+    </div>
 
 
-      <div class="mb-3">
-        <label for="description" class="form-label">Descrição</label>
-        <textarea type="description" class="form-control" id="description" rows="3" name="description"
-          placeholder="Descreva em poucas palavras o serviço prestado."> </textarea>
-      </div>
+    <div class="mb-3">
+      <label for="description" class="form-label">Descrição</label>
+      <textarea type="description" class="form-control" id="description" rows="3" name="description"
+        placeholder="Descreva em poucas palavras o serviço prestado."> </textarea>
+    </div>
 
 
-      <div>
-        <button id="btn_save" type="button" class="btn btn-success">Salvar</button>
+    <div>
+      <button id="btn_save" type="button" class="btn btn-success">Salvar</button>
 
-        <a href="/index" class="btn btn-outline-success">Voltar</a>
-      </div>
-    </form>
-  </div>
+      <a href="/index" class="btn btn-outline-success">Voltar</a>
+    </div>
+  </form>
+</div>
 
-  <footer>
-    <%- include('../partials/footer') %>
-  </footer>
+<footer>
+  <%- include('../partials/footer') %>
+</footer>
 
-  <script src="/js/company.js"></script>
-
-</body>
+<script src="/js/company.js"></script>

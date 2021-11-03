@@ -1,15 +1,13 @@
-<!DOCTYPE html>
 <!-- STYLE -->
-
 <style>
-  .container {
+  /* .container {
     width: 500px;
     margin: 0 auto;
-    /* border: 1px dotted gray; */
+    border: 1px dotted gray;
     padding: 1rem;
     margin-top: 3rem;
     margin-bottom: 3rem;
-  }
+  } */
 
   form {
     width: 400px;
@@ -19,13 +17,11 @@
   input:valid {
     border: 1px solid lightgreen;
   }
-
-  /* input:invalid {
-    border: 1px dashed rosybrown;
-  } */
 </style>
 
+
 <!-- HTML -->
+<!DOCTYPE html>
 
 <head>
   <%- include('../partials/head') %>
@@ -34,57 +30,55 @@
 <header>
   <%- include('../partials/header') %>
 </header>
+
 <!-- FORM -->
-
-<body>
-  <div class="container">
-    <form id="form-new-invoice">
-      <h2>Cadastrar Fatura</h2>
-      <br>
-      <div class="form-group">
-        <label for="companyName">Serviço</label>
-        <select class="form-control form-control-sm" id="companyName" name="companyName" required>
-          <option selected>Escolha a Empresa...</option>
-          <option>CPFL</option>
-          <option>VIVO</option>
-          <option>ITAU</option>
-          <option>SABESP</option>
-        </select>
-      </div>
-      <hr>
-      <div class="mb-3">
-        <label for="amount" class="form-label">Valor</label>
-        <input type="number" id="amount" name="amount" class="form-control" placeholder="Valor da Fatura" required />
-      </div>
+<div class="container">
+  <form id="form-new-invoice">
+    <h2>Cadastrar Fatura</h2>
+    <br>
+    <div class="form-group">
+      <label for="companyName">Serviço</label>
+      <select class="form-control form-control-sm" id="companyName" name="companyName" required>
+        <option selected>Escolha a Empresa...</option>
+        <option>CPFL</option>
+        <option>VIVO</option>
+        <option>ITAU</option>
+        <option>SABESP</option>
+      </select>
+    </div>
+    <hr>
+    <div class="mb-3">
+      <label for="amount" class="form-label">Valor</label>
+      <input type="number" id="amount" name="amount" class="form-control" placeholder="Valor da Fatura" required />
+    </div>
 
 
-      <div class="mb-3">
-        <label for="dueDate" class="form-label">Vencimento</label>
-        <input type="date" id="dueDate" name="dueDate" class="form-control" required />
-      </div>
+    <div class="mb-3">
+      <label for="dueDate" class="form-label">Vencimento</label>
+      <input type="date" id="dueDate" name="dueDate" class="form-control" required />
+    </div>
 
 
-      <div class="mb-3">
-        <label for="description" class="form-label">Descrição</label>
-        <textarea type="description" class="form-control" id="description" rows="3" name="description"
-          placeholder="Descreva em poucas palavras o serviço prestado."> </textarea>
-      </div>
+    <div class="mb-3">
+      <label for="description" class="form-label">Descrição</label>
+      <textarea type="description" class="form-control" id="description" rows="3" name="description"
+        placeholder="Descreva em poucas palavras o serviço prestado."> </textarea>
+    </div>
 
 
-      <div>
-        <button id="btn_save" type="button" class="btn btn-success">Salvar</button>
+    <div>
+      <button id="btn_save" type="button" class="btn btn-success">Salvar</button>
 
-        <a href="/index" class="btn btn-outline-success">Voltar</a>
-      </div>
-    </form>
-  </div>
+      <a href="/index" class="btn btn-outline-success">Voltar</a>
+    </div>
+  </form>
+</div>
 
 
 
-  <footer>
-    <%- include('../partials/footer') %>
-  </footer>
+<footer>
+  <%- include('../partials/footer') %>
+</footer>
 
-  <script src="/js/invoice.js"></script>
-
-</body>
+<!-- SCRIPT -->
+<script src="/js/invoice.js"></script>

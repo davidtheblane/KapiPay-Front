@@ -3,7 +3,8 @@ const api = require('../services/api.service')
 module.exports = {
   //chama o form
   createAccountPage: async (req, res) => {
-    res.render("forms/createAccount");
+    const email = req.session.userEmail;
+    res.render("forms/createAccount", { email: email });
   },
 
   //CRIA CONTA DIGITAL

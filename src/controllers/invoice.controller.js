@@ -3,7 +3,8 @@ const api = require('../services/api.service')
 module.exports = {
   //chama o form
   newInvoicePage: async (req, res) => {
-    res.render("forms/invoice");
+    const email = req.session.userEmail;
+    res.render("forms/invoice", { email: email });
   },
 
   //NEW COMPANY
