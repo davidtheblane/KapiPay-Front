@@ -47,10 +47,32 @@ const login = {
 
     } else {
       // console.log(data)
-      alert('Bem-vindo!')
-      window.location.assign("/index")
+      // alert('Bem-vindo!')
+      login.success()
+      setTimeout(function () {
+        window.location.assign("/index")
+      }, 1000)
     }
-  }
+  },
+
+  //SWEET ACESS BUTTON
+  success: async function () {
+    const Toast = Swal.mixin({
+      toast: true,
+      position: 'top-right',
+      iconColor: 'white',
+      customClass: {
+        popup: 'colored-toast'
+      },
+      showConfirmButton: false,
+      timer: 2500,
+      timerProgressBar: true
+    })
+    await Toast.fire({
+      icon: 'success',
+      title: 'Bem Vindo!'
+    })
+  },
 }
 
 

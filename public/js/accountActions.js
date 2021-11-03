@@ -26,7 +26,7 @@ const accountActions = {
 
         })
         .catch(err => {
-          err.message || console.log(err.stack)
+          err.message || console.log(err.message)
         })
     })
   },

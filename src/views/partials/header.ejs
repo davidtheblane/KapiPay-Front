@@ -1,54 +1,43 @@
 <style>
-  * {
-    text-decoration: none;
-    list-style: none;
-  }
-
-  ul {
-    /* border: 1px solid red; */
-  }
-
-  p.logout {
-
-    /* border: 1px solid black; */
-  }
-
   .navbar {
-    display: flex;
-    flex-direction: row;
-    justify-content: left;
+    padding: 2rem;
+    margin-bottom: 1rem;
   }
-
-  /* .nav-logout {
-    display: flex;
-    flex-direction: row;
-    justify-content: right;
-  } */
 </style>
 
-<!-- ///// -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light justify-content-between">
+  <a class="navbar-brand" href="/index">KapiPay 💸</a>
 
-<body>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
+    aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
 
-
-  <nav class="navbar navbar-expand-sm navbar-light bg-light">
-
-
-    <a class="navbar-brand" href="/index">Kapi Pay 💸</a>
-
+  <div class="collapse navbar-collapse" id="navbarText">
     <ul class="navbar-nav mr-auto">
-
+      <li class="nav-item active">
+        <a class="nav-link" href="/index">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Features</a>
+      </li>
       <li class="nav-item">
         <a class="nav-link" href="/about">Sobre</a>
       </li>
     </ul>
+  </div>
+  <form class="form-inline">
+    <p class="userEmail">
+      <%= email %>
+    </p>
+    <span class="navbar-logout-button">
+      <button id="btn_logout" type="button" class="btn btn-sm btn-outline-secondary">
+        User | Logout
+      </button>
+    </span>
+  </form>
+</nav>
 
-    <button id="btn_logout" type="button" class="btn btn-sm btn-outline-secondary">
-      User | Logout
-    </button>
 
 
-  </nav>
-
-  <script src="/js/logout.js"></script>
-</body>
+<script src="/js/logout.js"></script>

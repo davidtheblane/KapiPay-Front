@@ -6,12 +6,10 @@ const InvoiceController = require('../controllers/invoice.controller');
 
 const api = require("../services/api.service")
 const router = new Router(api);
-
-const isAuth = require("../middleware/is-auth");
-
 // const apiLogin = require("../services/login.service")
 // const loginRouter = new Router(apiLogin);
 
+const isAuth = require("../middleware/is-auth");
 
 // MAIN PAGE
 router.get('/index', isAuth, AccessController.indexPage)
