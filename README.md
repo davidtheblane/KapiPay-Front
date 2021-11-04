@@ -1,4 +1,4 @@
-![production deploy status](https://github.com/davidtheblane/KapiPay-Front/actions/workflows/main_deploy.yml/badge.svg)
+![production deploy status](https://github.com/davidtheblane/KapiPay-Front/actions/workflows/develop_deploy.yml/badge.svg)
 
 # KapiPay-Front
 
