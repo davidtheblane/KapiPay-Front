@@ -1,28 +1,27 @@
-#RUNING ON ACTION-RUNNER
-
 name: CI/CD-Production
 
 on:
   push:
-    branches: [ main ]
-
+    branches: [main]
   pull_request:
-    branches: [ main ]
+    branches: [main]
 
 jobs:
-  Deployment:
-    runs-on: self-hosted
+  CI:
+    runs-on: ubuntu-latest
     steps:
-      - name: Update main branch
-        run: git pull
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v1
+      - name: Production Deploy
+        uses: actions/setup-node@v2
+  CD:
+    needs: [CI]
+    runs-on: ubuntu-latest
+    steps:
+      #  //// GARYGROSSGARTEN
+      - uses: actions/checkout@v2
+      - name: Development Deploy to Digital Ocean
+        uses: garygrossgarten/github-action-ssh@release
         with:
-          node-version: "14.x"
-
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Restart application
-        run: pm2 restart app-kapipay-prod
+          command: cd /home/deploy/KapiPay-Front/deploy && bash ./production.sh
+          host: ${{ secrets.SSH_HOST_SERVER }}
+          username: ${{ secrets.SSH_USERNAME}}
+          privateKey: ${{ secrets.SSH_PRIVATE_KEY }}
