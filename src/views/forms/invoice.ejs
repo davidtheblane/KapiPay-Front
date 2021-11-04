@@ -1,5 +1,14 @@
 <!-- STYLE -->
 <style>
+  /* .container {
+    width: 500px;
+    margin: 0 auto;
+    border: 1px dotted gray;
+    padding: 1rem;
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+  } */
+
   form {
     width: 400px;
     margin: 0 auto;
@@ -10,8 +19,9 @@
   }
 </style>
 
-<!DOCTYPE html>
+
 <!-- HTML -->
+<!DOCTYPE html>
 
 <head>
   <%- include('../partials/head') %>
@@ -23,31 +33,29 @@
 
 <!-- FORM -->
 <div class="container">
-  <form id="form-new-company">
-    <h2>Incluir Fornecedor</h2>
+  <form id="form-new-invoice">
+    <h2>Cadastrar Fatura</h2>
     <br>
     <div class="form-group">
-      <label for="companyService">Serviço</label>
-      <select class="form-control form-control-sm" id="companyService" name="companyService" required>
-        <option selected>Escolha o tipo de serviço...</option>
-        <option>ENERGIA</option>
-        <option>AGUA</option>
-        <option>TELEFONE</option>
-        <option>INTERNET</option>
-        <option>CARTAO</option>
-        <option>GAS</option>
+      <label for="companyName">Serviço</label>
+      <select class="form-control form-control-sm" id="companyName" name="companyName" required>
+        <option selected>Escolha a Empresa...</option>
+        <option>CPFL</option>
+        <option>VIVO</option>
+        <option>ITAU</option>
+        <option>SABESP</option>
       </select>
     </div>
     <hr>
     <div class="mb-3">
-      <label for="name" class="form-label">Nome</label>
-      <input type="text" id="name" name="name" class="form-control" placeholder="Nome da Empresa" required />
+      <label for="amount" class="form-label">Valor</label>
+      <input type="number" id="amount" name="amount" class="form-control" placeholder="Valor da Fatura" required />
     </div>
 
 
     <div class="mb-3">
-      <label for="cnpj" class="form-label">CNPJ</label>
-      <input type="cnpj" id="cnpj" name="cnpj" class="form-control" required />
+      <label for="dueDate" class="form-label">Vencimento</label>
+      <input type="date" id="dueDate" name="dueDate" class="form-control" required />
     </div>
 
 
@@ -66,8 +74,11 @@
   </form>
 </div>
 
+
+
 <footer>
   <%- include('../partials/footer') %>
 </footer>
 
-<script src="/js/company.js"></script>
+<!-- SCRIPT -->
+<script src="/js/invoice.js"></script>

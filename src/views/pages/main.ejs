@@ -6,7 +6,7 @@
   }
 
   h4 {
-    text-align: center;
+    text-align: right;
   }
 
   a {
@@ -37,18 +37,17 @@
 
 <div class="jumbotron mr-auto">
 
-  <h4 id="welcome-title"> Bem vindo Nome!
-  </h4>
+  <h4 class="text-center" id=" welcome-title"> Bem vindo </h4>
 
   <menu class="menu">
     <dl class="card">
       <dt>Fornecedores</dt>
-      <dd><a href="account/company" type="button" id="new_company">Novo Fornecedor</a></dd>
+      <dd><a href="/account/company" type="button" id="new_company">Novo Fornecedor</a></dd>
       <dd>Listar Fornecedores</dd>
     </dl>
     <dl class="card">
       <dt>Faturas</dt>
-      <dd>Cadastrar Fatura</dd>
+      <dd> <a href="/account/invoice" type="button" id="new_invoice">Cadastrar Fatura</a></dd>
       <dd>Faturas à Vencer</dd>
       <dd>Faturas Pagas</dd>
     </dl>
@@ -57,16 +56,64 @@
       <dd>Visualizar dados</dd>
       <dd>Alterar dados</dd>
     </dl>
+
+
     <dl class="card">
       <dt>Conta Digital</dt>
-      <dd><a href="#" type="button" id="balance">Consultar Saldo</a></dd>
-      <dd><a href="#" type="button" id="account_status">Visualizar situação</a></dd>
-      <dd><a href="#" type="button" id="verify_documents">Verificar documentos</a></dd>
-      <dd><a href="#" type="button" id="credit_insert">Inserir Créditos na conta</a></dd>
-      <dd><a href="account/create" type="button" id="create_account">Criar conta digital</a></dd>
-      <dd>Alterar dados da conta</dd>
+      <br>
+      <div>
+        <a href="#" type="button" id="balance">Consultar Saldo</a>
+        <p id="balance-result"></p>
+
+      </div>
+      <div>
+        <a href="#" type="button" id="account_status">Visualizar situação</a>
+        <p id="status-result"></p>
+
+      </div>
+      <a href="#" type="button" id="verify_documents">Verificar documentos</a>
+      <p id="docs-result"></p>
+
+      <div>
+        <a href="#" type="button" id="credit_insert">Inserir Créditos na conta</a>
+      </div>
+      <div>
+        <a href="/account/create" type="button" id="create_account">Criar conta digital</a>
+      </div>
+      <div>
+        Alterar dados da conta
+      </div>
     </dl>
-  </menu>
+
+    <!-- <div class="card" style="width: 14rem;">
+      <h4 class="card-title">Conta Digital</h4>
+      <ul class="list-group list-group-flush digital-account">
+        <li class="list-group-item">
+          <a href="#" type="button" id="balance">Consultar Saldo</a>
+          <p id="balance-result"></p>
+        </li>
+        <li class="list-group-item">
+          <a href="#" type="button" id="account_status">Visualizar situação</a>
+          <p id="status-result"></p>
+        </li>
+        <li class="list-group-item">
+          <a href="#" type="button" id="verify_documents">Verificar documentos</a>
+          <p id="docs-result"></p>
+        </li>
+        <li class="list-group-item">
+          <a href="#" type="button" id="credit_insert">Inserir Créditos na conta</a>
+        </li>
+        <li class="list-group-item">
+          <a href="/account/create" type="button" id="create_account">Criar conta digital</a>
+        </li>
+        <li class="list-group-item">
+          Alterar dados da conta
+        </li> -->
+
+
+    </ul>
+</div>
+</menu>
 </div>
 
 

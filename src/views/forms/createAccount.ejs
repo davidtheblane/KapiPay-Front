@@ -1,15 +1,13 @@
-<!DOCTYPE html>
 <!-- STYLE -->
-
 <style>
-  .container {
+  /* .container {
     width: 500px;
     margin: 0 auto;
-    /* border: 1px dotted gray; */
+    border: 1px dotted gray;
     padding: 1rem;
     margin-top: 3rem;
     margin-bottom: 3rem;
-  }
+  } */
 
   form {
     width: 400px;
@@ -20,106 +18,103 @@
     border: 1px solid lightgreen;
   }
 
-  /* input:invalid {
-    border: 1px dashed rosybrown;
-  } */
+  .colored-toast.swal2-icon-success {
+    background-color: #a5dc86 !important;
+  }
 </style>
 
 <!-- HTML -->
+<!DOCTYPE html>
 
 <head>
   <%- include('../partials/head') %>
-
 </head>
 
-<body>
+
+<header>
+  <%- include('../partials/header') %>
+</header>
+
+<!-- FORM -->
+<div class="container">
+  <form id="form-createAccount">
+
+    <h1>Criar Conta Digital</h1>
+    </hr>
+
+    <div class=" mb-3">
+      <label for="name" class="form-label">Nome</label>
+      <input type="text" id="name" name="name" class="form-control" placeholder="Pegar do user logado" required />
+    </div>
+
+    <div class="mb-3">
+      <label for="email" class="form-label">Email</label>
+      <input type="email" id="email" name="email" class="form-control" placeholder="Pegar do user logado" required />
+    </div>
+
+    <div class="mb-3">
+      <label for="cpf" class="form-label">CPF</label>
+      <input type="text" id="cpf" name="cpf" class="form-control" required />
+    </div>
+
+    <div class="mb-3">
+      <label for="birthDate" class="form-label">Data de Nascimento</label>
+      <input type="text" id="birthDate" name="birthDate" class="form-control" placeholder="ANO-MES-DIA" required />
+    </div>
+
+    <div class="mb-3">
+      <label for="phone" class="form-label">Telefone</label>
+      <input type="text" id="phone" name="phone" class="form-control" placeholder="55+DDD+Numero" required />
+    </div>
+
+    <hr>
 
 
-  <header>
-    <%- include('../partials/header') %>
-  </header>
+    <!-- ENDEREÇO -->
 
-  <!-- FORM -->
-
-  <div class="container">
-    <form id="form-createAccount">
-      <h1>Criar Conta Digital</h1>
-      <hr>
-
-      <div class="mb-3">
-        <label for="name" class="form-label">Nome</label>
-        <input type="text" id="name" name="name" class="form-control" placeholder="Pegar do user logado" required />
+    <div class="mb-3">
+      <h3>Endereço</h3>
+      <div>
+        <input type="text" id="postCode" name="postCode" class="form-control col-md-6" required
+          placeholder="Digite seu CEP" />
+        <label for="postCode" class="form-label">
+          <button id="btn_cep" type="button" class="btn btn-success">Pesquisar</button>
+        </label>
       </div>
+      <label for="street" class="form-label">Rua</label>
+      <input type="text" id="street" name="street" class="form-control" required />
 
-      <div class="mb-3">
-        <label for="email" class="form-label">Email</label>
-        <input type="email" id="email" name="email" class="form-control" placeholder="Pegar do user logado" required />
-      </div>
+      <label for="number" class="form-label">Número</label>
+      <input type="text" id="number" name="number" class="form-control" required />
 
-      <div class="mb-3">
-        <label for="cpf" class="form-label">CPF</label>
-        <input type="text" id="cpf" name="cpf" class="form-control" required />
-      </div>
+      <label for="complement" class="form-label">Complemento</label>
+      <input type="text" id="complement" name="complement" class="form-control" placeholder="Opcional" />
 
-      <div class="mb-3">
-        <label for="birthDate" class="form-label">Data de Nascimento</label>
-        <input type="text" id="birthDate" name="birthDate" class="form-control" placeholder="ANO-MES-DIA" required />
-      </div>
+      <label for="neighborhood" class="form-label">Bairro</label>
+      <input type="text" id="neighborhood" name="neighborhood" class="form-control" required />
 
-      <div class="mb-3">
-        <label for="phone" class="form-label">Telefone</label>
-        <input type="text" id="phone" name="phone" class="form-control" placeholder="55+DDD+Numero" required />
-      </div>
+      <label for="city" class="form-label">Cidade</label>
+      <input type="text" id="city" name="city" class="form-control" required />
 
-      <hr>
+      <label for="state" class="form-label">Estado</label>
+      <input type="text" id="state" name="state" class="form-control" required />
+    </div>
+    <hr>
 
 
-      <!-- ENDEREÇO -->
-      <div class="mb-3">
-        <h3>Endereço</h3>
-        <div>
-          <input type="text" id="postCode" name="postCode" class="form-control col-md-6" required
-            placeholder="Digite seu CEP" />
-          <label for="postCode" class="form-label">
-            <button id="btn_cep" type="button" class="btn btn-success">Pesquisar</button>
-          </label>
-        </div>
-        <label for="street" class="form-label">Rua</label>
-        <input type="text" id="street" name="street" class="form-control" required />
+    <!-- RENDA MENSAL -->
 
-        <label for="number" class="form-label">Número</label>
-        <input type="text" id="number" name="number" class="form-control" required />
+    <div class="mb-3">
+      <h3>Renda Mensal</h3>
+      <label for="monthlyIncome" class="form-label">Valor sem virgula ou ponto</label>
+      <input type="number" id="monthlyIncome" name="monthlyIncome" class="form-control" required />
+    </div>
 
-        <label for="complement" class="form-label">Complemento</label>
-        <input type="text" id="complement" name="complement" class="form-control" placeholder="Opcional" />
-
-        <label for="neighborhood" class="form-label">Bairro</label>
-        <input type="text" id="neighborhood" name="neighborhood" class="form-control" required />
-
-        <label for="city" class="form-label">Cidade</label>
-        <input type="text" id="city" name="city" class="form-control" required />
-
-        <label for="state" class="form-label">Estado</label>
-        <input type="text" id="state" name="state" class="form-control" required />
-      </div>
+    <hr>
 
 
-
-
-      <hr>
-
-      <!-- RENDA MENSAL -->
-      <div class="mb-3">
-        <h3>Renda Mensal</h3>
-        <label for="monthlyIncome" class="form-label">Valor sem virgula ou ponto</label>
-        <input type="number" id="monthlyIncome" name="monthlyIncome" class="form-control" required />
-        <div>
-
-          <br>
-
-
-          <!-- DADOS BANCARIOS -->
-          <!-- <div class="mb-3">
+    <!-- DADOS BANCARIOS -->
+    <!-- <div class="mb-3">
         <h3>Dados Bancarios</h3>
         <label for="bankNumber" class="form-label">Banco Nº</label>
         <input type="text" id="bankNumber" name="bankNumber" class="form-control" required />
@@ -131,8 +126,8 @@
         <input type="text" id="accountNumber" name="accountNumber" class="form-control" required />
       </div> -->
 
-          <!-- TITULAR DA CONTA -->
-          <!-- <div class="mb-3">
+    <!-- TITULAR DA CONTA -->
+    <!-- <div class="mb-3">
         <h3>Titular da Conta</h3>
         <label for="holderName" class="form-label">Nome do titular da conta</label>
         <input type="text" id="holderName" name="holderName" class="form-control" required />
@@ -141,19 +136,18 @@
         <input type="text" id="holderDocument" name="holderDocument" class="form-control" required />
       </div> -->
 
-          <button id="btn_digital_account" type="button" class="btn btn-success">Criar</button>
 
-          <a href="/index" class="btn btn-success">Voltar</a>
-        </div>
-    </form>
-  </div>
+    <button id="btn_digital_account" type="button" class="btn btn-success">Criar</button>
 
-  <footer>
-    <%- include('../partials/footer') %>
-  </footer>
+    <a href="/index" class="btn btn-success">Voltar</a>
+
+  </form>
+</div>
 
 
+<footer>
+  <%- include('../partials/footer') %>
+</footer>
 
-  <!-- SCRIPT -->
-  <script defer src="/js/createAccount.js"></script>
-</body>
+<!-- SCRIPT -->
+<script defer src="/js/createAccount.js"></script>

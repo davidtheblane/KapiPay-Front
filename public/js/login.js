@@ -41,27 +41,42 @@ const login = {
     const data = await response.json()
 
     if (!(response.ok)) {
-      console.log('resposta nao veio')
-      // console.log(data.message)
+      // console.log('resposta nao veio')
+      console.log(data.message)
       alert(data.message)
 
     } else {
-      const token = `token=${data.token}`
-      const resourcetoken = `resourcetoken=${data.resourcetoken}`
-      document.cookie = token;
-      document.cookie = resourcetoken;
-      // console.log(token)
-      // console.log(resourcetoken)
-
-      if (!(data.token == undefined)) {
+      // console.log(data)
+      // alert('Bem-vindo!')
+      login.success()
+      setTimeout(function () {
         window.location.assign("/index")
-      } else {
-        alert('Senha ou email incorretos!')
-      }
+      }, 1000)
     }
-  }
+  },
+
+  //SWEET ACESS BUTTON
+  success: async function () {
+    const Toast = Swal.mixin({
+      toast: true,
+      position: 'top-right',
+      iconColor: 'white',
+      customClass: {
+        popup: 'colored-toast'
+      },
+      showConfirmButton: false,
+      timer: 2500,
+      timerProgressBar: true
+    })
+    await Toast.fire({
+      icon: 'success',
+      title: 'Bem Vindo!'
+    })
+  },
 }
 
+
+// SWEET ALERT
 // Pré carrega banner LGPD
 window.addEventListener('load', () => {
   const swalWithBootstrapButtons = Swal.mixin({

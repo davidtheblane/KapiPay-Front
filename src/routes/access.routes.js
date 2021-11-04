@@ -1,32 +1,48 @@
 const { Router } = require('express');
 const AccessController = require('../controllers/access.controller')
-// const CepController = require('../controllers/cep.controller')
+const AccountController = require('../controllers/account.controller');
+const CompanyController = require('../controllers/company.controller');
+const InvoiceController = require('../controllers/invoice.controller');
 
-const apiLogin = require("../services/login.service")
-const loginRouter = new Router(apiLogin);
+const api = require("../services/api.service")
+const router = new Router(api);
+// const apiLogin = require("../services/login.service")
+// const loginRouter = new Router(apiLogin);
 
+const isAuth = require("../middleware/is-auth");
 
-// Authenticated
-loginRouter.get('/index', AccessController.indexPage)
+// MAIN PAGE
+router.get('/index', isAuth, AccessController.indexPage)
 
 // ACCESS ROUTES
-loginRouter.get('/', AccessController.loginPage)
-loginRouter.get('/login', AccessController.loginPage)
-loginRouter.get('/register', AccessController.registerPage)
-loginRouter.get('/forgot_password', AccessController.forgotPasswordPage)
-loginRouter.get('/reset_password', AccessController.resetPasswordPage)
+router.get('/', AccessController.loginPage)
+router.get('/login', AccessController.loginPage)
+router.get('/register', AccessController.registerPage)
+router.get('/forgot_password', AccessController.forgotPasswordPage)
+router.get('/reset_password', AccessController.resetPasswordPage)
+//POST
+router.post('/login', AccessController.login)
+router.post('/register', AccessController.register)
+router.post('/forgot_password', AccessController.forgotPassword)
+router.post('/reset_password', AccessController.resetPassword)
+router.get('/logout', AccessController.logout)
+
+//ACCOUNT ROUTES
+router.get('/account/balance', isAuth, AccountController.balance);
+router.get('/account/status', isAuth, AccountController.accountStatus);
+router.get('/account/documents', isAuth, AccountController.verifyDocuments);
+router.get('/account/create', isAuth, AccountController.createAccountPage)
+
+router.get('/account/company', isAuth, CompanyController.newCompanyPage)
+router.get('/account/invoice', isAuth, InvoiceController.newInvoicePage)
+
+router.get('/account/company', isAuth, CompanyController.getCompany)
+router.get('/account/invoice', isAuth, InvoiceController.getInvoice)
+//POST
+router.post('/account/create', isAuth, AccountController.createAccount)
+router.post('/account/company', isAuth, CompanyController.newCompany)
+router.post('/account/invoice', isAuth, InvoiceController.newInvoice)
 
 
 
-loginRouter.post('/login', AccessController.login)
-loginRouter.post('/register', AccessController.register)
-loginRouter.post('/forgot_password', AccessController.forgotPassword)
-loginRouter.post('/reset_password', AccessController.resetPassword)
-
-
-loginRouter.post('/logout', function (req, res) {
-  req.logout()
-})
-
-
-module.exports = loginRouter;
+module.exports = router;

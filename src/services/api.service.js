@@ -2,7 +2,6 @@ const axios = require('axios').default
 require('dotenv').config()
 
 const APIUrl = process.env.API_SERVER || "http://localhost:5050/";
-// const resourcetoken = process.env.RESOURCE_TOKEN;
 
 const api = axios.create({
   baseURL: APIUrl,

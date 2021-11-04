@@ -15,18 +15,16 @@
 
 <body>
   <header>
-    <%- include('partials/header') %>
+    <%- include('partials/header', {email: email}) %>
   </header>
 
   <main>
-    <%- include('pages/main') %>
+    <%- include('pages/main', {email: email}) %>
   </main>
 
   <footer>
     <%- include('partials/footer') %>
   </footer>
-
-
 </body>
 
 </html>

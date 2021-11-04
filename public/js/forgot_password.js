@@ -33,8 +33,31 @@ const forgotPassword = {
       })
     })
     //por questões de segurança não é informado se o usuario existe ou não.  
-    alert("Enviamos um email pra você!")
-    window.location.assign("/reset_password")
+    // alert("Enviamos um email pra você!")
+    forgotPassword.success()
+    setTimeout(function () {
+      window.location.assign("/reset_password")
+    }, 3000)
+  },
+
+
+  //SWEET ALERT BUTTON
+  success: async function () {
+    const Toast = Swal.mixin({
+      toast: true,
+      position: 'top-right',
+      iconColor: 'white',
+      customClass: {
+        popup: 'colored-toast'
+      },
+      showConfirmButton: false,
+      timer: 2500,
+      timerProgressBar: true
+    })
+    await Toast.fire({
+      icon: 'success',
+      title: 'Enviamos um email pra você, corre lá!'
+    })
   },
 
 }

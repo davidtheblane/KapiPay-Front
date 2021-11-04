@@ -3,25 +3,41 @@ const api = require('../services/api.service')
 module.exports = {
   //chama o form
   createAccountPage: async (req, res) => {
-    res.render("forms/createAccount");
+    const email = req.session.userEmail;
+    res.render("forms/createAccount", { email: email });
   },
 
   //CRIA CONTA DIGITAL
   createAccount: async (req, res) => {
     try {
-      const data = {
-        token: `Bearer ${req.headers.authorization}`,
-        // resourcetoken: req.headers.resourcetoken
-      }
-      // console.log(`Bearer ${req.headers.authorization}`)
-      const account = await api.post("/account/create", {
+      const data = req.body
+      console.log(data)
+      const token = req.session.token
+      const account = await api.post("/account/create", data, {
         headers: {
-          "Authorization": data.token
+          "Authorization": `Bearer ${token}`
         }
       })
 
-      console.log(account)
-      return res.json(account)
+      console.log(account.data.message)
+      return res.json(account.data.message)
+    } catch (err) {
+      console.log(err)
+      res.status(err.status || 400).send(err)
+    }
+  },
+
+
+  balance: async (req, res) => {
+    try {
+      const token = req.session.token
+      const balance = await api.get("/account/balance", {
+        headers: {
+          "Authorization": `Bearer ${token}`,
+        }
+      })
+      console.log(balance.data)
+      return res.json(balance.data.balance)
     } catch (err) {
       console.log(err.response)
       res.status(err.status || 400).send(err.stack)
@@ -29,41 +45,12 @@ module.exports = {
   },
 
 
-  balance: async (req, res) => {
-    try {
-      const data = {
-        token: req.headers.authorization,
-        resourcetoken: req.headers.resourcetoken
-      }
-      console.log(data)
-      // const resourcetoken = req.headers.resourcetoken
-
-      const balance = await api.get("/account/balance", {
-        headers: {
-          "Authorization": `Bearer ${data.token}`,
-          "resourcetoken": data.resourcetoken
-        }
-      })
-      console.log(balance.data)
-      return res.json(balance.data.balance)
-    } catch (err) {
-      res.status(err.status || 400).send(err.stack)
-
-
-    }
-  },
-
-
   accountStatus: async (req, res) => {
     try {
-      const data = {
-        token: req.headers.authorization,
-        resourcetoken: req.headers.resourcetoken
-      }
+      const token = req.session.token
       const status = await api.get("/account/status", {
         headers: {
-          "Authorization": `Bearer ${data.token}`,
-          "resourcetoken": data.resourcetoken
+          "Authorization": `Bearer ${token}`,
         }
       })
       console.log(status.data.status)
@@ -75,14 +62,10 @@ module.exports = {
 
   verifyDocuments: async (req, res) => {
     try {
-      const data = {
-        token: req.headers.authorization,
-        resourcetoken: req.headers.resourcetoken
-      }
+      const token = req.session.token
       const documents = await api.get("/account/documents", {
         headers: {
-          "Authorization": `Bearer ${data.token}`,
-          "resourcetoken": data.resourcetoken
+          "Authorization": `Bearer ${token}`,
         }
       })
       console.log(documents.data)

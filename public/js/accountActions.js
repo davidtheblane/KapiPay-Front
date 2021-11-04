@@ -1,13 +1,8 @@
-const cookieArray = document.cookie.split(";") //encontra ; separa e cria um array com o conteúdo dos cookies.
-const token = cookieArray[0].split("=")[1] // pega o primeiro elemento dos cookies
-const resourcetoken = cookieArray[1].split("=")[1] // pega o segundo elemento dos cookies
-// console.log(cookieArray)
-// console.log(token)
-// console.log(resourcetoken)
+
 const header = {
   headers: {
-    "Authorization": `${token}`,
-    "resourcetoken": `${resourcetoken}`
+    "Accept": "application/json",
+    "Content-Type": "application/json"
   }
 }
 
@@ -15,38 +10,40 @@ const accountActions = {
 
   // GET BALANCE
   balance: () => {
+
     document.getElementById('balance').addEventListener('click', () => {
+      const result = document.getElementById('balance-result')
+      result.innerHTML = ''
 
       fetch("/account/balance", header)
         .then(response => response.json())
         .then((balance) => {
           //Apresenta no front
           let p = document.createElement('p')
-          document.getElementById('balance').appendChild(p)
           p.setAttribute('class', 'output')
-          p.innerHTML = `<hr>
-              Seu Saldo é de: ${balance}
-              <hr>`
+          p.innerHTML = `Seu Saldo é de: ${balance}`
+          result.appendChild(p)
+
         })
         .catch(err => {
-          err.message || console.log(err.stack)
+          err.message || console.log(err.message)
         })
     })
   },
   //ACCOUNT STATUS
   accountStatus: () => {
     document.getElementById('account_status').addEventListener('click', () => {
+      const result = document.getElementById('status-result')
+      result.innerHTML = ''
 
       fetch("/account/status", header)
         .then(response => response.json())
         .then((status) => {
           //Apresenta no front
           let p = document.createElement('p')
-          document.getElementById('account_status').appendChild(p)
           p.setAttribute('class', 'output')
-          p.innerHTML = `<hr>
-          O status da conta é: ${status}
-          <hr>`
+          p.innerHTML = `O status da conta é: ${status}<hr>`
+          result.appendChild(p)
         })
         .catch(err => {
           err.message || console.log(err.stack)
@@ -57,6 +54,8 @@ const accountActions = {
   //VERIFY DOCUMENT STATUS
   verifyDocuments: () => {
     document.getElementById('verify_documents').addEventListener('click', () => {
+      const result = document.getElementById('docs-result')
+      result.innerHTML = ''
 
       fetch("/account/documents", header)
         .then(response => response.json())
@@ -67,12 +66,12 @@ const accountActions = {
           const selfieLink = documents._embedded.documents[1]._links.self.href
           //pega referencia do elemento pai onde o resultado sera inserido
           let p = document.createElement('p')
-          document.getElementById('verify_documents').appendChild(p)
           p.setAttribute('class', 'output')
           p.innerHTML = `<hr>
           <a href="${docLink}"><p>CPF/RG: ${dockStatus}</p></a>
           <a href="${selfieLink}"><p>Selfie: ${selfieStatus}</p></a>
           <hr>`
+          result.appendChild(p)
         })
         .catch(err => {
           err.message || console.log(err.stack)
