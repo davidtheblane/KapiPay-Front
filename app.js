@@ -2,7 +2,9 @@ const express = require('express');
 const session = require('express-session');
 // const cookieParser = require('cookie-parser');
 const MongoDBStore = require('connect-mongodb-session')(session)
-require('dotenv').config()
+require('dotenv').config({
+  path: process.env.NODE_ENV === "development" ? ".env.development" : ".env"
+})
 
 const accessRouter = require('./src/routes/access.routes');
 const accountRouter = require('./src/routes/account.routes')
