@@ -1,5 +1,6 @@
 const express = require('express');
 const session = require('express-session');
+// const cookieParser = require('cookie-parser');
 const MongoDBStore = require('connect-mongodb-session')(session)
 require('dotenv').config()
 
@@ -22,15 +23,15 @@ const store = new MongoDBStore({
 
 //Session middleware
 app.use(session({
-  name: 'kapipay-session',
-  secret: ['k@pip@y2021'],
+  name: "kapi-session",
+  secret: [`${process.env.SESSION_SECRET}`],
   cookie: { maxAge: 1000 * 60 * 60 * 24 },
-  resave: false,
-  saveUninitialized: true,
+  resave: true,
+  saveUninitialized: false,
   store: store,
 }))
 
-//cookie parser middleware
+// // Cookie parser middleware
 // app.use(cookieParser());
 
 //Template Engine

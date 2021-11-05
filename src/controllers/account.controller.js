@@ -36,10 +36,10 @@ module.exports = {
           "Authorization": `Bearer ${token}`,
         }
       })
-      console.log(balance.data)
+      console.log(balance.data.balance)
       return res.json(balance.data.balance)
     } catch (err) {
-      console.log(err.response)
+      console.log(err.stack)
       res.status(err.status || 400).send(err.stack)
     }
   },
