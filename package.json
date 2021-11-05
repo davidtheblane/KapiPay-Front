@@ -5,7 +5,9 @@
   "main": "app.js",
   "scripts": {
     "start": "nodemon app.js",
-    "test": "NODE_ENV=development nodemon app.js"
+    "test": "NODE_ENV=development nodemon app.js",
+    "prod": "node app.js",
+    "dev": "NODE_ENV=development node app.js"
   },
   "keywords": [],
   "author": "",
