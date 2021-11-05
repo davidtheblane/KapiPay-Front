@@ -4,7 +4,7 @@ const MongoDBStore = require('connect-mongodb-session')(session)
 require('dotenv').config()
 
 const accessRouter = require('./src/routes/access.routes');
-// const accountRouter = require('./src/routes/account.routes')
+const accountRouter = require('./src/routes/account.routes')
 
 // CONNECT SESSIONS DB
 const connectDB = require("./src/config/db");
@@ -49,10 +49,9 @@ app.set('views', './src/views');
 app.set('view engine', 'ejs');
 
 
-
 //Routes
 app.use('/', accessRouter);
-// app.use('/account', accountRouter);
+app.use('/account', accountRouter);
 
 
 const PORT = process.env.APP_PORT || 5051
