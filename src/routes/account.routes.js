@@ -1,10 +1,11 @@
 const { Router } = require('express');
-const multer = require('multer');
-const upload = multer({ dest: 'src/config/uploads/' });
 const AccountController = require('../controllers/account.controller');
 const CompanyController = require('../controllers/company.controller');
 const InvoiceController = require('../controllers/invoice.controller');
 
+const multer = require('multer');
+// const upload = multer({ dest: 'src/config/uploads/' });
+const upload = multer({ storage: multer.memoryStorage() });
 
 // Axios Instance
 const api = require("../services/api.service");
@@ -31,6 +32,7 @@ router.get('/invoice', isAuth, InvoiceController.getInvoice);
 router.post('/create', isAuth, AccountController.createAccount);
 router.post('/company', isAuth, CompanyController.newCompany);
 router.post('/invoice', isAuth, InvoiceController.newInvoice);
+// router.post('/send-documents/:id', isAuth, upload.fields([{ name: 'cpf-upload', maxCount: 1 }, { name: 'selfie-upload', maxCount: 1 }]), AccountController.sendDocuments);
 router.post('/send-documents/:id', isAuth, upload.any(), AccountController.sendDocuments);
 
 

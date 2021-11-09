@@ -1,5 +1,39 @@
 const documents = {
 
+  //ACCOUNT STATUS
+  accountStatus: () => {
+    const result = document.getElementById('status-result')
+    result.innerHTML = 'Carregando...'
+
+    fetch("/account/status", {
+      headers: {
+        "Accept": "application/json",
+        "Content-Type": "application/json"
+      }
+    })
+      .then(response => response.json())
+      .then((status) => {
+        //Apresenta no front
+        let p = document.createElement('p')
+        p.setAttribute('class', 'output')
+        if (status == "AWAITING_DOCUMENTS") {
+          p.innerHTML = `Aguardando documentos.<hr>`
+          result.innerHTML = ''
+          result.appendChild(p)
+        } else {
+          p.innerHTML = `Tudo certo, a conta foi verificada.<hr>`
+          result.innerHTML = ''
+          result.appendChild(p)
+        }
+      })
+      .catch(err => {
+        err.message || console.log(err.stack)
+      })
+
+
+    documents.verifyDocuments()
+  },
+
   //VERIFY DOCUMENT STATUS
   verifyDocuments: () => {
     const result = document.getElementById('docs-result')
@@ -14,8 +48,8 @@ const documents = {
       .then(response => response.json())
       .then((docData) => {
         const selfieStatus = docData[0].approvalStatus
-        // const docLink = docData[0]._links.self.href
         const dockStatus = docData[1].approvalStatus
+        // const docLink = docData[0]._links.self.href
         // const selfieLink = docData[1]._links.self.href
 
         // //pega referencia do elemento pai onde o resultado sera inserido
@@ -23,7 +57,7 @@ const documents = {
         p.setAttribute('class', 'output')
         p.innerHTML = `
          <p>CPF: ${dockStatus}</p>
-         <p>Selfie: ${selfieStatus}</p>`
+         <p>Selfie: ${selfieStatus}</p><hr>`
         result.innerHTML = ''
         result.appendChild(p)
         //pegando id da cobraça pelo link gerado da juno
@@ -76,7 +110,6 @@ const documents = {
         const files = event.target.files
         const formData = new FormData()
         formData.append('selfie-upload', files[0])
-        console.log(files[1])
 
         const options = {
           method: 'POST',
@@ -116,5 +149,5 @@ const documents = {
   },
 
 }
-window.onload = documents.verifyDocuments
+// window.onload = documents.accountStatus
 document.addEventListener('DOMContentLoaded', documents.sendDocuments)

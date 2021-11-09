@@ -83,6 +83,7 @@ module.exports = {
       const token = req.session.token
       const id = req.params.id
       const formData = req.files;
+      console.log(formData)
       const config = {
         headers: {
           "Authorization": `Bearer ${token}`,
@@ -91,6 +92,7 @@ module.exports = {
       const documents = await api.post(`/account/documents/${id}`, formData, config)
       console.log(documents.data)
       return res.json(documents.data)
+      // res.send(formData)
     } catch (err) {
       // console.log(err.response)
       return res.status(err.status || 400).send(err.stack)
