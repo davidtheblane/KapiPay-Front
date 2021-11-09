@@ -1,0 +1,79 @@
+<!-- STYLE -->
+<style>
+  .container {
+    width: 400px;
+    margin: 0 auto;
+  }
+
+  form {
+    width: 400px;
+    margin: 0 auto;
+  }
+
+  input:valid {
+    border: 1px solid lightgreen;
+  }
+</style>
+
+<!DOCTYPE html>
+<!-- HTML -->
+
+<head>
+  <%- include('../partials/head') %>
+</head>
+
+<header>
+  <%- include('../partials/header') %>
+</header>
+
+<!-- FORM -->
+
+
+<div class="container">
+  <div>
+    <a href="#" type="button" id="account_status">Status da Conta Digital</a>
+    <p id="status-result"></p>
+
+  </div>
+  <div>
+    <h3 class="verify_documents">Status da Documentação</h3>
+    <p id="docs-result"></p>
+  </div>
+
+  <form id="form-send-documents">
+    <h2>Enviar documentos para ativação da conta digital.</h2>
+    <br>
+    <h4>Envie um por vez.</h4>
+    <div class="form-group">
+      <label for="cpf">CPF</label>
+      <div>
+        <input type="file" id="cpf-upload" />
+
+      </div>
+      <br>
+      <label for="cpf">Selfie</label>
+      <div>
+        <input type="file" id="selfie-upload" />
+
+      </div>
+
+    </div>
+
+    <div>
+      <p id="send-docs-result"></p>
+      <a href="/index" class="btn btn-outline-success">Voltar</a>
+      <a href="#" id="test" class="btn btn-outline-success">test</a>
+      <a href="#" type="button" class="btn btn-success" id="send_documents">Enviar</a>
+    </div>
+  </form>
+</div>
+
+
+
+
+<footer>
+  <%- include('../partials/footer') %>
+</footer>
+
+<script src="/js/sendDocuments.js"></script>
+<!-- <script src="js/accountScript2test.js"></script> -->

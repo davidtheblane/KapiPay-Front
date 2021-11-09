@@ -28,7 +28,7 @@ app.use(session({
   name: "kapi-session",
   secret: [`${process.env.SESSION_SECRET}`],
   cookie: { maxAge: 1000 * 60 * 60 * 24 },
-  resave: true,
+  resave: false,
   saveUninitialized: false,
   store: store,
 }))

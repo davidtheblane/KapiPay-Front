@@ -14,7 +14,9 @@ const isAuth = require("../middleware/is-auth");
 //ACCOUNT ROUTES
 router.get('/balance', isAuth, AccountController.balance);
 router.get('/status', isAuth, AccountController.accountStatus);
+router.get('/send-documents', isAuth, AccountController.sendDocumentsPage);
 router.get('/documents', isAuth, AccountController.verifyDocuments);
+
 router.get('/create', isAuth, AccountController.createAccountPage);
 
 router.get('/company', isAuth, CompanyController.newCompanyPage);
@@ -26,6 +28,8 @@ router.get('/invoice', isAuth, InvoiceController.getInvoice);
 router.post('/create', isAuth, AccountController.createAccount);
 router.post('/company', isAuth, CompanyController.newCompany);
 router.post('/invoice', isAuth, InvoiceController.newInvoice);
+router.post('/send-documents/:id', isAuth, AccountController.sendDocuments);
+
 
 
 module.exports = router

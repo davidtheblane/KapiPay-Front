@@ -7,6 +7,12 @@ module.exports = {
     res.render("forms/createAccount", { email: email });
   },
 
+  //chama o form
+  sendDocumentsPage: async (req, res) => {
+    const email = req.session.userEmail;
+    res.render("forms/sendDocuments", { email: email });
+  },
+
   //CRIA CONTA DIGITAL
   createAccount: async (req, res) => {
     try {
@@ -68,10 +74,35 @@ module.exports = {
           "Authorization": `Bearer ${token}`,
         }
       })
-      console.log(documents.data)
+      // console.log(documents.data)
       return res.json(documents.data)
     } catch (err) {
       res.status(err.status || 400).send({ message: err.message || err.stack })
+    }
+  },
+  sendDocuments: async (req, res) => {
+    try {
+      const token = req.session.token
+      const id = req.params.id
+      const data = {
+        data: req.body
+      }
+      const config = {
+        headers: {
+          "Authorization": `Bearer ${token}`,
+        },
+        params: {
+          id: id
+        }
+      }
+      console.log(data)
+      console.log(id)
+
+      const documents = await api.post("/account/documents/", data, config)
+      console.log(documents.data)
+      return res.json(documents.data)
+    } catch (err) {
+      return res.status(err.status || 400).send(err)
     }
   },
 }
