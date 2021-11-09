@@ -1,10 +1,3 @@
-const header = {
-  headers: {
-    "Accept": "application/json",
-    "Content-Type": "application/json"
-  }
-}
-
 const documents = {
 
   //VERIFY DOCUMENT STATUS
@@ -12,7 +5,12 @@ const documents = {
     const result = document.getElementById('docs-result')
     result.innerHTML = 'Carregando...'
 
-    fetch("/account/documents", header)
+    fetch("/account/documents", {
+      headers: {
+        "Accept": "application/json",
+        "Content-Type": "application/json"
+      }
+    })
       .then(response => response.json())
       .then((docData) => {
         const selfieStatus = docData[0].approvalStatus
@@ -51,18 +49,22 @@ const documents = {
         const files = event.target.files
         const formData = new FormData()
         formData.append('cpf-upload', files[0])
-        const id = 'doc' //identificador do id a ser chamado no backend
 
-        fetch(`/account/send-documents/${id}`, {
+        const options = {
           method: 'POST',
-          body: formData
-        })
+          body: formData,
+        }
+
+        const id = 'doc' //identificador do id a ser chamado no backend
+        fetch(`/account/send-documents/${id}`, options)
           .then(response => response.json())
           .then(data => {
             console.log(data)
+            // alert('Enviado com sucesso!')
           })
           .catch(err => {
             console.error(err)
+            alert("Ops! Deu erro... tente novamente.")
           })
       }
       handleImageUpload(event)
@@ -74,15 +76,19 @@ const documents = {
         const files = event.target.files
         const formData = new FormData()
         formData.append('selfie-upload', files[0])
-        const id = 'selfie' //identificador do id a ser chamado no backend
+        console.log(files[1])
 
-        fetch(`/account/send-documents/${id}`, {
+        const options = {
           method: 'POST',
-          body: formData
-        })
+          body: formData,
+        }
+
+        const id = 'selfie' //identificador do id a ser chamado no backend
+        fetch(`/account/send-documents/${id}`, options)
           .then(response => response.json())
           .then(data => {
             console.log(data)
+
           })
           .catch(err => {
             console.error(err)

@@ -33,7 +33,6 @@ module.exports = {
     }
   },
 
-
   balance: async (req, res) => {
     try {
       const token = req.session.token
@@ -49,7 +48,6 @@ module.exports = {
       res.status(err.status || 400).send(err.stack)
     }
   },
-
 
   accountStatus: async (req, res) => {
     try {
@@ -84,25 +82,18 @@ module.exports = {
     try {
       const token = req.session.token
       const id = req.params.id
-      const data = {
-        data: req.body
-      }
+      const formData = req.files;
       const config = {
         headers: {
           "Authorization": `Bearer ${token}`,
         },
-        params: {
-          id: id
-        }
       }
-      console.log(data)
-      console.log(id)
-
-      const documents = await api.post("/account/documents/", data, config)
+      const documents = await api.post(`/account/documents/${id}`, formData, config)
       console.log(documents.data)
       return res.json(documents.data)
     } catch (err) {
-      return res.status(err.status || 400).send(err)
+      // console.log(err.response)
+      return res.status(err.status || 400).send(err.stack)
     }
   },
 }

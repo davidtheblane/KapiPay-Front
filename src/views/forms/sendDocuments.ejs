@@ -40,30 +40,32 @@
     <p id="docs-result"></p>
   </div>
 
-  <form id="form-send-documents">
+  <form enctype="multipart/form-data" id="form-send-documents">
     <h2>Enviar documentos para ativação da conta digital.</h2>
     <br>
-    <h4>Envie um por vez.</h4>
-    <div class="form-group">
-      <label for="cpf">CPF</label>
-      <div>
-        <input type="file" id="cpf-upload" />
 
+
+
+    <div class="form-group">
+      <label for="cpf-upload">CPF</label>
+      <div>
+        <input type="file" id="cpf-upload" name="cpf-upload" />
       </div>
       <br>
-      <label for="cpf">Selfie</label>
+      <label for="selfie-upload">Selfie</label>
       <div>
-        <input type="file" id="selfie-upload" />
+        <input type="file" id="selfie-upload" name="selfie-upload" />
 
       </div>
 
     </div>
-
+    <br>
+    <p><strong>Assim que escolhido o envio é feito automaticamente.</strong></p>
     <div>
       <p id="send-docs-result"></p>
       <a href="/index" class="btn btn-outline-success">Voltar</a>
-      <a href="#" id="test" class="btn btn-outline-success">test</a>
-      <a href="#" type="button" class="btn btn-success" id="send_documents">Enviar</a>
+      <!-- <a href="#" id="test" class="btn btn-outline-success">test</a>
+      <a href="#" type="button" class="btn btn-success" id="send_documents">Enviar</a> -->
     </div>
   </form>
 </div>
