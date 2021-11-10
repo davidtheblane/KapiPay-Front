@@ -83,13 +83,13 @@ module.exports = {
       const token = req.session.token
       const id = req.params.id
       const formData = req.files;
-      console.log(formData)
+      console.log(req.files)
       const config = {
         headers: {
           "Authorization": `Bearer ${token}`,
         },
       }
-      const documents = await api.post(`/account/documents/${id}`, formData, config)
+      const documents = await api.post(`/account/documents/${id}`, { formData }, config)
       console.log(documents.data)
       return res.json(documents.data)
       // res.send(formData)
