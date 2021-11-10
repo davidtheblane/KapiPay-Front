@@ -129,25 +129,8 @@ const documents = {
       }
       handleImageUpload(event)
     })
-
-    //   const result = document.getElementById('send-docs-result')
-    //   result.innerHTML = ''
-
-    //   fetch("/account/documents", {
-    //     method: "PUT",
-    //     body: formData
-    //   })
-    //     .then(response => response.json())
-    //     .then((response) => {
-    //       console.log("success")
-    //       console.log(response)
-    //     })
-    //     .catch(err => {
-    //       err.message || console.log(err)
-    //     })
-    // })
   },
 
 }
-// window.onload = documents.accountStatus
+window.onload = documents.accountStatus
 document.addEventListener('DOMContentLoaded', documents.sendDocuments)

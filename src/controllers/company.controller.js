@@ -9,17 +9,18 @@ module.exports = {
 
   //NEW COMPANY
   newCompany: async (req, res) => {
+    const company = { company: req.body }
+    const token = req.session.token
+    const config = {
+      headers: {
+        "Authorization": `Bearer ${token}`,
+      },
+    }
     try {
-      const token = req.headers.authorization
-      console.log(token)
-      const response = await api.post("/account/company", {
-        headers: {
-          "Authorization": `Bearer ${token}`
-        }
-      })
+      const response = await api.post("/account/company", company, config)
 
-      console.log(response)
-      return res.json(response)
+      console.log(response.data)
+      return res.json(response.data)
     } catch (err) {
       console.log(err)
       res.status(err.status || 400).send(err)
@@ -29,20 +30,18 @@ module.exports = {
 
   getCompany: async (req, res) => {
     try {
-      const token = req.headers.authorization
-
-      const balance = await api.get("/account/companies", {
+      const token = req.session.token
+      const response = await api.get("/account/company", {
         headers: {
-          "Authorization": token,
-          "resourcetoken": resourcetoken
+          "Authorization": `Bearer ${token}`,
         }
       })
-      console.log(balance.data.balance)
-      return res.json(balance.data.balance)
+      return res.json(response.data)
     } catch (err) {
       res.status(400).send({ message: err.message || err.stack })
     }
   },
+
 
 
 }

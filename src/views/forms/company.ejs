@@ -8,6 +8,10 @@
   input:valid {
     border: 1px solid lightgreen;
   }
+
+  #name {
+    text-transform: uppercase;
+  }
 </style>
 
 <!DOCTYPE html>
@@ -20,6 +24,9 @@
 <header>
   <%- include('../partials/header') %>
 </header>
+<div id="result">
+
+</div>
 
 <!-- FORM -->
 <div class="container">
@@ -27,27 +34,26 @@
     <h2>Incluir Fornecedor</h2>
     <br>
     <div class="form-group">
-      <label for="companyService">Serviço</label>
-      <select class="form-control form-control-sm" id="companyService" name="companyService" required>
+      <label for="companyType">Tipo de Serviço</label>
+      <select class="form-control form-control-sm" id="companyType" name="companyType" required>
         <option selected>Escolha o tipo de serviço...</option>
-        <option>ENERGIA</option>
-        <option>AGUA</option>
-        <option>TELEFONE</option>
-        <option>INTERNET</option>
-        <option>CARTAO</option>
-        <option>GAS</option>
       </select>
     </div>
     <hr>
     <div class="mb-3">
-      <label for="name" class="form-label">Nome</label>
-      <input type="text" id="name" name="name" class="form-control" placeholder="Nome da Empresa" required />
+      <label for="name" class="form-label">Empresa</label>
+      <select class="form-control" id="companyName" name="companyName" required>
+        <option selected>Escolha uma empresa aqui</option>
+
+        <label for="name" class="form-label">Não encontrou na lista, digite aqui.</label>
+        <input type="text" id="name" name="name" class="form-control"
+          placeholder="Não encontrei na lista, prefiro digitar." required />
     </div>
 
 
     <div class="mb-3">
       <label for="cnpj" class="form-label">CNPJ</label>
-      <input type="cnpj" id="cnpj" name="cnpj" class="form-control" required />
+      <input type="cnpj" id="cnpj" name="cnpj" class="form-control" placeholder="Sem traços nem pontos" required />
     </div>
 
 

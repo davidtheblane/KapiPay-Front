@@ -16,16 +16,15 @@ const isAuth = require("../middleware/is-auth");
 
 //ACCOUNT ROUTES
 // router.use(isAuth)
+// SHOW PAGES
+router.get('/send-documents', isAuth, AccountController.sendDocumentsPage);
+router.get('/create', isAuth, AccountController.createAccountPage);
+router.get('/company-page', isAuth, CompanyController.newCompanyPage);
+router.get('/invoice', isAuth, InvoiceController.newInvoicePage);
+// GET INFO
 router.get('/balance', isAuth, AccountController.balance);
 router.get('/status', isAuth, AccountController.accountStatus);
-router.get('/send-documents', isAuth, AccountController.sendDocumentsPage);
 router.get('/documents', isAuth, AccountController.verifyDocuments);
-
-router.get('/create', isAuth, AccountController.createAccountPage);
-
-router.get('/company', isAuth, CompanyController.newCompanyPage);
-router.get('/invoice', isAuth, InvoiceController.newInvoicePage);
-
 router.get('/company', isAuth, CompanyController.getCompany);
 router.get('/invoice', isAuth, InvoiceController.getInvoice);
 //POST

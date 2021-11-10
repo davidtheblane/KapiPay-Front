@@ -2,8 +2,6 @@ const userAccountActions = {
 
   // GET BALANCE
   balance: () => {
-
-
     const result = document.getElementById('balance-result')
     result.innerHTML = '...'
 
