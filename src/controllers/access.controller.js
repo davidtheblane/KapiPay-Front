@@ -52,7 +52,7 @@ module.exports = {
         req.session.isAuth = true;
         req.session.userEmail = email;
         req.session.token = token
-        // console.log(session)
+        // console.log(session.id)
         res.status(200).send(response.data)
       }
 

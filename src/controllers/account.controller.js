@@ -7,6 +7,12 @@ module.exports = {
     res.render("forms/createAccount", { email: email });
   },
 
+  //chama o form
+  sendDocumentsPage: async (req, res) => {
+    const email = req.session.userEmail;
+    res.render("forms/sendDocuments", { email: email });
+  },
+
   //CRIA CONTA DIGITAL
   createAccount: async (req, res) => {
     try {
@@ -27,7 +33,6 @@ module.exports = {
     }
   },
 
-
   balance: async (req, res) => {
     try {
       const token = req.session.token
@@ -43,7 +48,6 @@ module.exports = {
       res.status(err.status || 400).send(err.stack)
     }
   },
-
 
   accountStatus: async (req, res) => {
     try {
@@ -68,10 +72,30 @@ module.exports = {
           "Authorization": `Bearer ${token}`,
         }
       })
-      console.log(documents.data)
+      // console.log(documents.data)
       return res.json(documents.data)
     } catch (err) {
       res.status(err.status || 400).send({ message: err.message || err.stack })
+    }
+  },
+  sendDocuments: async (req, res) => {
+    try {
+      const token = req.session.token
+      const id = req.params.id
+      const formData = req.files;
+      console.log(req.files)
+      const config = {
+        headers: {
+          "Authorization": `Bearer ${token}`,
+        },
+      }
+      const documents = await api.post(`/account/documents/${id}`, { formData }, config)
+      console.log(documents.data)
+      return res.json(documents.data)
+      // res.send(formData)
+    } catch (err) {
+      // console.log(err.response)
+      return res.status(err.status || 400).send(err.stack)
     }
   },
 }

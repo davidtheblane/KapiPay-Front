@@ -1,0 +1,116 @@
+<!-- STYLE -->
+<style>
+  .container {
+    /* width: 400px; */
+    margin: 0 auto;
+    /* display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid red; */
+  }
+
+
+  .verify_status {
+    height: 4rem;
+    background-color: #b5c99a;
+    padding: 1rem;
+    width: 100%;
+    border-radius: 5px;
+  }
+
+  .verify_documents {
+    height: 4rem;
+    background-color: #b5c99a;
+    padding: 1rem;
+    width: 100%;
+    border-radius: 5px;
+  }
+
+  .account_status,
+  .doc_status {
+    height: 8rem;
+
+  }
+
+  .form-title {
+    height: 4rem;
+    width: 100%;
+    background-color: #b5c99a;
+    margin-top: 2rem;
+    padding: 1rem;
+    border-radius: 5px;
+    /* margin: 0 auto; */
+  }
+
+  #form-send-documents {
+    padding-left: 1rem;
+  }
+
+
+  input:valid {
+    border: 1px solid lightgreen;
+  }
+</style>
+
+<!DOCTYPE html>
+<!-- HTML -->
+
+<head>
+  <%- include('../partials/head') %>
+</head>
+
+<header>
+  <%- include('../partials/header') %>
+</header>
+
+<!-- FORM -->
+
+
+<div class="container">
+  <div class="account_status">
+    <h3 class="verify_status">Status da Conta Digital</h3>
+    <p id="status-result"></p>
+  </div>
+
+  <div class="doc_status">
+    <h3 class="verify_documents">Status da Documentação</h3>
+    <p id="docs-result"></p>
+  </div>
+
+  <h3 class="form-title">Enviar documentos para ativação da conta digital.</h3>
+  <form enctype="multipart/form-data" id="form-send-documents">
+    <p style="color: red;"><strong>Assim que escolhido o envio é feito automaticamente.</strong></p>
+    <br>
+    <div class="form-group">
+      <label for="cpf-upload">CPF</label>
+      <div>
+        <input type="file" id="cpf-upload" name="cpf-upload" />
+      </div>
+      <br>
+      <label for="selfie-upload">Selfie</label>
+      <div>
+        <input type="file" id="selfie-upload" name="selfie-upload" />
+
+      </div>
+
+    </div>
+    <br>
+
+    <div>
+      <p id="send-docs-result"></p>
+      <a href="/index" class="btn btn-outline-success">Voltar</a>
+      <!-- <a href="#" id="test" class="btn btn-outline-success">test</a>
+      <a href="#" type="button" class="btn btn-success" id="send_documents">Enviar</a> -->
+    </div>
+  </form>
+</div>
+
+
+
+
+<footer>
+  <%- include('../partials/footer') %>
+</footer>
+
+<script src="/js/sendDocuments.js"></script>
+<!-- <script src="js/accountScript2test.js"></script> -->

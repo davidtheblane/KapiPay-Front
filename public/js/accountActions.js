@@ -60,17 +60,23 @@ const accountActions = {
       fetch("/account/documents", header)
         .then(response => response.json())
         .then((documents) => {
-          const selfieStatus = documents._embedded.documents[0].approvalStatus
-          const docLink = documents._embedded.documents[0]._links.self.href
-          const dockStatus = documents._embedded.documents[1].approvalStatus
-          const selfieLink = documents._embedded.documents[1]._links.self.href
+          const selfieStatus = documents[0].approvalStatus
+          const docLink = documents[0]._links.self.href
+          const dockStatus = documents[1].approvalStatus
+          const selfieLink = documents[1]._links.self.href
+
           //pega referencia do elemento pai onde o resultado sera inserido
           let p = document.createElement('p')
           p.setAttribute('class', 'output')
           p.innerHTML = `<hr>
-          <a href="${docLink}"><p>CPF/RG: ${dockStatus}</p></a>
+          <a href="${docLink}"><p>CPF: ${dockStatus}</p></a>
           <a href="${selfieLink}"><p>Selfie: ${selfieStatus}</p></a>
           <hr>`
+          const docId = docLink.slice(-20)
+          const selfId = selfieLink.slice(-20)
+          console.log(docId)
+          console.log(selfId)
+
           result.appendChild(p)
         })
         .catch(err => {
@@ -79,10 +85,8 @@ const accountActions = {
     })
   },
 
-
-
 }
 
-document.addEventListener('DOMContentLoaded', accountActions.accountStatus)
-document.addEventListener('DOMContentLoaded', accountActions.balance)
-document.addEventListener('DOMContentLoaded', accountActions.verifyDocuments)
+// document.addEventListener('DOMContentLoaded', accountActions.balance)
+// document.addEventListener('DOMContentLoaded', accountActions.accountStatus)
+// document.addEventListener('DOMContentLoaded', accountActions.verifyDocuments)

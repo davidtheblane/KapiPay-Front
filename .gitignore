@@ -3,3 +3,4 @@
 node_modules
 .vscode
 README.md
+src/config/uploads
