@@ -6,10 +6,16 @@ const newCompany = {
   validate: async () => {
     const cnpj = document.getElementsByName('cnpj')[0].value
     const description = document.getElementsByName('description')[0].value
+    let companyName = document.getElementsByName('companyName')[0].value
+    let typedName = document.getElementsByName('typedName')[0].value
 
     let validate = true;
     let message = ''
 
+    if (companyName != "" && typedName != "") {
+      message = 'Verifique se você digitou apenas um dos campos com o nome da empresa.'
+      validate = false
+    }
     if (cnpj.length != 14 || typeof cnpj != 'string') {
       message = 'CNPJ Inválido'
       validate = false
@@ -37,17 +43,15 @@ const newCompany = {
       },
       body: JSON.stringify({
         companyType: document.getElementsByName('companyType')[0].value,
-        companyName: document.getElementsByName('companyName')[0].value,
-        name: document.getElementsByName('name')[0].value,
+        name: document.getElementsByName('companyName')[0].value || document.getElementsByName('typedName')[0].value,
         cnpj: document.getElementsByName('cnpj')[0].value,
         description: document.getElementsByName('description')[0].value,
       })
     })
-
     const data = await response.json();
 
     if (!response.ok) {
-      alert('Algo deu errado, verifique os campos')
+      alert(data.message)
 
     } else {
       newCompany.success()
@@ -87,12 +91,18 @@ const newCompany = {
     })
       .then(response => response.json())
       .then((data) => {
-        const serviceName = data.map(function (item) {
+        const service = data.map(function (item) {
           return item.companyType;
         });
+        const company = data.map(function (item) {
+          return item.name;
+        });
 
-        serviceName.forEach(name => {
-          companyType.innerHTML += `<option>${name}</option>`
+        service.forEach(item => {
+          companyType.innerHTML += `<option>${item}</option>`
+        });
+        company.forEach(item => {
+          companyName.innerHTML += `<option>${item}</option>`
         });
 
       })
