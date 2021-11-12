@@ -75,7 +75,6 @@ const login = {
   },
 }
 
-
 // SWEET ALERT
 // Pré carrega banner LGPD
 window.addEventListener('load', () => {

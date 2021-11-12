@@ -1,0 +1,45 @@
+<!-- STYLE -->
+<style>
+  #result {
+    height: 300px;
+    background-color: rgba(47, 135, 84, 0.3);
+    border-radius: 5px;
+  }
+</style>
+
+<!DOCTYPE html>
+<!-- HTML -->
+
+<head>
+  <%- include('../partials/head') %>
+</head>
+
+<header>
+  <%- include('../partials/header') %>
+</header>
+
+
+<!-- BODY -->
+<div class="container">
+  <div id="result">
+    <ul id="output"></ul>
+
+  </div>
+  <hr>
+  <div id="addCard">
+    <p>Adcionar um novo meio de pagamento.</p>
+    <a href="/account/user/profile-card" id="new-card" class="btn btn-success">Cartão</a>
+  </div>
+  <hr>
+  <br>
+  <div>
+    <a href="/index" class="btn btn-outline-success">Voltar</a>
+  </div>
+</div>
+
+<label for=""></label>
+<footer>
+  <%- include('../partials/footer') %>
+</footer>
+
+<script src="/js/userProfile.js"></script>

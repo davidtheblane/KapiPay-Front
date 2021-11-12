@@ -9,8 +9,12 @@
     border: 1px solid lightgreen;
   }
 
-  #name {
+  #typedName {
     text-transform: uppercase;
+  }
+
+  .colored-toast.swal2-icon-success {
+    background-color: #a5dc86 !important;
   }
 </style>
 
@@ -34,26 +38,25 @@
     <h2>Incluir Fornecedor</h2>
     <br>
     <div class="form-group">
-      <label for="companyType">Tipo de Serviço</label>
-      <select class="form-control form-control-sm" id="companyType" name="companyType" required>
+      <label for="companyType" class="form-label">Tipo de Serviço</label>
+      <select class="form-control " id="companyType" name="companyType" required>
         <option selected>Escolha o tipo de serviço...</option>
       </select>
     </div>
     <hr>
     <div class="mb-3">
-      <label for="name" class="form-label">Empresa</label>
+      <label for="companyName" class="form-label">Nome da Empresa</label>
       <select class="form-control" id="companyName" name="companyName" required>
-        <option selected>Escolha uma empresa aqui</option>
+        <option selected></option>
 
-        <label for="name" class="form-label">Não encontrou na lista, digite aqui.</label>
-        <input type="text" id="name" name="name" class="form-control"
-          placeholder="Não encontrei na lista, prefiro digitar." required />
+        <input type="text" id="typedName" name="typedName" class="form-control form-control-sm"
+          placeholder="Se Não encontrou na lista, digite aqui." required />
     </div>
-
+    <hr>
 
     <div class="mb-3">
       <label for="cnpj" class="form-label">CNPJ</label>
-      <input type="cnpj" id="cnpj" name="cnpj" class="form-control" placeholder="Sem traços nem pontos" required />
+      <input type="text" id="cnpj" name="cnpj" class="form-control" placeholder="Sem traços nem pontos" required />
     </div>
 
 

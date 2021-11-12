@@ -39,11 +39,14 @@
 <body>
 
   <div class="container">
+    <div class="logo">
+
+      <img src="imgs/kapipay_logo.png" class="rounded mx-auto d-block" alt="kapipay logo">
+      <h1 class="text-center">Kapipay</h1>
+
+    </div>
+
     <form id="form-login">
-      <h1>Login</h1>
-      <div id="emailHelp" class="form-text">
-        Não iremos compartilhar sua senha com ninguém.
-      </div>
       <div class="mb-3">
         <label for="email" class="form-label">Email</label>
         <input type="email" id="email" name="email" class="form-control" aria-describedby="emailHelp" required />
@@ -51,6 +54,10 @@
       <div class="mb-3">
         <label for="password" class="form-label">Senha</label>
         <input type="password" class="form-control" id="password" name="password" required />
+
+        <div id="emailHelp" class="form-text">
+          Não iremos compartilhar sua senha com ninguém.
+        </div>
       </div>
       <!-- <div class="mb-3 form-check">
         <input type="checkbox" class="form-check-input" id="exampleCheck1" />
