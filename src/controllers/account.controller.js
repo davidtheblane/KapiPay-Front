@@ -154,18 +154,18 @@ module.exports = {
   //   }
   // },
 
-  // cardHash: async (req, res) => {
-  //   console.log('chegou no controller de hash cartao')
+  cardHash: async (req, res) => {
+    console.log('chegou no controller de hash cartao')
 
-  //   try {
-  //     const publicToken = process.env.PUBLIC_TOKEN
-  //     console.log(publicToken)
-  //     return res.json(publicToken)
+    try {
+      const publicToken = process.env.PUBLIC_TOKEN
+      console.log(publicToken)
+      return res.json(publicToken)
 
-  //   } catch (err) {
-  //     return res.status(err.status || 400).send(err)
-  //   }
-  // },
+    } catch (err) {
+      return res.status(err.status || 400).send(err)
+    }
+  },
 
 
 }
