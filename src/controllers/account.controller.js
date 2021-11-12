@@ -1,4 +1,5 @@
 const api = require('../services/api.service')
+require('dotenv').config()
 
 module.exports = {
   //chama o form
@@ -11,6 +12,16 @@ module.exports = {
   sendDocumentsPage: async (req, res) => {
     const email = req.session.userEmail;
     res.render("forms/sendDocuments", { email: email });
+  },
+
+  userDataPage: async (req, res) => {
+    const email = req.session.userEmail;
+    res.render("pages/userProfile", { email: email });
+  },
+
+  cardPage: async (req, res) => {
+    const email = req.session.userEmail;
+    res.render("forms/addCard", { email: email });
   },
 
   //CRIA CONTA DIGITAL
@@ -98,4 +109,63 @@ module.exports = {
       return res.status(err.status || 400).send(err.stack)
     }
   },
+
+  userData: async (req, res) => {
+    try {
+      const token = req.session.token
+      const response = await api.get("/user/data", {
+        headers: {
+          "Authorization": `Bearer ${token}`,
+        }
+      })
+      return res.json(response.data)
+    } catch (err) {
+      console.log(err)
+      res.status(err.status || 400).send(err)
+    }
+  },
+
+  // cardHash: async (req, res) => {
+  //   const cardData = {
+  //     cardNumber: req.body.cardNumber,
+  //     holderName: req.body.holderName,
+  //     securityCode: req.body.securityCode,
+  //     expirationMonth: req.body.expirationMonth,
+  //     expirationYear: req.body.expirationYear
+  //   }
+  //   console.log("cardData", cardData)
+  //   try {
+  //     console.log('chegou no controller de hash cartao')
+
+  //     const publicToken = process.env.PUBLIC_TOKEN
+  //     let checkout = new DirectCheckout(publicToken, false);
+
+  //     checkout.getCardHash(cardData, cardHash => {
+  //       console.log(cardHash)
+  //       return res.json(cardHash)
+  //     },
+  //       function (err) {
+  //         /* Erro - A variável error conterá o erro ocorrido ao obter o hash */
+  //         return res.json(err)
+  //       });
+
+  //   } catch (err) {
+  //     return res.status(err.status || 400).send(err)
+  //   }
+  // },
+
+  // cardHash: async (req, res) => {
+  //   console.log('chegou no controller de hash cartao')
+
+  //   try {
+  //     const publicToken = process.env.PUBLIC_TOKEN
+  //     console.log(publicToken)
+  //     return res.json(publicToken)
+
+  //   } catch (err) {
+  //     return res.status(err.status || 400).send(err)
+  //   }
+  // },
+
+
 }

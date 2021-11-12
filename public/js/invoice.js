@@ -51,7 +51,31 @@ const newInvoice = {
       // window.location.assign("/login")
     }
 
-  }
-}
+  },
 
-window.onload = newInvoice.init()
+  loadCompanies: () => {
+    fetch("/account/company", {
+      method: 'GET',
+      headers: {
+        "Accept": "application/json",
+        "Content-Type": "application/json"
+      },
+    })
+      .then(response => response.json())
+      .then((data) => {
+        const company = data.map(function (item) {
+          return item.name;
+        });
+
+        company.forEach(item => {
+          companyName.innerHTML += `<option>${item}</option>`
+        });
+
+      })
+      .catch(err => {
+        err.message || console.log(err.stack)
+      })
+  },
+}
+window.onload = newInvoice.loadCompanies()
+document.addEventListener('DOMContentLoaded', newInvoice.init)

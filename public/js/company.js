@@ -81,7 +81,6 @@ const newCompany = {
 
 
   loadCompanies: () => {
-    const companyType = document.getElementById('companyType')
     fetch("/account/company", {
       method: 'GET',
       headers: {

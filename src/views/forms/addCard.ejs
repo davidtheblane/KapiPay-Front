@@ -1,0 +1,94 @@
+<!-- STYLE -->
+<style>
+  form {
+    width: 400px;
+    margin: 0 auto;
+  }
+
+  input:valid {
+    border: 1px solid lightgreen;
+  }
+
+  #typedName {
+    text-transform: uppercase;
+  }
+
+  .colored-toast.swal2-icon-success {
+    background-color: #a5dc86 !important;
+  }
+</style>
+
+<!DOCTYPE html>
+<!-- HTML -->
+
+<head>
+  <%- include('../partials/head') %>
+</head>
+
+<header>
+  <%- include('../partials/header') %>
+</header>
+<div id="result">
+
+</div>
+
+<!-- FORM -->
+<div class="container">
+  <form id="form-add-card">
+    <h2>Incluir cartão de crédito</h2>
+    <br>
+    <div class="form-group">
+
+      <div class="mb-3">
+        <label for="cardNumber" class="form-label">Número do cartão</label>
+        <input type="text" id="cardNumber" name="cardNumber" class="form-control" required />
+      </div>
+
+
+
+      <div class="mb-3">
+        <label for="holderName" class="form-label">Nome Impresso no Cartão</label>
+        <input type="text" id="holderName" name="holderName" class="form-control" required />
+      </div>
+
+
+
+      <div class="mb-3">
+        <label for="securityCode" class="form-label">Código de Segurança</label>
+        <input type="text" id="securityCode" name="securityCode" class="form-control" required />
+      </div>
+
+
+
+      <div class="mb-3">
+        <label for="expirationMonth" class="form-label">Mês de Vencimento</label>
+        <input type="text" id="expirationMonth" name="expirationMonth" class="form-control" required />
+      </div>
+
+
+
+      <div class="mb-3">
+        <label for="expirationYear" class="form-label">Ano de Vencimento</label>
+        <input type="text" id="expirationYear" name="expirationYear" class="form-control" required />
+      </div>
+
+
+      <div>
+        <button id="btn_save" type="button" class="btn btn-success">Salvar</button>
+
+        <a href="/account/user/profile" class="btn btn-outline-success">Voltar</a>
+      </div>
+    </div>
+
+    <div id="hash"></div>
+  </form>
+</div>
+
+<footer>
+  <%- include('../partials/footer') %>
+</footer>
+
+<script src="/js/addCard.js"></script>
+
+<script type="text/javascript" src="https://sandbox.boletobancario.com/boletofacil/wro/direct-checkout.min.js"></script>
+<script> window.DirectCheckout = DirectCheckout;</script>
