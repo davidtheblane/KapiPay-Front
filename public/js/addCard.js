@@ -27,7 +27,7 @@ const newCard = {
   },
 
   send: async () => {
-    let checkout = new DirectCheckout('D452F31332A6148CF37F5825061C0C6F735275A4B6FB9EDBC3B47DE8E220CCE0', false);
+    let checkout = new DirectCheckout('publictoken', false);
     /* Em sandbox utilizar o construtor new DirectCheckout('PUBLIC_TOKEN', false); */
 
     let cardData = {
