@@ -10,7 +10,7 @@ const newInvoice = {
     let message = ''
 
     if (amount > 50) {
-      message = 'No momento só podemos registrar valores menos que R$50,00, tente novamente.'
+      message = 'No momento só podemos registrar valores menos que R$50,00.'
       validate = false
     }
 
@@ -23,6 +23,7 @@ const newInvoice = {
 
 
   send: async () => {
+
     const response = await fetch("/account/invoice", {
       method: "POST",
       headers: {
@@ -30,10 +31,11 @@ const newInvoice = {
         "Accept": "application/json"
       },
       body: JSON.stringify({
-        companyName: document.getElementsByName('description')[0].value,
-        description: document.getElementsByName('description')[0].value,
+        companyName: document.getElementsByName('companyName')[0].value,
         amount: document.getElementsByName('amount')[0].value,
+        barcodeNumber: document.getElementsByName('barcodeNumber')[0].value,
         dueDate: document.getElementsByName('dueDate')[0].value,
+        description: document.getElementsByName('description')[0].value,
         paymentTypes: ["CREDIT_CARD", "BOLETO"],
         paymentAdvance: true,
       })
@@ -45,9 +47,9 @@ const newInvoice = {
       console.log(data)
 
     } else {
-
-      console.log(data)
-      alert('Fatura Cadastrada')
+      newInvoice.success()
+      alert("Deseja cadastrar uma nova?")
+      // window.location.assign("/login")
       // window.location.assign("/login")
     }
 
@@ -66,7 +68,6 @@ const newInvoice = {
         const company = data.map(function (item) {
           return item.name;
         });
-
         company.forEach(item => {
           companyName.innerHTML += `<option>${item}</option>`
         });
@@ -75,6 +76,25 @@ const newInvoice = {
       .catch(err => {
         err.message || console.log(err.stack)
       })
+  },
+
+  //SWEET ACESS BUTTON
+  success: async function () {
+    const Toast = Swal.mixin({
+      toast: true,
+      position: 'top-right',
+      iconColor: 'white',
+      customClass: {
+        popup: 'colored-toast'
+      },
+      showConfirmButton: false,
+      timer: 2500,
+      timerProgressBar: true
+    })
+    await Toast.fire({
+      icon: 'success',
+      title: 'Fatura Cadastrada com Sucesso'
+    })
   },
 }
 window.onload = newInvoice.loadCompanies()

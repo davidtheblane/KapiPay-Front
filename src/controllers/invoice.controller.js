@@ -9,16 +9,19 @@ module.exports = {
 
   //NEW COMPANY
   newInvoice: async (req, res) => {
+    const token = req.session.token
+    const data = req.body;
+    console.log(data)
+    const config = {
+      headers: {
+        "Authorization": `Bearer ${token}`,
+      },
+    }
     try {
-      const token = req.headers.authorization
-      console.log(token)
-      const response = await api.post("/account/charge", {
-        headers: {
-          "Authorization": `Bearer ${token}`
-        }
-      })
 
+      const response = await api.post("/account/charge", { data }, config)
       console.log(response)
+
       return res.json(response)
     } catch (err) {
       console.log(err)

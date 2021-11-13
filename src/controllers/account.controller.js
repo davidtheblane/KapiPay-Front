@@ -8,7 +8,7 @@ module.exports = {
     res.render("forms/createAccount", { email: email });
   },
 
-  //chama o form
+  //CHAMA AS PAGINAS
   sendDocumentsPage: async (req, res) => {
     const email = req.session.userEmail;
     res.render("forms/sendDocuments", { email: email });
@@ -44,6 +44,7 @@ module.exports = {
     }
   },
 
+  // SALDO
   balance: async (req, res) => {
     try {
       const token = req.session.token
@@ -60,6 +61,7 @@ module.exports = {
     }
   },
 
+  // STATUS DA CONTA
   accountStatus: async (req, res) => {
     try {
       const token = req.session.token
@@ -75,6 +77,7 @@ module.exports = {
     }
   },
 
+  // STATUS DE DOCUMENTOS
   verifyDocuments: async (req, res) => {
     try {
       const token = req.session.token
@@ -89,10 +92,12 @@ module.exports = {
       res.status(err.status || 400).send({ message: err.message || err.stack })
     }
   },
+
+  // ENVIA DOCUMENTOS
   sendDocuments: async (req, res) => {
     try {
-      const token = req.session.token
-      const id = req.params.id
+      const token = req.session.token;
+      const id = req.params.id;
       const formData = req.files;
       console.log(req.files)
       const config = {
@@ -110,6 +115,7 @@ module.exports = {
     }
   },
 
+  // MOSTRA DADOS DO USUARIO
   userData: async (req, res) => {
     try {
       const token = req.session.token
@@ -125,8 +131,7 @@ module.exports = {
     }
   },
 
-
-
+  // ENVIA HASH DO CARTAO DE CREDITO
   cardHash: async (req, res) => {
     const token = req.session.token
     const hash = req.body
