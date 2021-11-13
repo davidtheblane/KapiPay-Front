@@ -22,12 +22,12 @@ const newCard = {
     // } else {
     //   newCard.send()
     // }
-    newCard.send()
+    newCard.generateHash()
 
   },
 
-  send: async () => {
-    let checkout = new DirectCheckout('publictoken', false);
+  generateHash: async () => {
+    let checkout = new DirectCheckout('D452F31332A6148CF37F5825061C0C6F735275A4B6FB9EDBC3B47DE8E220CCE0', false);
     /* Em sandbox utilizar o construtor new DirectCheckout('PUBLIC_TOKEN', false); */
 
     let cardData = {
@@ -37,16 +37,49 @@ const newCard = {
       expirationMonth: document.getElementsByName('expirationMonth')[0].value,
       expirationYear: document.getElementsByName('expirationYear')[0].value,
     };
-    console.log(cardData)
 
-    checkout.getCardHash(cardData, cardHash => {
-      /* Sucesso - A variável cardHash conterá o hash do cartão de crédito */
-      document.getElementById("hash").innerHTML += cardHash
-      console.log(cardHash)
-    }, function (error) {
-      /* Erro - A variável error conterá o erro ocorrido ao obter o hash */
-      document.getElementById("hash").innerHTML += error
-    });
+    const hash = await new Promise((resolve, reject) => {
+      checkout.getCardHash(cardData, function (cardHash) {
+        resolve(cardHash)
+      }, function (error) {
+        reject(error)
+        SweetAlert.fire({
+          icon: 'error',
+          title: 'Ops! Algo deu errado.',
+          text: 'Revise os campos e tente novamente.',
+        })
+      });
+    })
+    newCard.send(hash)
+
+  },
+
+  send: async (hash) => {
+    const data = {
+      creditCardHash: hash
+    }
+
+    fetch("/account/card-hash", {
+      method: "POST",
+      headers: {
+        "Accept": "application/json",
+        // "Content-Type": "application/x-www-form-urlencoded",
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(data)
+    })
+      .then(response => response.json())
+      .then(data => {
+        console.log(data.message)
+        newCard.success()
+        setTimeout(function () {
+          window.location.assign("/account/user/profile")
+        }, 1000)
+      }).catch(err => {
+        console.log(err)
+        err
+      })
+
   },
 
   //SWEET ACESS BUTTON
@@ -64,12 +97,9 @@ const newCard = {
     })
     await Toast.fire({
       icon: 'success',
-      title: 'Bem Vindo!'
+      title: 'Cartão Cadastrado com sucesso'
     })
   }
-
-
-
 
 }
 

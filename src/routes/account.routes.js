@@ -32,11 +32,10 @@ router.get('/documents', isAuth, AccountController.verifyDocuments);
 router.get('/company', isAuth, CompanyController.getCompany);
 router.get('/invoice', isAuth, InvoiceController.getInvoice);
 router.get('/user/data', isAuth, AccountController.userData);
-// router.post('/cardHash', isAuth, AccountController.cardHash);
 
 
 //POST
-// router.post('/cardHash', isAuth, AccountController.cardHash);
+router.post('/card-hash', isAuth, AccountController.cardHash);
 router.post('/create', isAuth, AccountController.createAccount);
 router.post('/company', isAuth, CompanyController.newCompany);
 router.post('/invoice', isAuth, InvoiceController.newInvoice);

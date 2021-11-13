@@ -125,44 +125,22 @@ module.exports = {
     }
   },
 
-  // cardHash: async (req, res) => {
-  //   const cardData = {
-  //     cardNumber: req.body.cardNumber,
-  //     holderName: req.body.holderName,
-  //     securityCode: req.body.securityCode,
-  //     expirationMonth: req.body.expirationMonth,
-  //     expirationYear: req.body.expirationYear
-  //   }
-  //   console.log("cardData", cardData)
-  //   try {
-  //     console.log('chegou no controller de hash cartao')
 
-  //     const publicToken = process.env.PUBLIC_TOKEN
-  //     let checkout = new DirectCheckout(publicToken, false);
-
-  //     checkout.getCardHash(cardData, cardHash => {
-  //       console.log(cardHash)
-  //       return res.json(cardHash)
-  //     },
-  //       function (err) {
-  //         /* Erro - A variável error conterá o erro ocorrido ao obter o hash */
-  //         return res.json(err)
-  //       });
-
-  //   } catch (err) {
-  //     return res.status(err.status || 400).send(err)
-  //   }
-  // },
 
   cardHash: async (req, res) => {
-    console.log('chegou no controller de hash cartao')
-
+    const token = req.session.token
+    const hash = req.body
+    const config = {
+      headers: {
+        "Authorization": `Bearer ${token}`,
+      },
+    }
     try {
-      const publicToken = process.env.PUBLIC_TOKEN
-      console.log(publicToken)
-      return res.json(publicToken)
-
-    } catch (err) {
+      const response = await api.post("/account/save_card", hash, config)
+      return res.json(response.data)
+    }
+    catch (err) {
+      console.log(err)
       return res.status(err.status || 400).send(err)
     }
   },

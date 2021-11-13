@@ -61,26 +61,6 @@ const userProfile = {
 
   },
 
-  // //SWEET ACESS BUTTON
-  // success: async function () {
-  //   const Toast = Swal.mixin({
-  //     toast: true,
-  //     position: 'top-right',
-  //     iconColor: 'white',
-  //     customClass: {
-  //       popup: 'colored-toast'
-  //     },
-  //     showConfirmButton: false,
-  //     timer: 2500,
-  //     timerProgressBar: true
-  //   })
-  //   await Toast.fire({
-  //     icon: 'success',
-  //     title: 'Fornecedor Cadastrado com Sucesso'
-  //   })
-  // },
-
-
   loadUserData: () => {
     const result = document.getElementById('output')
     fetch("/account/user/data", {
@@ -92,19 +72,21 @@ const userProfile = {
     })
       .then(response => response.json())
       .then((data) => {
-
-        const userData = Object.values(data)
-        // console.log(userData)
-
-        userData.forEach(item => {
-          result.innerHTML += `<li>${item}</li>`
-        });
+        console.log(data)
+        data.forEach(item => {
+          const userData = Object.values(item)
+          console.log(userData)
+          result.innerHTML += `<li>${userData}</li>`
+          // return userData
+        })
 
       })
       .catch(err => {
         err.message || console.log(err.stack)
       })
   },
+
+
 
 }
 
