@@ -7,20 +7,24 @@ module.exports = {
     res.render("forms/invoice", { email: email });
   },
 
+  openInvoiceListPage: async (req, res) => {
+    const email = req.session.userEmail;
+    res.render("pages/openInvoices", { email: email });
+  },
+
   //NEW INVOICE
   newInvoice: async (req, res) => {
     try {
       const token = req.session.token
       const data = req.body;
-      console.log(data)
       const config = {
         headers: {
           "Authorization": `Bearer ${token}`,
         },
       }
 
-      const response = await api.post("/account/charge", { data }, config)
-      console.log(response.data)
+      const response = await api.post("/account/invoice", { data }, config)
+      // console.log(response.data)
 
       return res.json(response.data)
     } catch (err) {
@@ -32,16 +36,17 @@ module.exports = {
 
   getInvoice: async (req, res) => {
     try {
+      console.log("chegou no controller de invoices")
       const token = req.headers.authorization
 
-      const balance = await api.get("/account/charges", {
+      const response = await api.get("/account/invoices", {
         headers: {
           "Authorization": token,
           "resourcetoken": resourcetoken
         }
       })
-      console.log(balance.data.balance)
-      return res.json(balance.data.balance)
+      console.log(response.data)
+      return res.json(response.data)
     } catch (err) {
       res.status(400).send({ message: err.message || err.stack })
     }
@@ -51,14 +56,14 @@ module.exports = {
     try {
       const token = req.headers.authorization
 
-      const balance = await api.get("/account/charges/:id", {
+      const response = await api.get("/account/invoices/:id", {
         headers: {
           "Authorization": token,
           "resourcetoken": resourcetoken
         }
       })
-      console.log(balance.data.balance)
-      return res.json(balance.data.balance)
+      console.log(response.data)
+      return res.json(response.data)
     } catch (err) {
       res.status(400).send({ message: err.message || err.stack })
     }

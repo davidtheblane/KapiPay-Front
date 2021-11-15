@@ -14,16 +14,6 @@ module.exports = {
     res.render("forms/sendDocuments", { email: email });
   },
 
-  userDataPage: async (req, res) => {
-    const email = req.session.userEmail;
-    res.render("pages/userProfile", { email: email });
-  },
-
-  cardPage: async (req, res) => {
-    const email = req.session.userEmail;
-    res.render("forms/addCard", { email: email });
-  },
-
   //CRIA CONTA DIGITAL
   createAccount: async (req, res) => {
     try {
@@ -112,22 +102,6 @@ module.exports = {
     } catch (err) {
       // console.log(err.response)
       return res.status(err.status || 400).send(err.stack)
-    }
-  },
-
-  // MOSTRA DADOS DO USUARIO
-  userData: async (req, res) => {
-    try {
-      const token = req.session.token
-      const response = await api.get("/user/data", {
-        headers: {
-          "Authorization": `Bearer ${token}`,
-        }
-      })
-      return res.json(response.data)
-    } catch (err) {
-      console.log(err)
-      res.status(err.status || 400).send(err)
     }
   },
 

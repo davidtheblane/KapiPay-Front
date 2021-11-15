@@ -73,7 +73,7 @@ const newCard = {
         console.log(data.message)
         newCard.success()
         setTimeout(function () {
-          window.location.assign("/account/user/profile")
+          window.location.assign("/user/profile")
         }, 1000)
       }).catch(err => {
         console.log(err)

@@ -21,7 +21,6 @@ const newInvoice = {
     }
   },
 
-
   send: async () => {
 
     const response = await fetch("/account/invoice", {
@@ -49,6 +48,7 @@ const newInvoice = {
 
     } else {
       // console.log("tudo certo")
+      document.getElementById('form-new-invoice').reset()
       newInvoice.success()
     }
 

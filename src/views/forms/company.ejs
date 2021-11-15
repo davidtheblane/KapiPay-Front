@@ -38,34 +38,39 @@
     <h2>Incluir Fornecedor</h2>
     <br>
     <div class="form-group">
-      <label for="companyType" class="form-label">Tipo de Serviço</label>
-      <select class="form-control " id="companyType" name="companyType" required>
-        <option selected>Escolha o tipo de serviço...</option>
-      </select>
+
+      <div class="mb-3">
+        <label for="companyType" class="form-label">Tipo de Serviço</label>
+        <select class="form-control " id="companyType" name="companyType" required>
+          <option selected>Escolha o tipo de serviço...</option>
+        </select>
+      </div>
+
+      <hr>
+
+      <div class="mb-3">
+        <label for="companyName" class="form-label">Nome da Empresa</label>
+        <select class="form-control" id="companyName" name="companyName" required>
+          <option selected></option>
+
+          <input type="text" id="typedName" name="typedName" class="form-control form-control-sm"
+            placeholder="Se Não encontrou na lista, digite aqui." required />
+      </div>
+
+      <hr>
+
+      <div class="mb-3">
+        <label for="cnpj" class="form-label">CNPJ</label>
+        <input type="text" id="cnpj" name="cnpj" class="form-control" placeholder="Sem traços nem pontos" required />
+      </div>
+
+
+      <div class="mb-3">
+        <label for="description" class="form-label">Descrição</label>
+        <textarea type="description" class="form-control" id="description" rows="3" name="description"
+          placeholder="Descreva em poucas palavras o serviço prestado."> </textarea>
+      </div>
     </div>
-    <hr>
-    <div class="mb-3">
-      <label for="companyName" class="form-label">Nome da Empresa</label>
-      <select class="form-control" id="companyName" name="companyName" required>
-        <option selected></option>
-
-        <input type="text" id="typedName" name="typedName" class="form-control form-control-sm"
-          placeholder="Se Não encontrou na lista, digite aqui." required />
-    </div>
-    <hr>
-
-    <div class="mb-3">
-      <label for="cnpj" class="form-label">CNPJ</label>
-      <input type="text" id="cnpj" name="cnpj" class="form-control" placeholder="Sem traços nem pontos" required />
-    </div>
-
-
-    <div class="mb-3">
-      <label for="description" class="form-label">Descrição</label>
-      <textarea type="description" class="form-control" id="description" rows="3" name="description"
-        placeholder="Descreva em poucas palavras o serviço prestado."> </textarea>
-    </div>
-
 
     <div>
       <button id="btn_save" type="button" class="btn btn-success">Salvar</button>

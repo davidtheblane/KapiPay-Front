@@ -57,8 +57,9 @@ const newCompany = {
       alert("algo deu errado, verifique os campos")
 
     } else {
+      // console.log("tudo certo")
+      document.getElementById('form-new-company').reset()
       newCompany.success()
-      // window.location.assign("/login")
     }
 
   },

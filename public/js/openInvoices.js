@@ -1,6 +1,6 @@
-const userProfile = {
+const openInvoices = {
   init: async () => {
-    // document.getElementById('btn_save').addEventListener('click', userProfile.validate)
+    // document.getElementById('btn_save').addEventListener('click', openInvoices.validate)
   },
 
   validate: async () => {
@@ -31,7 +31,7 @@ const userProfile = {
     // } else {
     //   newCompany.send()
     // }
-    userProfile.send()
+    openInvoices.send()
 
   },
 
@@ -55,15 +55,14 @@ const userProfile = {
     //   alert(data.message)
 
     // } else {
-    //   newCompany.success()
+    //   openInvoices.success()
     //   // window.location.assign("/login")
     // }
 
   },
 
-  loadUserData: () => {
-    const result = document.getElementById('output')
-    fetch("/user/data", {
+  loadOpenInvoices: () => {
+    fetch("/account/invoices", {
       method: 'GET',
       headers: {
         "Accept": "application/json",
@@ -73,12 +72,12 @@ const userProfile = {
       .then(response => response.json())
       .then((data) => {
         console.log(data)
-        data.forEach(item => {
-          const userData = Object.values(item)
-          console.log(userData)
-          result.innerHTML += `<li>${userData}</li>`
-          // return userData
-        })
+        // const company = data.map(function (item) {
+        //   return item.name;
+        // });
+        // company.forEach(item => {
+        //   companyName.innerHTML += `<option>${item}</option>`
+        // });
 
       })
       .catch(err => {
@@ -91,6 +90,6 @@ const userProfile = {
 
 
 
-window.onload = userProfile.loadUserData()
-document.addEventListener('DOMContentLoaded', userProfile.init)
+window.onload = openInvoices.loadOpenInvoices()
+document.addEventListener('DOMContentLoaded', openInvoices.init)
 
