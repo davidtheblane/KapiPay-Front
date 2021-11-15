@@ -29,6 +29,7 @@ router.get('/invoice', isAuth, InvoiceController.newInvoicePage);
 router.get('/balance', isAuth, AccountController.balance);
 router.get('/status', isAuth, AccountController.accountStatus);
 router.get('/documents', isAuth, AccountController.verifyDocuments);
+router.get('/company-type', isAuth, CompanyController.getCompanyType);
 router.get('/company', isAuth, CompanyController.getCompany);
 router.get('/invoice', isAuth, InvoiceController.getInvoice);
 router.get('/user/data', isAuth, AccountController.userData);

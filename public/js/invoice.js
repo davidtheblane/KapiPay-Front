@@ -43,15 +43,15 @@ const newInvoice = {
 
     const data = await response.json();
 
-    if (!response.ok) {
-      console.log(data)
+    if (!(response.ok)) {
+      alert("algo deu errado, verifique os campos")
+      // console.log(data)
 
     } else {
+      // console.log("tudo certo")
       newInvoice.success()
-      alert("Deseja cadastrar uma nova?")
-      // window.location.assign("/login")
-      // window.location.assign("/login")
     }
+
 
   },
 
@@ -78,22 +78,25 @@ const newInvoice = {
       })
   },
 
-  //SWEET ACESS BUTTON
   success: async function () {
-    const Toast = Swal.mixin({
-      toast: true,
-      position: 'top-right',
-      iconColor: 'white',
+    Swal.fire({
+      title: 'Fatura criada!',
+      text: 'Gostaria de incluir uma nova?',
+      icon: 'question',
+      showDenyButton: true,
+      confirmButtonText: 'Sim',
+      denyButtonText: `Não`,
       customClass: {
-        popup: 'colored-toast'
+        confirmButton: 'btn btn-sm btn-success',
+        denyButton: 'btn btn-sm btn-outline-success'
       },
-      showConfirmButton: false,
-      timer: 2500,
-      timerProgressBar: true
-    })
-    await Toast.fire({
-      icon: 'success',
-      title: 'Fatura Cadastrada com Sucesso'
+      buttonsStyling: false
+    }).then((result) => {
+      if (result.isConfirmed) {
+        // do nothing
+      } else if (result.isDenied) {
+        window.location.assign("/index")
+      }
     })
   },
 }

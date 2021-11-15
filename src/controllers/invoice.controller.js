@@ -7,25 +7,25 @@ module.exports = {
     res.render("forms/invoice", { email: email });
   },
 
-  //NEW COMPANY
+  //NEW INVOICE
   newInvoice: async (req, res) => {
-    const token = req.session.token
-    const data = req.body;
-    console.log(data)
-    const config = {
-      headers: {
-        "Authorization": `Bearer ${token}`,
-      },
-    }
     try {
+      const token = req.session.token
+      const data = req.body;
+      console.log(data)
+      const config = {
+        headers: {
+          "Authorization": `Bearer ${token}`,
+        },
+      }
 
       const response = await api.post("/account/charge", { data }, config)
-      console.log(response)
+      console.log(response.data)
 
-      return res.json(response)
+      return res.json(response.data)
     } catch (err) {
       console.log(err)
-      res.status(err.status || 400).send(err)
+      res.status(err.status || 400).send(err.response.data)
     }
   },
 

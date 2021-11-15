@@ -49,6 +49,8 @@ const createAccount = {
     const cpf = document.getElementsByName('cpf')[0].value
     const birthDate = document.getElementsByName('birthDate')[0].value
     const phone = document.getElementsByName('phone')[0].value
+    const number = document.getElementsByName('number')[0].value
+
 
     //REGEX TESTS
     const regexEmail = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
@@ -60,6 +62,11 @@ const createAccount = {
 
     if (name.length < 2) {
       message = 'Escreva seu nome corretamente'
+      validate = false
+    }
+
+    if (number.length == 0) {
+      message = 'O Número do endereço não pode ficar em branco'
       validate = false
     }
 
@@ -78,7 +85,7 @@ const createAccount = {
       validate = false
     }
 
-    if (!phone.length === 13) {
+    if (!phone.length === 11) {
       message = `Telefone Inválido, deve ter 13 caracteres, o seu tem ${phone.length} caracteres`
       validate = false
     }
@@ -97,7 +104,7 @@ const createAccount = {
       document: document.getElementsByName('cpf')[0].value,
       email: document.getElementsByName('email')[0].value,
       birthDate: document.getElementsByName('birthDate')[0].value,
-      phone: document.getElementsByName('phone')[0].value,
+      phone: "55" + document.getElementsByName('phone')[0].value,
       //Area de negócio
       businessArea: 2010, //Serviços(Cobranças e Dívidas)
       linesOfBusiness: "Personal Business",
@@ -114,6 +121,7 @@ const createAccount = {
       //Renda Mensal
       monthlyIncomeOrRevenue: document.getElementsByName('monthlyIncome')[0].value
     }
+    console.log(data)
 
     fetch("/account/create", {
       method: "POST",
@@ -150,10 +158,29 @@ const createAccount = {
     })
     await Toast.fire({
       icon: 'success',
-      title: 'Conta criada com sucesso!'
+      title: 'Conta criada com sucesso!',
     })
   },
+
+  loadUserData: () => {
+    fetch("/account/user/data", {
+      method: 'GET',
+      headers: {
+        "Accept": "application/json",
+        "Content-Type": "application/json"
+      },
+    })
+      .then(response => response.json())
+      .then((data) => {
+        document.getElementById('name').value += `${data[0].name}`;
+        document.getElementById('email').value += `${data[0].email}`
+      })
+      .catch(err => {
+        err.message || console.log(err.stack)
+      })
+  },
+
 }
 
-// window.onload = createAccount.init()
+window.onload = createAccount.loadUserData()
 document.addEventListener('DOMContentLoaded', createAccount.init())
