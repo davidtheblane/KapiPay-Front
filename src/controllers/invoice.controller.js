@@ -7,40 +7,44 @@ module.exports = {
     res.render("forms/invoice", { email: email });
   },
 
-  //NEW COMPANY
+  openInvoiceListPage: async (req, res) => {
+    const email = req.session.userEmail;
+    res.render("pages/openInvoices", { email: email });
+  },
+
+  //NEW INVOICE
   newInvoice: async (req, res) => {
     try {
-      const token = req.headers.authorization
-      console.log(token)
-      const response = await api.post("/account/charge", {
+      const token = req.session.token
+      const data = req.body;
+      const config = {
         headers: {
-          "Authorization": `Bearer ${token}`
-        }
-      })
+          "Authorization": `Bearer ${token}`,
+        },
+      }
 
-      console.log(response)
-      return res.json(response)
+      const response = await api.post("/account/invoice", { data }, config)
+
+      return res.json(response.data)
     } catch (err) {
       console.log(err)
-      res.status(err.status || 400).send(err)
+      res.status(err.status || 400).send(err.response.data)
     }
   },
 
 
   getInvoice: async (req, res) => {
     try {
-      const token = req.headers.authorization
-
-      const balance = await api.get("/account/charges", {
+      const token = req.session.token
+      const config = {
         headers: {
-          "Authorization": token,
-          "resourcetoken": resourcetoken
-        }
-      })
-      console.log(balance.data.balance)
-      return res.json(balance.data.balance)
+          "Authorization": `Bearer ${token}`,
+        },
+      }
+      const response = await api.get("/account/invoices", config)
+      return res.json(response.data)
     } catch (err) {
-      res.status(400).send({ message: err.message || err.stack })
+      res.status(400).send(err.response)
     }
   },
 
@@ -48,14 +52,14 @@ module.exports = {
     try {
       const token = req.headers.authorization
 
-      const balance = await api.get("/account/charges/:id", {
+      const response = await api.get("/account/invoices/:id", {
         headers: {
           "Authorization": token,
           "resourcetoken": resourcetoken
         }
       })
-      console.log(balance.data.balance)
-      return res.json(balance.data.balance)
+      console.log(response.data)
+      return res.json(response.data)
     } catch (err) {
       res.status(400).send({ message: err.message || err.stack })
     }

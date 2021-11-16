@@ -61,29 +61,9 @@ const userProfile = {
 
   },
 
-  // //SWEET ACESS BUTTON
-  // success: async function () {
-  //   const Toast = Swal.mixin({
-  //     toast: true,
-  //     position: 'top-right',
-  //     iconColor: 'white',
-  //     customClass: {
-  //       popup: 'colored-toast'
-  //     },
-  //     showConfirmButton: false,
-  //     timer: 2500,
-  //     timerProgressBar: true
-  //   })
-  //   await Toast.fire({
-  //     icon: 'success',
-  //     title: 'Fornecedor Cadastrado com Sucesso'
-  //   })
-  // },
-
-
   loadUserData: () => {
     const result = document.getElementById('output')
-    fetch("/account/user/data", {
+    fetch("/user/data", {
       method: 'GET',
       headers: {
         "Accept": "application/json",
@@ -92,13 +72,44 @@ const userProfile = {
     })
       .then(response => response.json())
       .then((data) => {
+        // console.log(data)
 
-        const userData = Object.values(data)
+        const userData = data.map(item => {
+          return item
+        })
+
+        let div = document.createElement('div');
+        div.innerHTML = `<ul>
+          <h3>Dados Pessoais</h3>
+          <li><strong>Nome:</strong> ${userData[0].name}</li>
+          <li><strong>Email:</strong> ${userData[0].email}</li>
+          <li><strong>CPF:</strong> ${userData[0].document}</li>
+          <li><strong>Data de Nascimento:</strong> ${userData[0].birthDate}</li>
+          <li><strong>Telefone:</strong> ${userData[0].phone}</li>
+          <li><strong>Renda Mensal:</strong> R$ ${userData[0].monthlyIncomeOrRevenue},00</li>
+          <hr>
+          <h3>Endereço</h3>
+          <li><strong>Logradouro:</strong> ${userData[1].street}</li >
+          <li><strong>Numero:</strong> ${userData[1].number}</li>
+          <li><strong>Complemento:</strong> ${userData[1].complement}</li>
+          <li><strong>Bairro:</strong> ${userData[1].neighborhood}</li>
+          <li><strong>Cidade:</strong> ${userData[1].city}</li>
+          <li><strong>Estado:</strong> ${userData[1].state}</li>
+          <li><strong>CEP:</strong> ${userData[1].postCode}</li>
+          <hr>
+          <h3>Conta Bancaria</h3>
+          <li><strong>Banco Nº:</strong> ${userData[2].bankNumber}</li>
+          <li><strong>Agencia Nº:</strong> ${userData[2].agencyNumber} - ${userData[2].accountComplementNumber}</li>
+          <li><strong>Conta Nº:</strong> ${userData[2].accountNumber}</li>
+          <hr>
+          <h3>Cartão de Crédito</h3>
+          <li><strong>Digitos finais:</strong> ${userData[3].last4CardNumber}</li>
+          <li><strong>Mês de Vencto:</strong> ${userData[3].expirationMonth}</li>
+          <li><strong>Ano de Vencto:</strong> ${userData[3].expirationYear}</li>
+          </ul>`
+
+        document.getElementById('result').appendChild(div);
         // console.log(userData)
-
-        userData.forEach(item => {
-          result.innerHTML += `<li>${item}</li>`
-        });
 
       })
       .catch(err => {

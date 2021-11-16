@@ -12,11 +12,13 @@ const newCompany = {
     let validate = true;
     let message = ''
 
+    const regexCNPJ = /^[0-9]+$/gs
+
     if (companyName != "" && typedName != "") {
       message = 'Verifique se você digitou apenas um dos campos com o nome da empresa.'
       validate = false
     }
-    if (cnpj.length != 14 || typeof cnpj != 'string') {
+    if (cnpj.length != 14 || !regexCNPJ.test(cnpj)) {
       message = 'CNPJ Inválido'
       validate = false
     }
@@ -52,63 +54,92 @@ const newCompany = {
 
     if (!response.ok) {
       alert(data.message)
+      alert("algo deu errado, verifique os campos")
 
     } else {
+      // console.log("tudo certo")
+      document.getElementById('form-new-company').reset()
       newCompany.success()
-      // window.location.assign("/login")
     }
 
   },
 
-  //SWEET ACESS BUTTON
   success: async function () {
-    const Toast = Swal.mixin({
-      toast: true,
-      position: 'top-right',
-      iconColor: 'white',
+    Swal.fire({
+      title: 'Fornecedor Cadastrado!',
+      text: 'Gostaria de incluir mais um?',
+      icon: 'question',
+      showDenyButton: true,
+      confirmButtonText: 'Sim',
+      denyButtonText: `Não`,
       customClass: {
-        popup: 'colored-toast'
+        confirmButton: 'btn btn-sm btn-success',
+        denyButton: 'btn btn-sm btn-outline-success'
       },
-      showConfirmButton: false,
-      timer: 2500,
-      timerProgressBar: true
-    })
-    await Toast.fire({
-      icon: 'success',
-      title: 'Fornecedor Cadastrado com Sucesso'
+      buttonsStyling: false
+    }).then((result) => {
+      if (result.isConfirmed) {
+        // do nothing
+      } else if (result.isDenied) {
+        window.location.assign("/index")
+      }
     })
   },
 
 
-  loadCompanies: () => {
-    fetch("/account/company", {
+  loadCompanies: async () => {
+    // LOAD COMPANY TYPES
+    const compTypes = await fetch("/account/company-type", {
       method: 'GET',
       headers: {
         "Accept": "application/json",
         "Content-Type": "application/json"
       },
     })
-      .then(response => response.json())
-      .then((data) => {
-        const service = data.map(function (item) {
-          return item.companyType;
-        });
-        const company = data.map(function (item) {
-          return item.name;
-        });
+    const companiesType = await compTypes.json()
 
-        service.forEach(item => {
-          companyType.innerHTML += `<option>${item}</option>`
-        });
-        company.forEach(item => {
-          companyName.innerHTML += `<option>${item}</option>`
-        });
+    if (!(compTypes.ok)) {
+      console.log("não foi possivel carregar os tipos de serviço")
+    } else {
+      const service = companiesType.map(function (item) {
+        return item.name;
+      });
 
+      service.forEach(item => {
+        companyType.innerHTML += `<option>${item}</option>`
+      });
+    }
+
+
+    // LOAD COMPANY NAMES
+    const response = await fetch("/account/company", {
+      method: 'GET',
+      headers: {
+        "Accept": "application/json",
+        "Content-Type": "application/json"
+      },
+    })
+
+    if (!(response.ok)) {
+      err.message || console.log(err.stack)
+    } else {
+      const data = await response.json()
+
+      const company = data.map(item => {
+        return item
+      });
+      company.forEach(item => {
+        // console.log(item.name)
+        companyName.innerHTML += `<option>${item.name}</option>`
+      });
+
+      document.getElementById('companyName').addEventListener('click', event => {
+        const companyName = event.target.value
+        let companyObj = company.find(item => item.name === companyName)
+        document.getElementById('cnpj').value = `${companyObj.cnpj}`;
       })
-      .catch(err => {
-        err.message || console.log(err.stack)
-      })
-  },
+    }
+  }
 }
 window.onload = newCompany.loadCompanies()
 document.addEventListener('DOMContentLoaded', newCompany.init)

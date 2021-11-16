@@ -18,8 +18,6 @@ module.exports = {
     }
     try {
       const response = await api.post("/account/company", company, config)
-
-      console.log(response.data)
       return res.json(response.data)
     } catch (err) {
       console.log(err.response.data)
@@ -32,6 +30,20 @@ module.exports = {
     try {
       const token = req.session.token
       const response = await api.get("/account/company", {
+        headers: {
+          "Authorization": `Bearer ${token}`,
+        }
+      })
+      return res.json(response.data)
+    } catch (err) {
+      res.status(400).send({ message: err.message || err.stack })
+    }
+  },
+
+  getCompanyType: async (req, res) => {
+    try {
+      const token = req.session.token
+      const response = await api.get("/account/company-type", {
         headers: {
           "Authorization": `Bearer ${token}`,
         }

@@ -2,9 +2,7 @@ const apiLogin = require('../services/login.service');
 
 module.exports = {
 
-  //SHOW PAGES
-
-  //LOGIN GET
+  // SHOW PAGES
   loginPage: async (req, res) => {
     const error = req.session.error;
     delete req.session.error;
@@ -12,29 +10,35 @@ module.exports = {
 
   },
 
-  //REGISTER GET
   registerPage: async (req, res) => {
     const error = req.session.error;
     delete req.session.error;
     res.render("pages/register", { err: error })
   },
 
-  //FORGOT PASS GET
   forgotPasswordPage: async (req, res) => res.render("pages/forgot_password"),
 
-  //RESET PASS GET
   resetPasswordPage: async (req, res) => res.render("pages/reset_password"),
 
-  //INDEX GET
   indexPage: async (req, res) => {
     const email = req.session.userEmail;
     res.render("index", { email: email })
   },
 
+  userDataPage: async (req, res) => {
+    const email = req.session.userEmail;
+    res.render("pages/userProfile", { email: email });
+  },
 
-  //EXECUTE ACTIONS
+  cardPage: async (req, res) => {
+    const email = req.session.userEmail;
+    res.render("forms/addCard", { email: email });
+  },
 
-  //Login Post
+
+
+  //ACTIONS
+
   login: async (req, res) => {
     const data = {
       email: req.body.email,
@@ -63,7 +67,6 @@ module.exports = {
     }
   },
 
-  //Register Post
   register: async (req, res) => {
     const data = {
       name: req.body.name,
@@ -81,7 +84,6 @@ module.exports = {
     }
   },
 
-  //Forgot Pass Post
   forgotPassword: async (req, res) => {
     const data = {
       email: req.body.email,
@@ -97,7 +99,6 @@ module.exports = {
     }
   },
 
-  //Reset Pass post
   resetPassword: async (req, res) => {
     const data = {
       email: req.body.email,
@@ -117,13 +118,27 @@ module.exports = {
     }
   },
 
-
-  //LOGOUT
   logout: async (req, res) => {
     req.session.destroy((err) => {
       if (err) throw err;
       res.redirect("/login");
     });
+  },
+
+  // SHOW USER PROFILE
+  userData: async (req, res) => {
+    try {
+      const token = req.session.token
+      const response = await apiLogin.get("/user/data", {
+        headers: {
+          "Authorization": `Bearer ${token}`,
+        }
+      })
+      return res.json(response.data)
+    } catch (err) {
+      console.log(err)
+      res.status(err.status || 400).send(err)
+    }
   },
 
 }

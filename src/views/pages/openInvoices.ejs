@@ -1,10 +1,11 @@
 <!-- STYLE -->
 <style>
-  #result {
+  .invoice {
     background-color: rgba(47, 135, 84, 0.3);
     border-radius: 5px;
-    padding: 2rem 1rem;
-
+    /* border: 1px solid red; */
+    padding: 1rem 0;
+    margin: 1rem 0;
   }
 </style>
 
@@ -25,21 +26,15 @@
 
   <div id="result"> </div>
 
-  <hr>
-  <div id="addCard">
-    <p>Adcionar um novo meio de pagamento.</p>
-    <a href="/user/profile-card" id="new-card" class="btn btn-success">Cartão</a>
-  </div>
-  <hr>
-  <br>
   <div>
     <a href="/index" class="btn btn-outline-success">Voltar</a>
   </div>
 </div>
+
 
 <label for=""></label>
 <footer>
   <%- include('../partials/footer') %>
 </footer>
 
-<script src="/js/userProfile.js"></script>
+<script src="/js/openInvoices.js"></script>
