@@ -125,7 +125,6 @@ const createAccount = {
       //Renda Mensal
       monthlyIncomeOrRevenue: document.getElementsByName('monthlyIncome')[0].value
     }
-    console.log(data)
 
     const response = await fetch("/account/create", {
       method: "POST",
@@ -166,7 +165,6 @@ const createAccount = {
     })
   },
 
-
   loadUserData: () => {
     fetch("/user/data", {
       method: 'GET',
@@ -178,7 +176,7 @@ const createAccount = {
       .then(response => response.json())
       .then((data) => {
         const userDocument = data[0].document
-        if (userDocument.length != 0) {
+        if (userDocument) {
           Swal.fire({
             title: 'Oops...',
             text: 'Você já criou sua conta digital.',

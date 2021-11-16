@@ -112,25 +112,34 @@ const newCompany = {
 
 
     // LOAD COMPANY NAMES
-    const compNames = await fetch("/account/company", {
+    const response = await fetch("/account/company", {
       method: 'GET',
       headers: {
         "Accept": "application/json",
         "Content-Type": "application/json"
       },
     })
-    const companies = await compNames.json()
-    if (!(compNames.ok)) {
-      console.log("não foi possivel carregar os nomes das companias")
+
+    if (!(response.ok)) {
+      err.message || console.log(err.stack)
     } else {
-      const company = companies.map(function (item) {
-        return item.name;
+      const data = await response.json()
+
+      const company = data.map(item => {
+        return item
       });
       company.forEach(item => {
-        companyName.innerHTML += `<option>${item}</option>`
+        // console.log(item.name)
+        companyName.innerHTML += `<option>${item.name}</option>`
       });
+
+      document.getElementById('companyName').addEventListener('click', event => {
+        const companyName = event.target.value
+        let companyObj = company.find(item => item.name === companyName)
+        document.getElementById('cnpj').value = `${companyObj.cnpj}`;
+      })
     }
-  },
+  }
 }
 window.onload = newCompany.loadCompanies()
 document.addEventListener('DOMContentLoaded', newCompany.init)
