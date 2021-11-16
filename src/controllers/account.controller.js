@@ -29,8 +29,8 @@ module.exports = {
       console.log(account.data.message)
       return res.json(account.data.message)
     } catch (err) {
-      console.log(err)
-      res.status(err.status || 400).send(err)
+      console.log(err.response.data)
+      res.status(err.status || 400).send(err.response.data)
     }
   },
 

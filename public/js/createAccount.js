@@ -9,7 +9,7 @@ const pesquisarCep = async () => {
   const postCode = document.getElementById('postCode').value;
 
   let validate = true;
-  const regexCep = /^\d{5}\d{3}$/;
+  const regexCep = /(^[0-9]{5})([0-9]{3}$)/
   if (!regexCep.test(postCode)) {
     alert('Cep Inválido, tente novamente')
     validate = false
@@ -35,7 +35,6 @@ const pesquisarCep = async () => {
 }
 
 ////
-
 const createAccount = {
   init: () => {
     document.getElementById('btn_cep').addEventListener('click', pesquisarCep);
@@ -44,39 +43,29 @@ const createAccount = {
 
   validate: () => {
     //Dados pessoais and Account Holder
-    const name = document.getElementsByName('name')[0].value
-    const email = document.getElementsByName('email')[0].value
     const cpf = document.getElementsByName('cpf')[0].value
     const birthDate = document.getElementsByName('birthDate')[0].value
     const phone = document.getElementsByName('phone')[0].value
+    const monthlyIncome = document.getElementsByName('monthlyIncome')[0].value
+
+    const street = document.getElementById('street').value
     const number = document.getElementsByName('number')[0].value
+    const neighborhood = document.getElementById('neighborhood').value
+    const city = document.getElementById('city').value
+    const state = document.getElementById('state').value
 
 
     //REGEX TESTS
-    const regexEmail = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+    const regexCPF = /^[0-9]{3}.?[0-9]{3}.?[0-9]{3}-?[0-9]{2}/
     const regexBirthDate = /^(19|20)\d\d[-](0[1-9]|1[012])[-](0[1-9]|[12][0-9]|3[01])$/g
-
+    // const regexEmail = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+    // const regexPhone = /(^[0-9]{2})?(\s|-)?(9?[0-9]{4})-?([0-9]{4}$)/
 
     let validate = true;
     let message = ''
 
-    if (name.length < 2) {
-      message = 'Escreva seu nome corretamente'
-      validate = false
-    }
-
-    if (number.length == 0) {
-      message = 'O Número do endereço não pode ficar em branco'
-      validate = false
-    }
-
-    if (!regexEmail.test(email)) {
-      message = 'Email inválido'
-      validate = false
-    }
-
-    if (!cpf.length === 11) {
-      message = `CPF Inválido, deve ter 11 caracteres, o seu tem ${cpf.length} caracteres`
+    if (!regexCPF.test(cpf)) {
+      message = `CPF Inválido, verifique os campos.`
       validate = false
     }
 
@@ -85,8 +74,23 @@ const createAccount = {
       validate = false
     }
 
-    if (!phone.length === 11) {
-      message = `Telefone Inválido, deve ter 13 caracteres, o seu tem ${phone.length} caracteres`
+    if (phone.length != 11) {
+      message = `Telefone Inválido, verifique se digitou corretamente.`
+      validate = false
+    }
+
+    if (street.length == 0 || neighborhood.length == 0 || city.length == 0 || state.length == 0) {
+      message = 'Os campos do endereço não podem ficar em branco'
+      validate = false
+    }
+
+    if (number.length == 0) {
+      message = 'Os campo "número" do endereço não pode ficar em branco'
+      validate = false
+    }
+
+    if (monthlyIncome.length == 0) {
+      message = 'O campo Renda Mensal não pode ficar em branco'
       validate = false
     }
 
@@ -97,7 +101,7 @@ const createAccount = {
     }
   },
 
-  send: () => {
+  send: async () => {
     const data = {
       type: "PAYMENT",
       name: document.getElementsByName('name')[0].value,
@@ -123,7 +127,7 @@ const createAccount = {
     }
     console.log(data)
 
-    fetch("/account/create", {
+    const response = await fetch("/account/create", {
       method: "POST",
       headers: {
         "Accept": "application/json",
@@ -131,16 +135,16 @@ const createAccount = {
       },
       body: JSON.stringify(data)
     })
-      .then(response => response.json())
-      .then(accountCreated => {
-        createAccount.success()
-        setTimeout(function () {
-          window.location.assign("/index")
-        }, 3000)
+    const res = response.json()
 
-      }).catch(err => {
-        err
-      })
+    if (!(response.ok)) {
+      alert(err.message)
+    } else {
+      createAccount.success()
+      setTimeout(function () {
+        window.location.assign("/index")
+      }, 3000)
+    }
   },
 
   //SWEET ALERT BUTTON
@@ -162,8 +166,9 @@ const createAccount = {
     })
   },
 
+
   loadUserData: () => {
-    fetch("/account/user/data", {
+    fetch("/user/data", {
       method: 'GET',
       headers: {
         "Accept": "application/json",
@@ -172,8 +177,22 @@ const createAccount = {
     })
       .then(response => response.json())
       .then((data) => {
-        document.getElementById('name').value += `${data[0].name}`;
-        document.getElementById('email').value += `${data[0].email}`
+        const userDocument = data[0].document
+        if (userDocument.length != 0) {
+          Swal.fire({
+            title: 'Oops...',
+            text: 'Você já criou sua conta digital.',
+            icon: 'info',
+            confirmButtonColor: '#198754',
+          })
+          setTimeout(function () {
+            window.location.assign("/index")
+          }, 2500)
+        } else {
+          console.log(data[0])
+          document.getElementById('name').value += `${data[0].name}`;
+          document.getElementById('email').value += `${data[0].email}`
+        }
       })
       .catch(err => {
         err.message || console.log(err.stack)
