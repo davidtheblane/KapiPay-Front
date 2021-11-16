@@ -19,7 +19,7 @@ router.use(isAuth)
 router.get('/send-documents', AccountController.sendDocumentsPage);
 router.get('/create', AccountController.createAccountPage);
 router.get('/company-page', CompanyController.newCompanyPage);
-router.get('/invoice/list-open', InvoiceController.openInvoiceListPage);
+router.get('/invoices/list-open', InvoiceController.openInvoiceListPage);
 router.get('/invoice', InvoiceController.newInvoicePage);
 
 // GET
@@ -31,6 +31,7 @@ router.get('/company', CompanyController.getCompany);
 router.get('/invoices', InvoiceController.getInvoice);
 //POST
 router.post('/card-hash', AccountController.cardHash);
+router.post('/payment_card', AccountController.cardPayment);
 router.post('/create', AccountController.createAccount);
 router.post('/company', CompanyController.newCompany);
 router.post('/invoice', InvoiceController.newInvoice);

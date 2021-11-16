@@ -24,7 +24,6 @@ module.exports = {
       }
 
       const response = await api.post("/account/invoice", { data }, config)
-      // console.log(response.data)
 
       return res.json(response.data)
     } catch (err) {
@@ -36,19 +35,16 @@ module.exports = {
 
   getInvoice: async (req, res) => {
     try {
-      console.log("chegou no controller de invoices")
-      const token = req.headers.authorization
-
-      const response = await api.get("/account/invoices", {
+      const token = req.session.token
+      const config = {
         headers: {
-          "Authorization": token,
-          "resourcetoken": resourcetoken
-        }
-      })
-      console.log(response.data)
+          "Authorization": `Bearer ${token}`,
+        },
+      }
+      const response = await api.get("/account/invoices", config)
       return res.json(response.data)
     } catch (err) {
-      res.status(400).send({ message: err.message || err.stack })
+      res.status(400).send(err.response)
     }
   },
 

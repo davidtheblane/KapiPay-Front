@@ -124,5 +124,22 @@ module.exports = {
     }
   },
 
+  cardPayment: async (req, res) => {
+    try {
+      console.log('chegou no controller de pagamento de cartao')
+      const data = req.body
+      console.log(data)
+      const token = req.session.token
+      const response = await api.post("/account/payment_card", data, {
+        headers: {
+          "Authorization": `Bearer ${token}`
+        }
+      })
+      return res.json(response.data)
+    } catch (err) {
+      console.log(err)
+      res.status(err.status || 400).send(err)
+    }
+  },
 
 }

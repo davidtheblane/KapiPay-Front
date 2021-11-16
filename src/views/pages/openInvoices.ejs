@@ -1,9 +1,11 @@
 <!-- STYLE -->
 <style>
-  #result {
-    height: 300px;
+  .invoice {
     background-color: rgba(47, 135, 84, 0.3);
     border-radius: 5px;
+    /* border: 1px solid red; */
+    padding: 1rem 0;
+    margin: 1rem 0;
   }
 </style>
 
@@ -22,11 +24,7 @@
 <!-- BODY -->
 <div class="container">
 
-  <div id="result">
-    <ul id="output"></ul>
-
-  </div>
-
+  <div id="result"> </div>
 
   <div>
     <a href="/index" class="btn btn-outline-success">Voltar</a>
@@ -39,4 +37,4 @@
   <%- include('../partials/footer') %>
 </footer>
 
-<script src="/js/userProfile.js"></script>
+<script src="/js/openInvoices.js"></script>

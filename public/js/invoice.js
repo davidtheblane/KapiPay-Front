@@ -31,6 +31,7 @@ const newInvoice = {
       },
       body: JSON.stringify({
         companyName: document.getElementsByName('companyName')[0].value,
+        cnpj: document.getElementsByName('cnpj')[0].value,
         amount: document.getElementsByName('amount')[0].value,
         barcodeNumber: document.getElementsByName('barcodeNumber')[0].value,
         dueDate: document.getElementsByName('dueDate')[0].value,
@@ -55,27 +56,37 @@ const newInvoice = {
 
   },
 
-  loadCompanies: () => {
-    fetch("/account/company", {
+  loadCompanies: async () => {
+    const response = await fetch("/account/company", {
       method: 'GET',
       headers: {
         "Accept": "application/json",
         "Content-Type": "application/json"
       },
     })
-      .then(response => response.json())
-      .then((data) => {
-        const company = data.map(function (item) {
-          return item.name;
-        });
-        company.forEach(item => {
-          companyName.innerHTML += `<option>${item}</option>`
-        });
 
+    if (!(response.ok)) {
+      err.message || console.log(err.stack)
+    } else {
+      const data = await response.json()
+
+      const company = data.map(item => {
+        return item
+      });
+
+      company.forEach(item => {
+        // console.log(item.name)
+        companyName.innerHTML += `<option>${item.name}</option>`
+      });
+
+      document.getElementById('companyName').addEventListener('click', event => {
+        const companyName = event.target.value
+        let companyObj = company.find(item => item.name === companyName)
+        document.getElementById('cnpj').value = `${companyObj.cnpj}`;
       })
-      .catch(err => {
-        err.message || console.log(err.stack)
-      })
+
+    }
+
   },
 
   success: async function () {
