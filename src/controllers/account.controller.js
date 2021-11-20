@@ -16,15 +16,16 @@ module.exports = {
 
   //CRIA CONTA DIGITAL
   createAccount: async (req, res) => {
+    const data = req.body
+    console.log(data)
+    const token = req.session.token
+    const config = {
+      headers: {
+        "Authorization": `Bearer ${token}`,
+      },
+    }
     try {
-      const data = req.body
-      console.log(data)
-      const token = req.session.token
-      const account = await api.post("/account/create", data, {
-        headers: {
-          "Authorization": `Bearer ${token}`
-        }
-      })
+      const account = await api.post("/account/create", data, config)
 
       console.log(account.data.message)
       return res.json(account.data.message)
@@ -36,13 +37,14 @@ module.exports = {
 
   // SALDO
   balance: async (req, res) => {
+    const token = req.session.token
+    const config = {
+      headers: {
+        "Authorization": `Bearer ${token}`,
+      },
+    }
     try {
-      const token = req.session.token
-      const balance = await api.get("/account/balance", {
-        headers: {
-          "Authorization": `Bearer ${token}`,
-        }
-      })
+      const balance = await api.get("/account/balance", config)
       console.log(balance.data.balance)
       return res.json(balance.data.balance)
     } catch (err) {
@@ -53,13 +55,14 @@ module.exports = {
 
   // STATUS DA CONTA
   accountStatus: async (req, res) => {
+    const token = req.session.token
+    const config = {
+      headers: {
+        "Authorization": `Bearer ${token}`,
+      },
+    }
     try {
-      const token = req.session.token
-      const status = await api.get("/account/status", {
-        headers: {
-          "Authorization": `Bearer ${token}`,
-        }
-      })
+      const status = await api.get("/account/status", config)
       console.log(status.data.status)
       return res.json(status.data.status)
     } catch (err) {
@@ -69,14 +72,14 @@ module.exports = {
 
   // STATUS DE DOCUMENTOS
   verifyDocuments: async (req, res) => {
+    const token = req.session.token
+    const config = {
+      headers: {
+        "Authorization": `Bearer ${token}`,
+      },
+    }
     try {
-      const token = req.session.token
-      const documents = await api.get("/account/documents", {
-        headers: {
-          "Authorization": `Bearer ${token}`,
-        }
-      })
-      // console.log(documents.data)
+      const documents = await api.get("/account/documents", config)
       return res.json(documents.data)
     } catch (err) {
       res.status(err.status || 400).send({ message: err.message || err.stack })
@@ -85,16 +88,16 @@ module.exports = {
 
   // ENVIA DOCUMENTOS
   sendDocuments: async (req, res) => {
+    const token = req.session.token;
+    const id = req.params.id;
+    const formData = req.files;
+    console.log(req.files)
+    const config = {
+      headers: {
+        "Authorization": `Bearer ${token}`,
+      },
+    }
     try {
-      const token = req.session.token;
-      const id = req.params.id;
-      const formData = req.files;
-      console.log(req.files)
-      const config = {
-        headers: {
-          "Authorization": `Bearer ${token}`,
-        },
-      }
       const documents = await api.post(`/account/documents/${id}`, { formData }, config)
       console.log(documents.data)
       return res.json(documents.data)
@@ -125,16 +128,16 @@ module.exports = {
   },
 
   cardPayment: async (req, res) => {
+    const token = req.session.token
+    const data = req.body
+    // console.log(data)
+    const config = {
+      headers: {
+        "Authorization": `Bearer ${token}`,
+      },
+    }
     try {
-      console.log('chegou no controller de pagamento de cartao')
-      const data = req.body
-      console.log(data)
-      const token = req.session.token
-      const response = await api.post("/account/payment_card", data, {
-        headers: {
-          "Authorization": `Bearer ${token}`
-        }
-      })
+      const response = await api.post("/account/payment_card", data, config)
       return res.json(response.data)
     } catch (err) {
       console.log(err)

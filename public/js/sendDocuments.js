@@ -21,20 +21,19 @@ const documents = {
           result.innerHTML = ''
           result.appendChild(p)
         } else {
-          p.innerHTML = `Tudo certo, a conta foi verificada.<hr>`
+          p.innerHTML = `A conta foi criada, verifique abaixo se a documentação já foi enviada.<hr>`
           result.innerHTML = ''
           result.appendChild(p)
+
+          documents.verifyDocuments()
         }
       })
       .catch(err => {
         err.message || console.log(err.stack)
       })
-
-
-    documents.verifyDocuments()
   },
 
-  //VERIFY DOCUMENT STATUS
+  //VERIFY DOCUMENTS
   verifyDocuments: () => {
     const result = document.getElementById('docs-result')
     result.innerHTML = 'Carregando...'
@@ -49,10 +48,7 @@ const documents = {
       .then((docData) => {
         const selfieStatus = docData[0].approvalStatus
         const dockStatus = docData[1].approvalStatus
-        // const docLink = docData[0]._links.self.href
-        // const selfieLink = docData[1]._links.self.href
 
-        // //pega referencia do elemento pai onde o resultado sera inserido
         let p = document.createElement('p')
         p.setAttribute('class', 'output')
         p.innerHTML = `
