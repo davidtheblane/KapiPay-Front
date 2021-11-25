@@ -26,6 +26,11 @@
   .colored-toast.swal2-icon-success {
     background-color: #a5dc86 !important;
   }
+
+  img {
+    width: 100px;
+    height: 100px;
+  }
 </style>
 
 
@@ -40,20 +45,21 @@
 
   <div class="container">
     <div class="logo">
-      <h1 class="text-center">Kapipay</h1>
       <img src="imgs/kapipay_logo.png" class="rounded mx-auto d-block" alt="kapipay logo">
       <br>
-      <h5 class="text-center"> Você agenda... nós pagamos!</h5>
+      <h1 class="display-4 text-center fw-bold lh-1 mb-3">Kapipay</h1>
+      <br>
+      <p class="text-center fs-4">Você agenda... nós pagamos!</p>
     </div>
-    <br>
     <form id="form-login">
       <div class="mb-3">
         <label for="email" class="form-label">Email</label>
-        <input type="email" id="email" name="email" class="form-control" aria-describedby="emailHelp" required />
+        <input type="email" id="email" name="email" class="form-control form-control-sm" aria-describedby="emailHelp"
+          required />
       </div>
       <div class="mb-3">
         <label for="password" class="form-label">Senha</label>
-        <input type="password" class="form-control" id="password" name="password" required />
+        <input type="password" class="form-control form-control-sm" id="password" name="password" required />
 
         <div id="emailHelp" class="form-text">
           Não iremos compartilhar sua senha com ninguém.

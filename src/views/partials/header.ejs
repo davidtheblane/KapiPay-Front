@@ -1,15 +1,29 @@
 <style>
   .navbar {
-    padding: 2rem;
+    padding: 1rem 1rem 0 1rem;
     margin-bottom: 1rem;
+    /* border: 1px solid green; */
   }
 
   .form-inline {
     text-align: right;
+    /* border: 1px solid red; */
+    font-size: small;
+  }
+
+  #btn_logout {
+    font-size: 12px;
+    font-weight: bold;
+    line-height: 1rem;
+    border: none;
+  }
+
+  .userEmail {
+    line-height: 0;
   }
 </style>
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light justify-content-between">
+<nav class="navbar navbar-expand-sm navbar-light bg-light justify-content-between">
   <a class="navbar-brand" href="/index">KapiPay 💸</a>
 
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
@@ -23,7 +37,7 @@
         <a class="nav-link" href="/index">Home</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Features</a>
+        <a class="nav-link" href="#">Perfil</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="/about">Sobre</a>
@@ -32,13 +46,12 @@
   </div>
   <form class="form-inline">
     <h4 class=" welcome-title"> Bem vindo </h4>
-    <p class="userEmail">
-      <%= email %>
-    </p>
+
     <span class="navbar-logout-button">
-      <button id="btn_logout" type="button" class="btn btn-sm btn-outline-secondary">
-        User | Logout
-      </button>
+      <p class="userEmail">
+        <%= email %>
+      </p>
+      <button id="btn_logout" type="button" class="btn btn-sm btn-outline-secondary"> Logout </button>
     </span>
   </form>
 </nav>
