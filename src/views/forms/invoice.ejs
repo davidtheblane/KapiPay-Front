@@ -42,39 +42,41 @@
     <br>
     <div class="form-group">
 
-      <div class="mb-3">
-        <label for="companyName">Nome da Empresa</label>
+      <div class="form-floating mb-3">
         <select class="form-control form-control-sm" id="companyName" name="companyName" required>
-          <option selected>Empresas já cadastradas...</option>
+          <option selected>Escolha uma</option>
         </select>
-        <input type="text" id="cnpj" name="cnpj" class="form-control form-control-sm" readonly required />
+        <label for="companyName">Empresa</label>
+
+        <div class="form-floating mb-3">
+          <input type="text" id="cnpj" name="cnpj" class="form-control form-control-sm" readonly required />
+          <label for="companyName">CNPJ</label>
+        </div>
       </div>
 
       <hr>
 
-      <div class="mb-3">
-        <label for="amount" class="form-label">Valor</label>
-        <input type="number" id="amount" name="amount" class="form-control form-control-sm"
-          placeholder="Valor da Fatura" required />
+      <div class="form-floating mb-3">
+        <input type="number" id="amount" name="amount" class="form-control form-control-sm" required />
+        <label for="amount" class="form-label">Valor à ser pago</label>
       </div>
 
-      <div class="mb-3">
-        <label for="barcodeNumber" class="form-label">Número de pagamento</label>
-        <input type="text" id="barcodeNumber" name="barcodeNumber" class="form-control form-control-sm"
-          placeholder="Linha digitável" required />
+      <div class="form-floating mb-3">
+        <input type="text" id="barcodeNumber" name="barcodeNumber" class="form-control form-control-sm" required />
+        <label for="barcodeNumber" class="form-label">Número de pagamento | Linha digitável</label>
       </div>
 
 
-      <div class="mb-3">
-        <label for="dueDate" class="form-label">Vencimento</label>
+      <div class="form-floating mb-3">
         <input type="date" id="dueDate" name="dueDate" class="form-control form-control-sm" required />
+        <label for="dueDate" class="form-label">Vencimento</label>
       </div>
 
 
-      <div class="mb-3">
+      <div class="form-floating mb-3">
+        <textarea type="description" class="form-control form-control-sm" id="description" rows="3"
+          name="description"> </textarea>
         <label for="description" class="form-label">Descrição</label>
-        <textarea type="description" class="form-control form-control-sm" id="description" rows="3" name="description"
-          placeholder="Descreva em poucas palavras o serviço prestado."> </textarea>
       </div>
 
 
