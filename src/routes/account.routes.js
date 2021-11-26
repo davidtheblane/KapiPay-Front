@@ -23,7 +23,7 @@ router.get('/invoices/list-open', InvoiceController.openInvoiceListPage);
 router.get('/invoice', InvoiceController.newInvoicePage);
 
 // GET
-// router.get('/balance', AccountController.balance);
+router.get('/balance', AccountController.balance);
 router.get('/status', AccountController.accountStatus);
 router.get('/documents', AccountController.verifyDocuments);
 router.get('/company-type', CompanyController.getCompanyType);

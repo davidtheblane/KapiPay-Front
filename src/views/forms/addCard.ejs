@@ -1,8 +1,21 @@
 <!-- STYLE -->
 <style>
+  .container {
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  footer {
+    margin-top: 2rem;
+    bottom: 5px;
+  }
+
   form {
-    width: 400px;
+    width: 22rem;
     margin: 0 auto;
+    line-height: 1rem
   }
 
   input:valid {
@@ -35,58 +48,62 @@
 <!-- FORM -->
 <div class="container">
   <form id="form-add-card">
-    <h2>Incluir cartão de crédito</h2>
+    <h3>Incluir cartão de crédito</h3>
     <br>
     <div class="form-group">
 
-      <div class="mb-3">
+      <div class="form-floating mb-3">
+        <input type="text" id="cardNumber" name="cardNumber" class="form-control form-control-sm" required />
         <label for="cardNumber" class="form-label">Número do cartão</label>
-        <input type="text" id="cardNumber" name="cardNumber" class="form-control" required />
       </div>
 
 
 
-      <div class="mb-3">
+      <div class="form-floating mb-3">
+        <input type="text" id="holderName" name="holderName" class="form-control form-control-sm" required />
         <label for="holderName" class="form-label">Nome Impresso no Cartão</label>
-        <input type="text" id="holderName" name="holderName" class="form-control" required />
       </div>
 
 
 
-      <div class="mb-3">
+      <div class="form-floating mb-3">
+        <input type="text" id="securityCode" name="securityCode" class="form-control form-control-sm" required />
         <label for="securityCode" class="form-label">Código de Segurança</label>
-        <input type="text" id="securityCode" name="securityCode" class="form-control" required />
       </div>
 
 
 
-      <div class="mb-3">
+      <div class="form-floating mb-3">
+        <input type="text" id="expirationMonth" name="expirationMonth" class="form-control form-control-sm" required />
         <label for="expirationMonth" class="form-label">Mês de Vencimento</label>
-        <input type="text" id="expirationMonth" name="expirationMonth" class="form-control" required />
       </div>
 
 
 
-      <div class="mb-3">
+      <div class="form-floating mb-3">
+        <input type="text" id="expirationYear" name="expirationYear" class="form-control form-control-sm" required />
         <label for="expirationYear" class="form-label">Ano de Vencimento</label>
-        <input type="text" id="expirationYear" name="expirationYear" class="form-control" required />
       </div>
 
 
       <div>
-        <button id="btn_save" type="button" class="btn btn-success">Salvar</button>
+        <button id="btn_save" type="button" class="btn btn-sm btn-success">Salvar</button>
 
-        <a href="/user/profile" class="btn btn-outline-success">Voltar</a>
+        <a href="/user/profile" class="btn btn-sm btn-outline-success">Voltar</a>
       </div>
     </div>
 
     <div id="hash"></div>
   </form>
+
+
+
+  <!-- FOOTER -->
+  <footer>
+    <%- include('../partials/footer') %>
+  </footer>
 </div>
 
-<footer>
-  <%- include('../partials/footer') %>
-</footer>
 
 <script src="/js/addCard.js"></script>
 

@@ -1,8 +1,21 @@
 <!-- STYLE -->
 <style>
+  .container {
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  footer {
+    margin-top: 2rem;
+    bottom: 5px;
+  }
+
   form {
-    width: 400px;
+    width: 22rem;
     margin: 0 auto;
+    line-height: 1rem
   }
 
   input:valid {
@@ -35,13 +48,13 @@
 <!-- FORM -->
 <div class="container">
   <form id="form-new-company">
-    <h2>Incluir Fornecedor</h2>
+    <h4 class="form-title">Incluir Fornecedor</h4>
     <br>
     <div class="form-group">
 
       <div class="mb-3">
         <label for="companyType" class="form-label">Tipo de Serviço</label>
-        <select class="form-control " id="companyType" name="companyType" required>
+        <select class="form-control form-control-sm" id="companyType" name="companyType" required>
           <option selected>Escolha o tipo de serviço...</option>
         </select>
       </div>
@@ -50,7 +63,7 @@
 
       <div class="mb-3">
         <label for="companyName" class="form-label">Nome da Empresa</label>
-        <select class="form-control" id="companyName" name="companyName" required>
+        <select class="form-control form-control-sm" id="companyName" name="companyName" required>
           <option selected></option>
 
           <input type="text" id="typedName" name="typedName" class="form-control form-control-sm"
@@ -61,27 +74,32 @@
 
       <div class="mb-3">
         <label for="cnpj" class="form-label">CNPJ</label>
-        <input type="text" id="cnpj" name="cnpj" class="form-control" placeholder="Sem traços nem pontos" required />
+        <input type="text" id="cnpj" name="cnpj" class="form-control form-control-sm"
+          placeholder="Sem traços nem pontos" required />
       </div>
 
 
       <div class="mb-3">
         <label for="description" class="form-label">Descrição</label>
-        <textarea type="description" class="form-control" id="description" rows="3" name="description"
+        <textarea type="description" class="form-control form-control-sm" id="description" rows="3" name="description"
           placeholder="Descreva em poucas palavras o serviço prestado."> </textarea>
       </div>
     </div>
 
     <div>
-      <button id="btn_save" type="button" class="btn btn-success">Salvar</button>
+      <button id="btn_save" type="button" class="btn btn-sm btn-success">Salvar</button>
 
-      <a href="/index" class="btn btn-outline-success">Voltar</a>
+      <a href="/index" class="btn btn-sm btn-outline-success">Voltar</a>
     </div>
   </form>
+
+
+
+
+  <footer>
+    <%- include('../partials/footer') %>
+  </footer>
 </div>
 
-<footer>
-  <%- include('../partials/footer') %>
-</footer>
 
 <script src="/js/company.js"></script>

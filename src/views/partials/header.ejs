@@ -23,38 +23,86 @@
   }
 </style>
 
-<nav class="navbar navbar-expand-sm navbar-light bg-light justify-content-between">
-  <a class="navbar-brand" href="/index">KapiPay 💸</a>
+<!-- <nav class="navbar navbar-expand-sm navbar-light bg-light justify-content-between">
+  <div class="container-fluid">
 
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
-    aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
+      aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
 
-  <div class="collapse navbar-collapse" id="navbarText">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="/index">Home</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Perfil</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/about">Sobre</a>
-      </li>
-    </ul>
+    <div class="collapse navbar-collapse" id="navbarText">
+      <a class="navbar-brand" href="/index">KapiPay 💸</a>
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="/index">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/perfil">Perfil</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/about">Sobre</a>
+        </li>
+      </ul>
+    </div>
+
+    <form class="form-inline">
+      <h4 class=" welcome-title"> Bem vindo </h4>
+
+      <span class="navbar-logout-button">
+        <p class="userEmail">
+          //<%= email %>
+        </p>
+        <button id="btn_logout" type="button" class="btn btn-sm btn-outline-secondary"> Sair </button>
+      </span>
+    </form>
+
   </div>
-  <form class="form-inline">
-    <h4 class=" welcome-title"> Bem vindo </h4>
+</nav> -->
 
-    <span class="navbar-logout-button">
-      <p class="userEmail">
-        <%= email %>
-      </p>
-      <button id="btn_logout" type="button" class="btn btn-sm btn-outline-secondary"> Sair </button>
-    </span>
-  </form>
+<nav class="navbar navbar-expand-sm navbar-light bg-light justify-content-between">
+  <div class="container-fluid">
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggleContent"
+      aria-controls="navbarToggleContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- NAVBAR CONTENT -->
+    <div class="collapse navbar-collapse" id="navbarToggleContent">
+
+      <a class="navbar-brand" href="/index">KapiPay 💸</a>
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="/index">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/user/profile">Perfil</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/about">Sobre</a>
+        </li>
+      </ul>
+    </div>
+
+    <form class="form-inline">
+      <h4 class=" welcome-title"> Bem vindo </h4>
+
+      <span class="navbar-logout-button">
+        <p class="userEmail">
+          <%= email %>
+        </p>
+        <button id="btn_logout" type="button" class="btn btn-sm btn-outline-secondary"> Sair </button>
+      </span>
+    </form>
+    <!-- FIM NAVBAR CONTENT -->
+
+  </div>
 </nav>
+
+
+
+
 
 
 
