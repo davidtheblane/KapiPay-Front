@@ -68,7 +68,7 @@ module.exports = {
       console.log(status.data.status)
       return res.json(status.data.status)
     } catch (err) {
-      res.status(err.status || 400).send({ message: err.message || err.stack })
+      res.status(400).send({ message: "Não criou conta digital" })
     }
   },
 
@@ -84,7 +84,7 @@ module.exports = {
       const documents = await api.get("/account/documents", config)
       return res.json(documents.data)
     } catch (err) {
-      res.status(err.status || 400).send({ message: err.message || err.stack })
+      res.status(err.status || 400).send({ message: err.message })
     }
   },
 

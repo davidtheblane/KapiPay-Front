@@ -16,20 +16,16 @@ const documents = {
         //Apresenta no front
         let p = document.createElement('p')
         p.setAttribute('class', 'output')
-        if (status == "AWAITING_DOCUMENTS") {
-          p.innerHTML = `Aguardando documentos.<hr>`
-          result.innerHTML = ''
-          result.appendChild(p)
-        } else {
-          p.innerHTML = `A conta foi criada, verifique abaixo se a documentação já foi enviada.<hr>`
-          result.innerHTML = ''
-          result.appendChild(p)
 
-          documents.verifyDocuments()
-        }
+        p.innerHTML = JSON.stringify(status)
+        result.innerHTML = ''
+        result.appendChild(p)
+
+        documents.verifyDocuments()
+
       })
       .catch(err => {
-        err.message || console.log(err.stack)
+        err
       })
   },
 
