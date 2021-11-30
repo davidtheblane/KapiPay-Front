@@ -30,11 +30,16 @@ module.exports = {
     res.render("pages/userProfile", { email: email });
   },
 
+  // PAGINA PARA CADASTRAR CARTAO
   cardPage: async (req, res) => {
     const email = req.session.userEmail;
     res.render("forms/addCard", { email: email });
   },
-
+  // PAGINA PARA CADASTRAR CCONTA BANCARIA TRADICIONAL
+  cardBankAccountPage: async (req, res) => {
+    const email = req.session.userEmail;
+    res.render("forms/addBankAccount", { email: email });
+  },
 
 
   //ACTIONS

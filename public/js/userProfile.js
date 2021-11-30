@@ -99,8 +99,8 @@ const userProfile = {
           <hr>
           <h3>Conta Bancaria</h3>
           <li><strong>Banco Nº:</strong> ${userData[2].bankNumber}</li>
-          <li><strong>Agencia Nº:</strong> ${userData[2].agencyNumber} - ${userData[2].accountComplementNumber}</li>
-          <li><strong>Conta Nº:</strong> ${userData[2].accountNumber}</li>
+          <li><strong>Agencia Nº:</strong> ${userData[2].agencyNumber} </li>
+          <li><strong>Conta Nº:</strong> ${userData[2].accountNumber} - ${userData[2].accountComplementNumber}</li>
           <hr>
           <h3>Cartão de Crédito</h3>
           <li><strong>Digitos finais:</strong> ${userData[3].last4CardNumber}</li>

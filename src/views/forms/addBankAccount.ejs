@@ -1,0 +1,103 @@
+<!-- STYLE -->
+<style>
+  .container {
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  footer {
+    margin-top: 2rem;
+    bottom: 5px;
+  }
+
+  form {
+    width: 22rem;
+    margin: 0 auto;
+    line-height: 1rem
+  }
+
+  input:valid {
+    border: 1px solid lightgreen;
+  }
+
+  #typedName {
+    text-transform: uppercase;
+  }
+
+  .colored-toast.swal2-icon-success {
+    background-color: #a5dc86 !important;
+  }
+</style>
+
+<!DOCTYPE html>
+<!-- HTML -->
+
+<head>
+  <%- include('../partials/head') %>
+</head>
+
+<header>
+  <%- include('../partials/header') %>
+</header>
+<div id="result">
+
+</div>
+
+<!-- FORM -->
+<div class="container">
+  <form id="form-add-bank-account">
+    <h3>Incluir uma conta bancária</h3>
+    <br>
+    <div class="form-group">
+
+      <div class="form-floating mb-3">
+        <input type="text" id="bankNumber" name="bankNumber" class="form-control form-control-sm" required />
+        <label for="bankNumber" class="form-label">Banco Nº - ex: 237 Bradesco</label>
+      </div>
+
+
+
+      <div class="form-floating mb-3">
+        <input type="text" id="agencyNumber" name="agencyNumber" class="form-control form-control-sm" required />
+        <label for="agencyNumber" class="form-label">Agência Nº</label>
+      </div>
+
+
+
+      <div class="form-floating mb-3">
+        <input type="text" id="accountNumber" name="accountNumber" class="form-control form-control-sm" required />
+        <label for="accountNumber" class="form-label">Conta Corrente</label>
+      </div>
+
+
+
+      <div class="form-floating mb-3">
+        <input type="text" id="accountComplementNumber" name="accountComplementNumber"
+          class="form-control form-control-sm" required />
+        <label for="accountComplementNumber" class="form-label">Digito da conta corrente.</label>
+      </div>
+
+
+
+      <div>
+        <button id="btn_save" type="button" class="btn btn-sm btn-success">Salvar</button>
+
+        <a href="/user/profile" class="btn btn-sm btn-outline-success">Voltar</a>
+      </div>
+    </div>
+
+    <div id="hash"></div>
+  </form>
+
+
+
+  <!-- FOOTER -->
+  <footer>
+    <%- include('../partials/footer') %>
+  </footer>
+</div>
+
+
+<script src="/js/addBankAccount.js"></script>

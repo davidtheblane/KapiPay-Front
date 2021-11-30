@@ -31,6 +31,7 @@ router.get('/company', CompanyController.getCompany);
 router.get('/invoices', InvoiceController.getInvoice);
 //POST
 router.post('/card-hash', AccountController.cardHash);
+router.post('/bank-account', AccountController.bankAccount);
 router.post('/payment_card', AccountController.cardPayment);
 router.post('/create', AccountController.createAccount);
 router.post('/company', CompanyController.newCompany);
