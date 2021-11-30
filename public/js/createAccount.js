@@ -176,21 +176,22 @@ const createAccount = {
       .then(response => response.json())
       .then((data) => {
         const userDocument = data[0].document
-        if (userDocument) {
-          Swal.fire({
-            title: 'Oops...',
-            text: 'Você já criou sua conta digital.',
-            icon: 'info',
-            confirmButtonColor: '#198754',
-          })
-          setTimeout(function () {
-            window.location.assign("/index")
-          }, 2500)
-        } else {
-          console.log(data[0])
-          document.getElementById('name').value += `${data[0].name}`;
-          document.getElementById('email').value += `${data[0].email}`
-        }
+        // if (userDocument) {
+        //   Swal.fire({
+        //     title: 'Oops...',
+        //     text: 'Você já criou sua conta digital.',
+        //     icon: 'info',
+        //     confirmButtonColor: '#198754',
+        //   })
+        //   setTimeout(function () {
+        //     window.location.assign("/index")
+        //   }, 2500)
+        // } 
+        // else {
+        console.log(data[0])
+        document.getElementById('name').value += `${data[0].name}`;
+        document.getElementById('email').value += `${data[0].email}`
+        // }
       })
       .catch(err => {
         err.message || console.log(err.stack)

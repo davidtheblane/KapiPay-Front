@@ -14,6 +14,8 @@ module.exports = {
     res.render("forms/sendDocuments", { email: email });
   },
 
+
+
   //CRIA CONTA DIGITAL
   createAccount: async (req, res) => {
     const data = req.body
@@ -123,6 +125,27 @@ module.exports = {
     }
     catch (err) {
       console.log(err)
+      return res.status(err.status || 400).send(err)
+    }
+  },
+
+  // SALVA DADOS DE UMA CONTA BANCARIA TRADICIONAL DO USUARIO 
+  bankAccount: async (req, res) => {
+    const token = req.session.token
+    const data = req.body
+    // console.log(data)
+    const config = {
+      headers: {
+        "Authorization": `Bearer ${token}`,
+      },
+    }
+    try {
+      const response = await api.post("/account/bank_account", data, config)
+      // console.log(response)
+      return res.json(response.data)
+    }
+    catch (err) {
+      console.log(err.response)
       return res.status(err.status || 400).send(err)
     }
   },

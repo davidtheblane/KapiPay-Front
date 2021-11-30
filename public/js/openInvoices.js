@@ -74,11 +74,13 @@ const openInvoices = {
 
         data.forEach(invoice => {
           const item = invoice.invoiceInfo
+          // console.log(item.status)
 
           let div = document.createElement('div');
           div.className = 'invoice'
 
           if (!(item.status == "PAID")) {
+
             div.innerHTML = `<ul>
             <li><strong> Status </strong>: ${item.status = "ATIVO"}</li>
             <li><strong> Fornecedor </strong>: ${item.companyName}</li>
@@ -90,6 +92,7 @@ const openInvoices = {
           </ul>`
             document.getElementById('result').appendChild(div);
           } else {
+
             div.innerHTML = `<ul>
             <li><strong> Status </strong>: ${item.status = "PAGO"}</li>
             <li><strong> Fornecedor </strong>: ${item.companyName}</li>
@@ -100,6 +103,8 @@ const openInvoices = {
           </ul>`
             document.getElementById('result').appendChild(div);
           }
+
+
         })
 
 
