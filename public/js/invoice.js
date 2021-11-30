@@ -4,13 +4,20 @@ const newInvoice = {
   },
 
   validate: async () => {
-    const amount = document.getElementsByName('amount')[0].value
+    const amount = document.getElementsByName('amount')[0].value;
+    const barcodeNumber = document.getElementsByName('barcodeNumber')[0].value
+
 
     let validate = true;
     let message = ''
 
     if (amount > 50) {
       message = 'No momento só podemos registrar valores menos que R$50,00.'
+      validate = false
+    }
+
+    if (barcodeNumber.length <= 4) {
+      message = 'O campo de "Número de pagamento", não pode ficar em branco.'
       validate = false
     }
 
