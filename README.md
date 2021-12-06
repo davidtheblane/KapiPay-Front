@@ -3,7 +3,18 @@
 ![kapipay-banner (3)](https://user-images.githubusercontent.com/42559009/144868668-e8344fdf-ea14-4009-8a28-252dca15c6be.png)
 
 ## ⚙️ Descrição do projeto
-Kapipay é uma aplicação feita no programa de formação da linkapi, com o intuito de treinar e capacitar os trainees do programa. Cada candidato pode escolher um projeto de interesse pessoal e desenvolve-lo durantes 3 meses com mentoria de um dev senior e aulas e workshops ministradas com devs experientes. O desafio é criar do ZERO o ciclo completo de desenvolvimento de um APP e uma API totalmente funcional com versionamento, CI/CD, Banco de Dados, Integração de outras API's, Hospedado em um servidor cloud com domínio registrado e certificado SSL instalado.
+Kapipay é uma aplicação feita no programa de formação da linkapi, com o intuito de treinar e capacitar os trainees do programa. Cada candidato pode escolher um projeto de interesse pessoal e desenvolve-lo durantes 3 meses com mentoria de um dev senior e aulas e workshops ministradas com devs experientes. 
+
+O desafio é criar do **ZERO** o ciclo completo de desenvolvimento de um APP e uma API totalmente funcional com:
+- Banco de Dados
+- Versionamento
+- Ambientes de Produção e Desenvolvimento 
+- Deploy em cloud 
+- CI/CD
+- Integração com outras API's 
+- Domínio
+- Certificado SSL
+- Documentação
 
 ## ⚙️ Descrição da aplicação
 Essa aplicação é integrada a um gateway de pagamento onde o cliente pode cadastrar seus prestadores de serviços e suas faturas recebidas, e assim realizar o agendamento dos pagamentos para que o mesmo seja feito automaticamente na data escolhida.
@@ -27,16 +38,16 @@ https://app.swaggerhub.com/apis-docs/davidtheblane/KapiPay/1.0.0
 - Linguagem
   - Javascript
   - Nodes.JS
-  - 
+
 - UX/UI
   - EJS
   - HTML + CSS
   - Bootstrap
   - Sweet Alert 2
-   
+
 - Banco de dados
   - MongoDB Atlas
-  - 
+
 - Deploy
   - Digital Ocean
    
@@ -58,9 +69,9 @@ https://app.swaggerhub.com/apis-docs/davidtheblane/KapiPay/1.0.0
 - Documentação da API
   - Swagger Hub 
 
+
 ## 🧪 Testar o projeto
 A aplicação é dividida em duas, APP e API
-
 - Clone o repositório na sua máquina
 - Execute npm install
 - Preencha as informações necessário no arquivo .env.development e renomeie para .env
