@@ -1,4 +1,4 @@
-![develop deploy status](https://github.com/davidtheblane/KapiPay-Front/actions/workflows/develop_deploy.yml/badge.svg)
+![production_deploy status](https://github.com/davidtheblane/KapiPay-Front/actions/workflows/production_deploy.yml/badge.svg)
 
 ![kapipay-banner (3)](https://user-images.githubusercontent.com/42559009/144868668-e8344fdf-ea14-4009-8a28-252dca15c6be.png)
 
