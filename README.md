@@ -72,6 +72,7 @@ https://app.swaggerhub.com/apis-docs/davidtheblane/KapiPay/1.0.0
 
 ## 🧪 Testar o projeto
 A aplicação é dividida em duas, APP e API
+- API LINK - https://github.com/davidtheblane/KapiPay
 - Clone o repositório na sua máquina
 - Execute npm install
 - Preencha as informações necessário no arquivo .env.development e renomeie para .env
