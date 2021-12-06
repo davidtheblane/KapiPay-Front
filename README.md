@@ -2,38 +2,71 @@
 
 ![kapipay-banner (3)](https://user-images.githubusercontent.com/42559009/144868668-e8344fdf-ea14-4009-8a28-252dca15c6be.png)
 
-## Descrição do Projeto
-Kapipay é uma aplicação feita no programa de formação da linkapi, com o intuito de treinar e capacitar os trainees do programa. Cada candidato pode escolher um projeto de interesse pessoal e desenvolver durantes 3 meses com mentoria de um dev senior e aulas e workshops ministradas com devs experientes.
+## ⚙️ Descrição do projeto
+Kapipay é uma aplicação feita no programa de formação da linkapi, com o intuito de treinar e capacitar os trainees do programa. Cada candidato pode escolher um projeto de interesse pessoal e desenvolve-lo durantes 3 meses com mentoria de um dev senior e aulas e workshops ministradas com devs experientes. O desafio é criar do ZERO o ciclo completo de desenvolvimento de um APP e uma API totalmente funcional com versionamento, CI/CD, Banco de Dados, Integração de outras API's, Hospedado em um servidor cloud com domínio registrado e certificado SSL instalado.
 
+## ⚙️ Descrição da aplicação
 Essa aplicação é integrada a um gateway de pagamento onde o cliente pode cadastrar seus prestadores de serviços e suas faturas recebidas, e assim realizar o agendamento dos pagamentos para que o mesmo seja feito automaticamente na data escolhida.
 
+## 📖 A proposta
+A proposta é evitar que o usuário tenho que ficar acessando diversas plataformas diferentes para conseguir acessar suas contas e efetuar seus pagamentos, na kapipay uma vez o cadastro feito e a conta digital criada e verificada o usuário terá apenas que incluir seus fornecedores e faturas e agendar o pagamento que será feito com o crédito disponível na conta digital.(crédito inserido pelo usuário via cartão de crédito)
 
 ## 🔨 Funcionalidades
-- `Funcionalidade 1`: Criação de conta digital.
-- `Funcionalidade 1`: Cadastro de prestadores de serviços.
-- `Funcionalidade 1`: Cadastro de faturas e boletos.
-- `Funcionalidade 1`: Agendamento para pagamento.
+- `Criação de conta digital.`
+- `Cadastro de prestadores de serviços.`
+- `Cadastro de faturas e boletos.` 
+- `Agendamento para pagamento.`
 
-## Overview do Sistema
+## 🎥 Overview do Sistema
 ![Screencast_12-06-2021_09_17_56 AM](https://user-images.githubusercontent.com/42559009/144866478-3448134f-6a89-4d49-98b8-d83691a1cef4.gif)
 
-## Tecnologias utilizadas
-- Javascripts
-- Nodes.JS
-- EJS
-- HTML + CSS
-- Bootstrap
-- MongoDB
+## 📑 Documentação
+https://app.swaggerhub.com/apis-docs/davidtheblane/KapiPay/1.0.0
 
-## Testar o projeto
-A aplicação é dividida em duas APP e API
+## 🛰️ Tecnologias utilizadas.
+- Linguagem
+  - Javascript
+  - Nodes.JS
+  - 
+- UX/UI
+  - EJS
+  - HTML + CSS
+  - Bootstrap
+  - Sweet Alert 2
+   
+- Banco de dados
+  - MongoDB Atlas
+  - 
+- Deploy
+  - Digital Ocean
+   
+- Monitoramento de erros e logs
+  - Sentry  
+   
+- API'S
+  - Juno
+  - Correios
+  - Zenvia RCS
+  - Linkapi
+
+- Domínio 
+  - Namecheap
+   
+- Certificado SSL
+  - Let's Encrypt 
+  
+- Documentação da API
+  - Swagger Hub 
+
+## 🧪 Testar o projeto
+A aplicação é dividida em duas, APP e API
 
 - Clone o repositório na sua máquina
-- Rode npm install
+- Execute npm install
 - Preencha as informações necessário no arquivo .env.development e renomeie para .env
 
-## Desenvolvedores do Projeto
+## 🧔 Desenvolvedores do Projeto
 Davi Bernardo
 
-## Licença
+## 🧮 Licença
 MIT
